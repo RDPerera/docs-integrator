@@ -19,8 +19,6 @@ The `ballerinax/pricefx` package exposes the following clients:
 
 ### Configuration
 
-#### PricefxCredentials
-
 `PricefxCredentials` is a union of four records - `BasicCredentials`, `JwtCredentials`, `OAuth2Credentials`, or `ExternalJwtCredentials`. Pick the one matching the credentials you hold and pass it as the `auth` field of `ConnectionConfig`.
 
 **BasicCredentials**
@@ -4184,12 +4182,12 @@ Export a PDF File
 | `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
 | `queries` | <code>*oas:ExportQuotePdfQueries</code> | Yes | Queries to be sent with the request |
 
-**Returns:** `record`
+**Returns:** `record {}|error`
 
 **Sample code:**
 
 ```ballerina
-record result = check pricefxClient->exportQuotePdf(uniqueName, queries);
+record {} result = check pricefxClient->exportQuotePdf(uniqueName, queries);
 ```
 
 </div>
@@ -8955,12 +8953,12 @@ Drop a KV Table
 | `payload` | <code>record &#123;&#125;</code> | Yes | Request payload |
 | `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
 
-**Returns:** `record`
+**Returns:** `record {}|error`
 
 **Sample code:**
 
 ```ballerina
-record result = check pricefxClient->dropKvTable(tableName, payload);
+record {} result = check pricefxClient->dropKvTable(tableName, payload);
 ```
 
 </div>
@@ -9724,343 +9722,6 @@ Update a Logic (Partial)
 
 ```ballerina
 oas:LogicResponse result = check pricefxClient->updateLogicPartial(id, payload);
-```
-
-</div>
-</details>
-
-#### Calculation Grids
-
-<details>
-<summary>acceptCalculationGridItem</summary>
-
-<div>
-
-Submit a Calculation Grid Item
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `id` | <code>string</code> | Yes | The `id` of the Calculation Grid you want to submit items for. You can retrieve the `id` of the CG, for example, by calling the `/fetch/CG` endpoint |
-| `payload` | <code>oas:SubmitCalculationGridItemRequest</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:SubmitCalculationGridItemResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:SubmitCalculationGridItemResponse result = check pricefxClient->acceptCalculationGridItem(id, payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>addCalculationGrid</summary>
-
-<div>
-
-Add a Calculation Grid
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `payload` | <code>oas:AddCalculationGridRequest</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:AddCalculationGridResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:AddCalculationGridResponse result = check pricefxClient->addCalculationGrid(payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>addCalculationGridItem</summary>
-
-<div>
-
-Add a Calculation Grid Item
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `keyNumber` | <code>"1"&#124;"2"&#124;"3"&#124;"4"&#124;"5"&#124;"6"</code> | Yes | Use CGI1..CGI6 in the path, where numbers from 1 to 6 refer to Calculation Grid Item keys |
-| `payload` | <code>oas:AddCalculationGridItemRequest</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:AddCalculationGridItemResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:AddCalculationGridItemResponse result = check pricefxClient->addCalculationGridItem(keyNumber, payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>calculateCalculationGrid</summary>
-
-<div>
-
-Calculate a Calculation Grid
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `id` | <code>string</code> | Yes | `id` of the Calculation Grid you want to calculate |
-| `payload` | <code>oas:CalculateCalculationGridRequest</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:CalculateCalculationGridResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:CalculateCalculationGridResponse result = check pricefxClient->calculateCalculationGrid(id, payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>deleteCalculationGrid</summary>
-
-<div>
-
-Delete a Calculation Grid
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `payload` | <code>oas:DeleteCalculationGridRequest</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:DeleteCalculationGridResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:DeleteCalculationGridResponse result = check pricefxClient->deleteCalculationGrid(payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>deleteCalculationGridItem</summary>
-
-<div>
-
-Delete a Calculation Grid Item
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `keyNumber` | <code>"1"&#124;"2"&#124;"3"&#124;"4"&#124;"5"&#124;"6"</code> | Yes | Use CGI1..CGI6 in the path, where numbers from 1 to 6 refer to Calculation Grid Item keys |
-| `payload` | <code>oas:DeleteCalculationGridItemRequest</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:DeleteCalculationGridItemResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:DeleteCalculationGridItemResponse result = check pricefxClient->deleteCalculationGridItem(keyNumber, payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>getCalculationGrid</summary>
-
-<div>
-
-Get a Calculation Grid
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `id` | <code>string</code> | Yes | ID of the Calculation Grid you want to retrieve |
-| `payload` | <code>record &#123;&#125;</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:GetCalculationGridResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:GetCalculationGridResponse result = check pricefxClient->getCalculationGrid(id, payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>getCalculationGridItem</summary>
-
-<div>
-
-Get a Calculation Grid Item
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `keyNumber` | <code>"1"&#124;"2"&#124;"3"&#124;"4"&#124;"5"&#124;"6"</code> | Yes | Use CGI1..CGI6 in the path, where numbers from 1 to 6 refer to Calculation Grid Item keys |
-| `id` | <code>string</code> | Yes | `id` of the Calculation Grid Item you want to fetch |
-| `payload` | <code>record &#123;&#125;</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:GetCalculationGridItemResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:GetCalculationGridItemResponse result = check pricefxClient->getCalculationGridItem(keyNumber, id, payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>listCalculationGridItems</summary>
-
-<div>
-
-List Calculation Grid Items
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `keyNumber` | <code>"1"&#124;"2"&#124;"3"&#124;"4"&#124;"5"&#124;"6"</code> | Yes | Use CGI1..CGI6 in the path, where numbers from 1 to 6 refer to Calculation Grid Item keys |
-| `payload` | <code>oas:ListCalculationGridItemsRequest</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:ListCalculationGridItemsResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:ListCalculationGridItemsResponse result = check pricefxClient->listCalculationGridItems(keyNumber, payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>listCalculationGrids</summary>
-
-<div>
-
-List Calculation Grids
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `payload` | <code>record &#123;&#125;</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:ListCalculationGridsResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:ListCalculationGridsResponse result = check pricefxClient->listCalculationGrids(payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>rejectCalculationGridItem</summary>
-
-<div>
-
-Deny a Calculation Grid Item
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `id` | <code>string</code> | Yes | The `id` of the Calculation Grid you want to deny items for. You can retrieve the `id` of the CG, for example, by calling the `/fetch/CG` endpoint |
-| `payload` | <code>oas:DenyCalculationGridItemRequest</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:DenyCalculationGridItemResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:DenyCalculationGridItemResponse result = check pricefxClient->rejectCalculationGridItem(id, payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>updateCalculationGrid</summary>
-
-<div>
-
-Update a Calculation Grid
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `payload` | <code>oas:UpdateCalculationGridRequest</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:UpdateCalculationGridResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:UpdateCalculationGridResponse result = check pricefxClient->updateCalculationGrid(payload);
-```
-
-</div>
-</details>
-
-<details>
-<summary>updateCalculationGridItem</summary>
-
-<div>
-
-Update a Calculation Grid Item
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|--------------|
-| `id` | <code>string</code> | Yes | `id` of the Calculation Grid Item you want to update |
-| `payload` | <code>oas:UpdateCalculationGridItemRequest</code> | Yes | Request payload |
-| `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
-
-**Returns:** `oas:UpdateCalculationGridItemResponse|error`
-
-**Sample code:**
-
-```ballerina
-oas:UpdateCalculationGridItemResponse result = check pricefxClient->updateCalculationGridItem(id, payload);
 ```
 
 </div>
@@ -11003,12 +10664,12 @@ Add Line Items
 | `payload` | <code>oas:ClicmanagerAdditemstypedIdBody</code> | Yes | Request payload |
 | `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
 
-**Returns:** `record`
+**Returns:** `record {}|error`
 
 **Sample code:**
 
 ```ballerina
-record result = check pricefxClient->addLineItems(typedId, payload);
+record {} result = check pricefxClient->addLineItems(typedId, payload);
 ```
 
 </div>
@@ -11028,12 +10689,12 @@ Fetch Activities
 | `payload` | <code>oas:ActivitylogFetchBody</code> | Yes | Request payload |
 | `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Headers to be sent with the request |
 
-**Returns:** `record`
+**Returns:** `record {}|oas:FetchActivitiesEnvelope|error`
 
 **Sample code:**
 
 ```ballerina
-record result = check pricefxClient->fetchActivities(payload);
+record {}|oas:FetchActivitiesEnvelope result = check pricefxClient->fetchActivities(payload);
 ```
 
 </div>

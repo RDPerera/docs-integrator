@@ -23,8 +23,6 @@ You only pay for a Basic authenticated request once: the connector uses your use
 
 ### 2. JWT Token Authentication
 
-Provide `jwt` on its own - no username, password, or partition needed.
-
 If you already have a non-expiring Pricefx JWT, you can use it directly by setting it as `jwt`.
 
 ### 3. OAuth 2.0 Authentication

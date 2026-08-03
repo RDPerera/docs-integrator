@@ -7,7 +7,7 @@ description: "Overview of the ballerinax/pricefx connector for WSO2 Integrator."
 
 [Pricefx](https://www.pricefx.com/) is a cloud-native pricing and revenue management platform that helps enterprises manage price lists, calculation grids, quotes, contracts, and rebate agreements across their sales organization. The `ballerinax/pricefx` connector provides a client for the [Pricefx Backend API](https://api.pricefx.com/), covering master data (products, customers, sellers), pricing (price lists, manual price lists, calculation grids, condition records), sales (quotes, contracts, rebate agreements, sales compensations), and platform administration (users, workflow, data manager, notifications, comments, custom forms, and more).
 
-## Key Features
+## Key features
 
 - Manage products, customers, sellers, and their extension fields
 - Create, calculate, and manage price lists, manual price lists, and calculation grids
