@@ -1195,6 +1195,276 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Budget',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.budget/microsoft-dynamics-365-finance-budget-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.budget/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.budget/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Cash Management',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.cashmanagement/microsoft-dynamics-365-finance-cash-management-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.cashmanagement/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.cashmanagement/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Core',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.core/microsoft-dynamics-365-finance-core-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.core/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.core/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Core Organization',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.coreorg/microsoft-dynamics-365-finance-core-organization-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.coreorg/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.coreorg/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Customer',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.customer/microsoft-dynamics-365-finance-customer-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.customer/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.customer/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Customer Account',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.customeraccount/microsoft-dynamics-365-finance-customer-account-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.customeraccount/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.customeraccount/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Customer Main',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.customermain/microsoft-dynamics-365-finance-customer-main-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.customermain/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.customermain/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Document',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.document/microsoft-dynamics-365-finance-document-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.document/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.document/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Expense',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.expense/microsoft-dynamics-365-finance-expense-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.expense/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.expense/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Fiscal',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.fiscal/microsoft-dynamics-365-finance-fiscal-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.fiscal/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.fiscal/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Fixed Asset',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.fixedasset/microsoft-dynamics-365-finance-fixed-asset-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.fixedasset/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.fixedasset/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance HR Development',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.hrdev/microsoft-dynamics-365-finance-hr-development-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.hrdev/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.hrdev/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Human Resources',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.hr/microsoft-dynamics-365-finance-human-resources-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.hr/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.hr/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Journal Entry',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.journalentry/microsoft-dynamics-365-finance-journal-entry-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.journalentry/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.journalentry/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Ledger',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.ledger/microsoft-dynamics-365-finance-ledger-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.ledger/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.ledger/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Main Account',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.mainaccount/microsoft-dynamics-365-finance-main-account-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.mainaccount/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.mainaccount/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Payment',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.payment/microsoft-dynamics-365-finance-payment-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.payment/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.payment/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Procurement',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.procurement/microsoft-dynamics-365-finance-procurement-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.procurement/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.procurement/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Project',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.project/microsoft-dynamics-365-finance-project-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.project/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.project/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Receivable',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.receivable/microsoft-dynamics-365-finance-receivable-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.receivable/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.receivable/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance System',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.system/microsoft-dynamics-365-finance-system-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.system/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.system/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance System Config',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.sysconfig/microsoft-dynamics-365-finance-system-config-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.sysconfig/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.sysconfig/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Tax',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.tax/microsoft-dynamics-365-finance-tax-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.tax/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.tax/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Tax Region',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.taxregion/microsoft-dynamics-365-finance-tax-region-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.taxregion/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.taxregion/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Trade',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.trade/microsoft-dynamics-365-finance-trade-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.trade/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.trade/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Users',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.users/microsoft-dynamics-365-finance-users-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.users/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.users/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Vendor',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendor/microsoft-dynamics-365-finance-vendor-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendor/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendor/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Vendor Extended',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorextended/microsoft-dynamics-365-finance-vendor-extended-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorextended/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorextended/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Vendor Payment',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorpayment/microsoft-dynamics-365-finance-vendor-payment-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorpayment/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorpayment/actions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Dynamics 365 Finance Workflow',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/microsoft.dynamics365.finance.workflow/microsoft-dynamics-365-finance-workflow-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.workflow/setup-guide',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.workflow/actions',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Microsoft OneDrive',
           link: { type: 'doc', id: 'connectors/catalog/storage-file/microsoft.onedrive/microsoft-onedrive-connector-overview' },
           items: [
