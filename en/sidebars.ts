@@ -1652,6 +1652,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/actions',
+            'connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/example',
           ],
         },
         {

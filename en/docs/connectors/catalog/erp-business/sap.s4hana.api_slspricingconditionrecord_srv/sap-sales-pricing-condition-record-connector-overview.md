@@ -31,10 +31,12 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 ## Documentation
 
-* **[Setup Guide](setup-guide.md)**: This guide walks you through configuring SAP S/4HANA Communication Management to expose the Condition Record for Pricing in Sales API and obtaining the credentials required to use the connector.
+* **[Setup Guide](setup-guide.md)**: This guide walks you through configuring an SAP S/4HANA Communication Arrangement to expose the Condition Record for Pricing in Sales API and obtaining the credentials required by the connector.
 
 
 * **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
+
+* **[Example](example.md)**: Learn how to build and configure an integration using the **SAP Sales Pricing Condition Record** connector, including connection setup, operation configuration, and execution flow.
 
 ## How to contribute
 
