@@ -1683,6 +1683,16 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'SAP Sales Pricing Condition Record',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/sap-sales-pricing-condition-record-connector-overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/setup-guide',
+            'connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/actions',
+            'connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/example',
+          ],
+        },
+        {
+          type: 'category',
           label: 'SAP Sales Quotation',
           link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/sap-sales-quotation-connector-overview' },
           items: [
