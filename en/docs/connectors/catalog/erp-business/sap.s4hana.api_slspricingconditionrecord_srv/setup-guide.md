@@ -21,7 +21,7 @@ This guide walks you through configuring an SAP S/4HANA Communication Arrangemen
 6. Select **Create** to save the communication user.
 
 :::tip
-Store the username and password securely. These credentials will be used as the `auth` configuration when initializing the Ballerina connector client.
+Store the username and password securely. These credentials will be used as the `auth` configuration when initializing the connector client.
 :::
 
 ## Step 2: Create a communication system

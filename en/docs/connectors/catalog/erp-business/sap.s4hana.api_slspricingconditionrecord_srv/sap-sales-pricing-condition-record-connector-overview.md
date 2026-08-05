@@ -4,7 +4,7 @@ title: "Overview"
 
 # Overview
 
-SAP Sales Pricing Condition Record is an S/4HANA OData (Pricing Data Integration) API that provides programmatic access to pricing condition records used in sales order pricing. The Ballerina `ballerinax/sap.s4hana.api_slspricingconditionrecord_srv` connector enables you to create, read, update, and delete condition records, their validity periods, pricing scales, condition supplements, and description texts directly from your Ballerina integration flows.
+SAP Sales Pricing Condition Record is an S/4HANA OData (Pricing Data Integration) API that provides programmatic access to pricing condition records used in sales order pricing. The `ballerinax/sap.s4hana.api_slspricingconditionrecord_srv` connector enables you to create, read, update, and delete condition records, their validity periods, pricing scales, condition supplements, and description texts directly from your integration flows.
 
 
 ## Key features
@@ -20,7 +20,7 @@ SAP Sales Pricing Condition Record is an S/4HANA OData (Pricing Data Integration
 
 ## Actions
 
-Actions are operations you invoke on SAP S/4HANA from your Ballerina integration. Use these actions for listing and filtering condition records, publishing new pricing data, updating existing records, and managing sub-entities such as validity periods, pricing scales, condition supplements, and texts.
+Actions are operations you invoke on SAP S/4HANA from your integration. Use these actions for listing and filtering condition records, publishing new pricing data, updating existing records, and managing sub-entities such as validity periods, pricing scales, condition supplements, and texts.
 
 
 | Client | Actions |

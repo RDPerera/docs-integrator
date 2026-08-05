@@ -2,16 +2,16 @@
 
 ## What you'll build
 
-Build an automation that connects to an SAP S/4HANA system and creates a pricing condition record using the Condition Record for Pricing in Sales API. The automation logs the created record as a JSON string for inspection.
+Build an automation that connects to an SAP S/4HANA system and lists pricing condition records using the Condition Record for Pricing in Sales API. The automation logs the retrieved records as a JSON string for inspection.
 
 **Operations used:**
-- **Create A Sls Prcg Condition Record** : Creates one or more condition records.
+- **List A Sls Prcg Condition Records** : Reads all condition records in the system.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    A((User)) --> B[Create A Sls Prcg Condition Record]
+    A((User)) --> B[List A Sls Prcg Condition Records]
     B --> C[SAP Sales Pricing Condition Record Connector]
     C --> D((SAP S/4HANA))
 ```
@@ -19,8 +19,7 @@ flowchart LR
 ## Prerequisites
 
 - Access to an SAP S/4HANA system with the Condition Record for Pricing in Sales API enabled
-- SAP hostname and an authentication token
-- A condition table, application, and condition type already configured in your SAP system
+- SAP hostname, username, and password
 
 ## Setting up the SAP Sales Pricing Condition Record integration
 
@@ -45,7 +44,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable.
 
-- **Config** : Authentication configuration for the connector; bind the `token` field to a configurable variable.
+- **Config** : Authentication configuration for the connector; bind the `username` and `password` fields to configurable variables.
 - **Hostname** : The SAP S/4HANA server hostname; bind to a configurable variable.
 
 ![SAP Sales Pricing Condition Record connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/ballerinax_sap_s4hana_api_slspricingconditionrecord_srv_screenshot_02_connection_form.png)
@@ -62,9 +61,10 @@ Select **Save** and verify that the connection appears in the **Connections** se
 2. Enter a value for each configurable listed below before you run the integration.
 
 - **sapHostname** (`string`) : The SAP S/4HANA server hostname.
-- **apiToken** (`string`) : The authentication token for SAP access.
+- **username** (`string`) : The username for SAP access.
+- **password** (`string`) : The password for SAP access.
 
-## Configuring the SAP Sales Pricing Condition Record Create A Sls Prcg Condition Record operation
+## Configuring the SAP Sales Pricing Condition Record List A Sls Prcg Condition Records operation
 
 ### Step 6: Add an automation entry point
 
@@ -72,22 +72,20 @@ Select **Save** and verify that the connection appears in the **Connections** se
 2. Select **Automation**.
 3. Select **Create** to accept the settings.
 
-### Step 7: Expand the connection and configure the Create A Sls Prcg Condition Record operation
+### Step 7: Expand the connection and configure the List A Sls Prcg Condition Records operation
 
 1. Select **Add Step** in the automation flow.
 2. Expand **apiSlspricingconditionrecordSrvClient** to display its operations.
 
 ![SAP Sales Pricing Condition Record connection expanded to display operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/ballerinax_sap_s4hana_api_slspricingconditionrecord_srv_screenshot_04_operations_panel.png)
 
-3. Select **Create A Sls Prcg Condition Record** and enter its required values.
+3. Select **List A Sls Prcg Condition Records**. This operation has no required parameters.
 
-- **Payload** : The new condition record entity — its number, sequential number, condition table, application, and condition type.
-
-![SAP Sales Pricing Condition Record Create A Sls Prcg Condition Record operation with all values entered before saving](/img/connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/ballerinax_sap_s4hana_api_slspricingconditionrecord_srv_screenshot_05_operation_form.png)
+![SAP Sales Pricing Condition Record List A Sls Prcg Condition Records operation before saving](/img/connectors/catalog/erp-business/sap.s4hana.api_slspricingconditionrecord_srv/ballerinax_sap_s4hana_api_slspricingconditionrecord_srv_screenshot_05_operation_form.png)
 
 4. Select **Save**.
 
-### Step 8: Log the Create A Sls Prcg Condition Record result
+### Step 8: Log the List A Sls Prcg Condition Records result
 
 Add a log action for the returned value, then return to the visual flow.
 
@@ -103,13 +101,13 @@ Try this sample in WSO2 Integration Platform.
 
 ## More code examples
 
-The S/4 HANA Sales and Distribution Ballerina connectors provide practical examples illustrating usage in various
+The S/4 HANA Sales and Distribution connectors provide practical examples illustrating usage in various
 scenarios. Explore
 these [examples](https://github.com/ballerina-platform/module-ballerinax-sap.s4hana.sales/tree/main/examples), covering
 use cases like accessing S/4HANA Sales Order (A2X) API.
 
 1. [Salesforce to S/4HANA Integration](https://github.com/ballerina-platform/module-ballerinax-sap.s4hana.sales/tree/main/examples/salesforce-to-sap) -
-   Demonstrates leveraging the `sap.s4hana.api_sales_order_srv:Client` in Ballerina for S/4HANA API interactions. It
+   Demonstrates leveraging the `sap.s4hana.api_sales_order_srv:Client` connector for S/4HANA API interactions. It
    specifically showcases how to respond to a Salesforce Opportunity Close Event by automatically generating a Sales
    Order in the S/4HANA SD module.
 
