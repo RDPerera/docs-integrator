@@ -9,7 +9,7 @@ This guide walks you through configuring an SAP S/4HANA Communication Arrangemen
 ## Prerequisites
 
 - An active SAP S/4HANA Cloud tenant or an on-premise SAP S/4HANA system with the Sales and Distribution (SD) module enabled.
-- Administrator access to the SAP Fiori Launchpad to configure communication settings.
+- An SAP user account with authorization to access Sales and Distribution master data (typically the S_RS_ADMWB or equivalent authorization object).
 
 ## Step 1: Create a communication user
 
