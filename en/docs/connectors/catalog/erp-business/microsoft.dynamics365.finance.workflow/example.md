@@ -49,7 +49,7 @@ Select **Add Connection** in the **Connections** section.
 2. Switch **Config** from **Record** to **Expression** mode and enter an expression that references the three configurable variables under an `auth` record.
 3. Open the **Service Url** field's helper panel, select the **Configurables** tab, and create a string configurable variable named `serviceUrl`.
 
-- **Config** : The authentication settings used to connect to Microsoft Dynamics 365 Finance Workflow. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : The authentication settings used to connect to Microsoft Dynamics 365 Finance Workflow. Enter the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : The address of the target Microsoft Dynamics 365 Finance and Operations environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Workflow connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.workflow/ballerinax_microsoft_dynamics365_finance_workflow_screenshot_02_connection_form.png)
@@ -68,6 +68,7 @@ Select **Save** and verify that the connection appears in the **Connections** se
 - **tokenUrl** (`string`) : The OAuth2 token endpoint URL for your Microsoft Entra ID tenant.
 - **clientId** (`string`) : The client ID of your Microsoft Entra ID app registration.
 - **clientSecret** (`string`) : The client secret of your Microsoft Entra ID app registration.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The address of the target Microsoft Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Workflow List Workflows operation

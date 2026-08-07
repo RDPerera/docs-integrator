@@ -46,8 +46,8 @@ Select **Add Connection** in the **Connections** section.
 
 Bind the connection parameters to configurable variables before saving the connection.
 
-1. Open the **Config** field's record view and select **auth**, which pulls in the OAuth2 client-credentials grant fields, then also select **tokenUrl**.
-2. Switch **Config** to expression mode and enter `{auth: {tokenUrl, clientId, clientSecret}}`, referencing the configurable variables created for those fields.
+1. Open the **Config** field's record view and select **auth**, which pulls in the OAuth2 client-credentials grant fields, then also select **tokenUrl** and **scopes**.
+2. Switch **Config** to expression mode and enter `{auth: {tokenUrl, clientId, clientSecret, scopes}}`, referencing the configurable variables created for those fields.
 3. Open the **Service Url** field's helper panel, select **Configurables**, and create a new configurable named `serviceUrl`.
 
 - **Config** : The connection settings, including the OAuth2 client-credentials authentication values.
@@ -69,6 +69,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 - **tokenUrl** (`string`) : The Microsoft Entra ID OAuth2 token endpoint for the tenant.
 - **clientId** (`string`) : The Microsoft Entra ID application (client) ID.
 - **clientSecret** (`string`) : The Microsoft Entra ID application client secret.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Vendor List Vendors operation

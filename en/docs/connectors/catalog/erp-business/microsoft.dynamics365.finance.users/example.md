@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind the authentication and service fields to configurable variables.
 
-- **Config** : Bind to the expression `{auth: {tokenUrl, clientId, clientSecret}}`, referencing three configurable variables for the OAuth2 client-credentials grant.
+- **Config** : Bind to the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`, referencing three configurable variables for the OAuth2 client-credentials grant.
 - **Service Url** : Bind to the `serviceUrl` configurable variable, which holds the target Dynamics 365 Finance and Operations environment URL. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Users connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.users/ballerinax_microsoft_dynamics365_finance_users_screenshot_02_connection_form.png)
@@ -65,6 +65,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 - **tokenUrl** (`string`) : The OAuth2 token endpoint URL for Microsoft Entra ID.
 - **clientId** (`string`) : The Azure AD application (client) ID.
 - **clientSecret** (`string`) : The Azure AD application client secret.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The base URL of the target Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Users List System Users operation

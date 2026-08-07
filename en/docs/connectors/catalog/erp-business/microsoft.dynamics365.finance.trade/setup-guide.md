@@ -42,12 +42,13 @@ Registering the application in Entra ID only lets it obtain an access token; the
 2. Assign the new user one or more security roles that grant access to the Trade entities you plan to use — for example, roles that cover Intrastat reporting, foreign trade, or tax compliance — via **System administration → Security → Assign users to roles**.
 3. Go to **System administration → Setup → Microsoft Entra applications** and select **New**. Enter the Azure AD **Application (client) ID** you noted in Step 1 as the **Client Id**, give the entry a descriptive **Name**, and map it to the **User ID** created above. Do not paste the client ID into the user's **Azure AD object ID** or **Identity provider object ID** field — that does not establish the required Finance application registration mapping.
 
-## Step 4: Locate the service URL
+## Step 4: Locate the service URL and token scope
 
 The connector talks directly to your environment's OData root, not to the API permission scope itself.
 
 1. Sign in to your Dynamics 365 Finance environment and note the base URL shown in your browser, for example `https://<your-org>.operations.dynamics.com`.
 2. Append `/data` to that base URL to form the OData root used as the `serviceUrl` value: `https://<your-org>.operations.dynamics.com/data`.
+3. Set the connector's `scopes` value — a field on the `OAuth2ClientCredentialsGrantConfig` alongside `tokenUrl`, `clientId`, and `clientSecret` — to the base URL **without** the `/data` suffix, followed by `/.default`: `https://<your-org>.operations.dynamics.com/.default`.
 
 :::tip
 You can verify the URL by opening it directly in a browser while signed in — it should return an OData service document listing the available entity sets, including `Intrastats`, `BLWI`, `SADParameters`, and `Report347`.

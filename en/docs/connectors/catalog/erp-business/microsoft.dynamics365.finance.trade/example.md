@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable.
 
-- **Config** : The configurations, including the `tokenUrl`, `clientId`, and `clientSecret` used to initialize the connector. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : The configurations, including the `tokenUrl`, `clientId`, and `clientSecret` used to initialize the connector. Enter the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : URL of the target Microsoft Dynamics 365 Finance and Operations environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Trade connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.trade/ballerinax_microsoft_dynamics365_finance_trade_screenshot_02_connection_form.png)
@@ -65,6 +65,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 - **tokenUrl** (`configurable string`) : The Microsoft Entra ID token endpoint URL used to obtain an access token.
 - **clientId** (`configurable string`) : The client ID of the Microsoft Entra ID app registration.
 - **clientSecret** (`configurable string`) : The client secret of the Microsoft Entra ID app registration.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`configurable string`) : The URL of the target Microsoft Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Trade List Intrastats operation

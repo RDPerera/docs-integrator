@@ -55,7 +55,7 @@ https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token
 
 This is the `tokenUrl` value passed to the connector's `auth` configuration.
 
-## Step 5: Locate the service URL
+## Step 5: Locate the service URL and build the token scope
 
 1. In your Dynamics 365 Finance environment, note the base URL you use to sign in, for example `https://<your-org>.operations.dynamics.com`.
 
@@ -63,6 +63,12 @@ This is the `tokenUrl` value passed to the connector's `auth` configuration.
 
 ```
 https://<your-org>.operations.dynamics.com/data
+```
+
+3. Build the connector's `scopes` value — a field on the `auth` configuration alongside `tokenUrl`, `clientId`, and `clientSecret` — by appending `/.default` to the base URL from step 1 (not the `/data`-suffixed URL used for `serviceUrl`):
+
+```
+https://<your-org>.operations.dynamics.com/.default
 ```
 
 :::tip

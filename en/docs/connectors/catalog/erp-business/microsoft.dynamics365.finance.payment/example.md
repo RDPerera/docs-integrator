@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every connection field to a configurable variable.
 
-- **Config** : An expression that references the `auth` sub-fields — `tokenUrl`, `clientId`, and `clientSecret` — as configurable variables. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : An expression that references the `auth` sub-fields — `tokenUrl`, `clientId`, and `clientSecret` — as configurable variables. Enter the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment, bound to the `serviceUrl` configurable variable. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Payment connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.payment/ballerinax_microsoft_dynamics365_finance_payment_screenshot_02_connection_form.png)
@@ -65,6 +65,7 @@ Select **Save** and verify that the connection appears in the **Connections** se
 - **tokenUrl** (`string`) : The OAuth2 token endpoint used to obtain an access token for the client credentials grant.
 - **clientId** (`string`) : The Azure Active Directory application (client) ID.
 - **clientSecret** (`string`) : The Azure Active Directory application client secret.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Payment List Payment Methods operation

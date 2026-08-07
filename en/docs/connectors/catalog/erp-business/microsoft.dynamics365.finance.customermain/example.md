@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable.
 
-- **Config** : The configurations to be used when initializing the connector. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : The configurations to be used when initializing the connector. Enter the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : The URL of the target Microsoft Dynamics 365 Finance and Operations environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Customer Main connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.customermain/ballerinax_microsoft_dynamics365_finance_customermain_screenshot_02_connection_form.png)
@@ -65,6 +65,7 @@ Select **Save** and verify that the connection appears in the **Connections** se
 - **tokenUrl** (`string`) : The OAuth 2.0 token endpoint URL for your Azure AD application.
 - **clientId** (`string`) : The client ID of your registered Azure AD application.
 - **clientSecret** (`string`) : The client secret of your registered Azure AD application.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The URL of your Microsoft Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Customer Main List Customers V2 operation

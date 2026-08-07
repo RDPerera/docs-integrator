@@ -66,8 +66,14 @@ The `tokenUrl` follows the standard Microsoft Entra ID v2.0 token endpoint forma
 https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token
 ```
 
+The `scopes` value required by the connector's `OAuth2ClientCredentialsGrantConfig` is the base environment URL (not the `/data`-suffixed OData root used for `serviceUrl`) followed by `/.default`:
+
+```
+https://<your-org>.operations.dynamics.com/.default
+```
+
 :::tip
-Store the tenant ID, client ID, client secret, and service URL as configurable values (for example, in a `Config.toml` file) rather than hard-coding them in source files.
+Store the tenant ID, client ID, client secret, service URL, and scopes as configurable values (for example, in a `Config.toml` file) rather than hard-coding them in source files.
 :::
 
 ## What's next

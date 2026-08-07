@@ -47,7 +47,7 @@ Select **Add Connection** in the **Connections** section.
 Bind the authentication fields and the service URL to configurable variables.
 
 1. Check the **auth** field, along with its **tokenUrl** field, in the record configuration panel to pull in the OAuth2 client-credentials fields.
-2. Switch **Config** to expression mode and enter `{auth: {tokenUrl, clientId, clientSecret}}`, referencing three configurables created under **Configurations**.
+2. Switch **Config** to expression mode and enter `{auth: {tokenUrl, clientId, clientSecret, scopes}}`, referencing three configurables created under **Configurations**.
 3. Open the **Service Url** field's helper panel, select **Configurables**, and create a new configurable named `serviceUrl`.
 
 - **Config** : The OAuth2 client-credentials configuration used to authenticate with Microsoft Entra ID.
@@ -69,6 +69,7 @@ Select **Save Connection** and verify that `vendorpaymentClient` appears in the 
 - **tokenUrl** (`string`) : Token endpoint URL for the Microsoft Entra ID OAuth2 client-credentials grant.
 - **clientId** (`string`) : Client ID of the Microsoft Entra ID app registration.
 - **clientSecret** (`string`) : Client secret of the Microsoft Entra ID app registration.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : Base URL of the target Microsoft Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Vendor Payment List Vendor Payment Methods operation

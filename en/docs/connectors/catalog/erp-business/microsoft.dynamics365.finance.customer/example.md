@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every connection field to a configurable variable that supplies the OAuth2 client-credentials grant and the target environment endpoint.
 
-- **Config** : Binds the token URL, client ID, and client secret configurable variables used for the OAuth2 client-credentials grant. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : Binds the token URL, client ID, and client secret configurable variables used for the OAuth2 client-credentials grant. Enter the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : Binds the configurable variable for the Microsoft Dynamics 365 Finance and Operations environment endpoint. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Customer connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.customer/ballerinax_microsoft_dynamics365_finance_customer_screenshot_02_connection_form.png)
@@ -65,6 +65,7 @@ Select **Save Connection** and verify that **customerClient** appears in the **C
 - **tokenUrl** (`string`) : The OAuth2 token endpoint used to obtain an access token for Microsoft Dynamics 365 Finance.
 - **clientId** (`string`) : The client identifier of the Azure Active Directory application registration.
 - **clientSecret** (`string`) : The client secret of the Azure Active Directory application registration.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Customer List Customers operation

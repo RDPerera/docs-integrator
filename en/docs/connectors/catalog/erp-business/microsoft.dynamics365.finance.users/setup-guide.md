@@ -27,7 +27,7 @@ Store the client secret in a secrets manager or a configurable value — never c
 
 1. In the app registration, go to **API permissions → Add a permission → APIs my organization uses**.
 2. Search for **Dynamics ERP** (the enterprise application that represents Dynamics 365 Finance and Operations in your tenant) and select it.
-3. Choose **Application permissions**, select the Dynamics ERP application role appropriate for the Users entities you plan to manage (do not select `user_impersonation` — that is a delegated scope for interactive, signed-in-user flows; `.default` is not selected here either, since it is the token-request scope shown in Step 4), and select **Add permissions**.
+3. Choose **Application permissions**. The **Dynamics ERP** resource exposes a single application permission for the client credentials grant — select it (do not select `user_impersonation`, which is a delegated scope for interactive, signed-in-user flows; `.default` is not selected here either, since it is the token-request scope shown in Step 4). Fine-grained access to the Users entities (`SystemUsers`, `SecurityRoles`, `UserGroups`, and related entity sets) is not controlled by this permission — it is enforced entirely by the Finance security roles you assign to the application's service account in Step 3. Select **Add permissions**.
 4. Select **Grant admin consent for `<your tenant>`** and confirm.
 
 :::note
@@ -46,12 +46,13 @@ Registering the application in Entra ID only lets it obtain an access token; the
 Follow the principle of least privilege: grant only the security roles the integration actually needs. An application that only needs to read `SourceSystems` or `SourceTypes` reference data should not be granted **System administrator**.
 :::
 
-## Step 4: Locate the service URL
+## Step 4: Locate the service URL and token scope
 
 The connector talks directly to your environment's OData root, not to the API permission scope itself.
 
 1. Sign in to your Dynamics 365 Finance environment and note the base URL shown in your browser, for example `https://<your-org>.operations.dynamics.com`.
 2. Append `/data` to that base URL to form the OData root used as the `serviceUrl` value: `https://<your-org>.operations.dynamics.com/data`.
+3. Set the connector's `scopes` value — a field on the `OAuth2ClientCredentialsGrantConfig` alongside `tokenUrl`, `clientId`, and `clientSecret` — to the base URL **without** the `/data` suffix, followed by `/.default`: `https://<your-org>.operations.dynamics.com/.default`.
 
 :::tip
 You can verify the URL by opening it directly in a browser while signed in — it should return an OData service document listing the available entity sets, including `SystemUsers`, `SecurityRoles`, `ExternalRoles`, `UserGroups`, and `ChannelUsers`.

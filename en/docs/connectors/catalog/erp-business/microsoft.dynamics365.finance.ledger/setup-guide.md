@@ -52,7 +52,7 @@ Application permissions require a tenant administrator to grant consent. If you 
 
 2. Go to **System administration → Setup → Microsoft Entra applications** and select **New**. Enter the **Application (client) ID** you noted in Step 1 as the **Client Id**, give the entry a descriptive **Name** (such as **Connector.FullAccess** or a name reflecting the service-level access granted), and map it to the **User ID** created above. Do not paste the client ID directly into a user record's identity field — that does not establish the required Finance application registration mapping.
 
-## Step 5: Obtain the environment's service URL
+## Step 5: Obtain the environment's service URL and token scope
 
 1. The `serviceUrl` required by the connector is the OData root of your Dynamics 365 Finance and Operations environment. It follows the pattern:
    ```
@@ -62,6 +62,11 @@ Application permissions require a tenant administrator to grant consent. If you 
 2. You can find your environment's base URL from the address bar when you sign in to Dynamics 365 Finance & Operations, or from **Lifecycle Services (LCS)** for the environment. Append `/data` to the base URL to form the `serviceUrl`.
 
 3. Optionally, verify the endpoint is reachable by browsing to `<serviceUrl>/$metadata` while signed in — this returns the OData metadata document for the environment.
+
+4. The `scopes` value required by the connector's `OAuth2ClientCredentialsGrantConfig` is the base environment URL — **not** the `/data`-suffixed OData root used for `serviceUrl` — followed by `/.default`:
+   ```
+   https://<your-org>.operations.dynamics.com/.default
+   ```
 
 ## What's next
 

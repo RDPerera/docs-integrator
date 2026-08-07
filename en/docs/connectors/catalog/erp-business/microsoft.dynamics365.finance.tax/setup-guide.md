@@ -48,8 +48,14 @@ https://<your-org>.operations.dynamics.com/data
 
 You can find `<your-org>` in the address bar when you are signed in to your Dynamics 365 Finance environment, or by asking your Dynamics 365 administrator. Use this full URL, including the `/data` suffix, as the `serviceUrl` value when initializing the connector.
 
+The connector's `scopes` value — required by the `OAuth2ClientCredentialsGrantConfig` alongside `tokenUrl`, `clientId`, and `clientSecret` — is the base environment URL **without** the `/data` suffix, followed by `/.default`:
+
+```
+https://<your-org>.operations.dynamics.com/.default
+```
+
 :::tip
-Store your tenant ID, client ID, client secret, and service URL securely using `configurable` variables in a `Config.toml` file. Never hard-code credentials in source files.
+Store your tenant ID, client ID, client secret, service URL, and scopes securely using `configurable` variables in a `Config.toml` file. Never hard-code credentials in source files.
 :::
 
 ## What's next

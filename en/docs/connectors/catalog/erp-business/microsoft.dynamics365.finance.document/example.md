@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Switch **Config** to expression mode and bind its nested fields to configurable variables. Open the **Service Url** helper panel and create a configurable for it as well.
 
-- **Config** : The authentication settings used when initializing the connector, expressed as `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : The authentication settings used when initializing the connector, expressed as `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : URL of the target Microsoft Dynamics 365 Finance and Operations environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Document connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.document/ballerinax_microsoft_dynamics365_finance_document_screenshot_02_connection_form.png)
@@ -65,6 +65,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 - **tokenUrl** (`string`) : The OAuth2 token endpoint URL used to obtain an access token.
 - **clientId** (`string`) : The Azure AD application (client) ID used for authentication.
 - **clientSecret** (`string`) : The Azure AD application client secret used for authentication.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The URL of the target Microsoft Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Document List Documents operation

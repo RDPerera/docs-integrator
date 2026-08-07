@@ -47,7 +47,7 @@ Select **Add Connection** in the **Connections** section.
 Configure the authentication and endpoint fields so the connection form stores no secrets directly.
 
 1. Select **auth** within **Config** to reveal its fields, then enable the optional **tokenUrl** field alongside the required **clientId** and **clientSecret** fields.
-2. Switch **Config** to **Expression** mode and enter the record `{auth: {tokenUrl, clientId, clientSecret}}`.
+2. Switch **Config** to **Expression** mode and enter the record `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 3. Open the helper panel for **Service Url**, select the **Configurables** tab, and create a new configurable named `serviceUrl`.
 
 - **Config** : The OAuth2 client credentials settings used to authenticate with Microsoft Dynamics 365 Finance.
@@ -69,6 +69,7 @@ Select **Save Connection** and verify that **procurementClient** appears in the 
 - **tokenUrl** (`string`) : The OAuth2 token endpoint URL for the Azure AD tenant that issues access tokens.
 - **clientId** (`string`) : The application (client) ID of the Azure AD app registration.
 - **clientSecret** (`string`) : The client secret generated for the Azure AD app registration.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The base URL of the Microsoft Dynamics 365 Finance and Operations environment, such as `https://<your-org>.operations.dynamics.com/data`.
 
 ## Configuring the Microsoft Dynamics 365 Finance Procurement List Delivery Terms operation

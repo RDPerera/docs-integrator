@@ -42,13 +42,15 @@ Because this connector authenticates using the OAuth2 client credentials grant (
 
 ## Step 3: Register the application in Dynamics 365
 
-1. Sign in to your Dynamics 365 Finance and Operations environment.
+Dynamics 365 Finance requires the Finance user itself to be backed by an identity in Microsoft Entra ID, so that identity must exist before you create the Finance user, and the Finance user must exist before you register the application against it.
 
-2. Create a dedicated service account: go to **System administration → Users**, select **New**, and enter a **User name** and **User ID** for the application (e.g., `COREORG-APP`).
+1. Confirm the service account has a backing identity in Microsoft Entra ID: use an existing directory user, or create one in the [Microsoft Entra admin center](https://entra.microsoft.com/) (**Identity → Users → New user**), for example `coreorg-app@<your-tenant>.onmicrosoft.com`.
+
+2. Sign in to your Dynamics 365 Finance and Operations environment and provision the Finance user for that identity: go to **System administration → Users**, select **New**, and either import the Entra ID user directly or enter a **User name** and **User ID** that correspond to it (e.g., `COREORG-APP`), so the Finance user is linked to the Entra ID identity from step 1.
 
 3. Assign one or more **Security roles** that grant the access the connector needs — for example, a role with read/write access to **Organization administration → Organizations → Legal entities**, **Warehouse management → Warehouses**, **Global address book → Address book parameters, name sequences, name affixes, and salutations**, and **General ledger → Sales tax → VAT registration numbers**. Set the user's status to **Enabled** and save.
 
-4. Go to **System administration → Setup → Microsoft Entra applications** (this may be labeled **Microsoft Entra ID applications** depending on your version) and select **New**. Enter the **Application (client) ID** from Step 1 as the **Client Id**, give the entry a descriptive **Name**, and set the **User ID** to the service account you created in step 2. This maps the Entra application identity to the Dynamics 365 user, so API calls made with the application's access token are authorized as that user. Do not use the user record's **Identity provider object ID** or **Azure AD object ID** field for this — that field serves a different, interactive sign-in purpose.
+4. Only once the Finance user exists and is linked to its Entra ID identity, go to **System administration → Setup → Microsoft Entra applications** (this may be labeled **Microsoft Entra ID applications** depending on your version) and select **New**. Enter the **Application (client) ID** from Step 1 as the **Client Id**, give the entry a descriptive **Name**, and set the **User ID** to the Finance user you provisioned in step 2. This maps the Entra application identity to the Dynamics 365 user, so API calls made with the application's access token are authorized as that user. Do not use the user record's **Identity provider object ID** or **Azure AD object ID** field for this — that field serves a different, interactive sign-in purpose.
 
 ## Step 4: Locate the service URL
 

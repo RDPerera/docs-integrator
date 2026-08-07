@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable.
 
-- **Config** : An expression referencing the `auth` record, which carries the `tokenUrl`, `clientId`, and `clientSecret` configurables for the OAuth2 client-credentials grant. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : An expression referencing the `auth` record, which carries the `tokenUrl`, `clientId`, and `clientSecret` configurables for the OAuth2 client-credentials grant. Enter the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment, bound to the `serviceUrl` configurable. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Vendor Extended connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorextended/ballerinax_microsoft_dynamics365_finance_vendorextended_screenshot_02_connection_form.png)
@@ -65,6 +65,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 - **tokenUrl** (`string`) : The OAuth2 token endpoint URL for the Azure AD application registration.
 - **clientId** (`string`) : The application (client) ID of the Azure AD application registration.
 - **clientSecret** (`string`) : The client secret generated for the Azure AD application registration.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Vendor Extended List Vendors V2 operation

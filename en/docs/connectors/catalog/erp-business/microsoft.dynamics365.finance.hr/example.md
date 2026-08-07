@@ -44,7 +44,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable.
 
-- **Config** : Switch to an expression that references the `tokenUrl`, `clientId`, and `clientSecret` configurables nested under `auth`. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : Switch to an expression that references the `tokenUrl`, `clientId`, `clientSecret`, and `scopes` configurables nested under `auth`. Enter the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : Bind to the `serviceUrl` configurable through the field's helper panel.
 
 ![Microsoft Dynamics 365 Finance HR connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.hr/ballerinax_microsoft_dynamics365_finance_hr_screenshot_02_connection_form.png)
@@ -63,6 +63,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 - **tokenUrl** (`string`) : The OAuth2 token endpoint URL for the Azure AD application, for example `https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token`.
 - **clientId** (`string`) : The application (client) identifier of the Azure AD app registration.
 - **clientSecret** (`string`) : The client secret of the Azure AD app registration.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The URL of the target Microsoft Dynamics 365 Finance and Operations environment, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ## Configuring the Microsoft Dynamics 365 Finance HR List People operation

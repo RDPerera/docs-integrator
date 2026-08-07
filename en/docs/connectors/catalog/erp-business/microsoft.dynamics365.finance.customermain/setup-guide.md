@@ -43,7 +43,7 @@ Because this connector uses the OAuth 2.0 client credentials grant, the applicat
 1. In your Dynamics 365 Finance & Operations environment, create a service account: go to **System administration > Users > New**, set a **User name** and **User ID**, assign the security roles the integration needs (for example, roles that grant access to customer maintenance duties), and save the record.
 2. Go to **System administration > Setup > Microsoft Entra applications** (labeled **Microsoft Entra ID applications** on some versions) and select **New**. Enter the **Application (client) ID** from Step 1 as the **Client Id**, give the entry a descriptive **Name**, and set the **User ID** to the service account created above. Do not paste the **Application (client) ID** into a user record's **Identity provider object ID** field — that is a different mechanism and does not establish the required application registration mapping.
 
-## Step 5: Locate the service URL
+## Step 5: Locate the service URL and token scope
 
 1. While signed in to your Dynamics 365 Finance & Operations environment, note the base URL shown in the browser address bar, for example `https://<your-org>.operations.dynamics.com`.
 2. Append `/data` to this URL to form the OData root that the connector uses as its `serviceUrl`:
@@ -52,7 +52,13 @@ Because this connector uses the OAuth 2.0 client credentials grant, the applicat
    https://<your-org>.operations.dynamics.com/data
    ```
 
-With the tenant ID, client ID, client secret, and service URL collected, you have everything the connector needs to authenticate and connect.
+3. Set the connector's `scopes` value — a field on the `OAuth2ClientCredentialsGrantConfig` alongside `tokenUrl`, `clientId`, and `clientSecret` — to the base environment URL (without the `/data` suffix) followed by `/.default`:
+
+   ```
+   https://<your-org>.operations.dynamics.com/.default
+   ```
+
+With the tenant ID, client ID, client secret, service URL, and scopes collected, you have everything the connector needs to authenticate and connect.
 
 ## What's next
 

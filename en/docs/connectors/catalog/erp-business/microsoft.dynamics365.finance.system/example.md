@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable.
 
-- **Config** : The `auth` record, bound to the `tokenUrl`, `clientId`, and `clientSecret` configurables through the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : The `auth` record, bound to the `tokenUrl`, `clientId`, and `clientSecret` configurables through the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : The target environment's OData endpoint, bound to the `serviceUrl` configurable.
 
 ![Microsoft Dynamics 365 Finance System connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.system/ballerinax_microsoft_dynamics365_finance_system_screenshot_02_connection_form.png)
@@ -65,6 +65,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 - **tokenUrl** (`string`) : The OAuth2 token endpoint for the Microsoft Entra ID application.
 - **clientId** (`string`) : The client ID of the registered Microsoft Entra ID application.
 - **clientSecret** (`string`) : The client secret of the registered Microsoft Entra ID application.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The OData endpoint of the target Microsoft Dynamics 365 Finance environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance System List Abbreviations operation

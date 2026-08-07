@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every connection field to a configurable variable rather than a literal value.
 
-- **Config** : An expression that references configurable variables for the OAuth2 client credentials settings — token URL, client ID, and client secret. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : An expression that references configurable variables for the OAuth2 client credentials settings — token URL, client ID, and client secret. Enter the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : A reference to a configurable variable holding the target Dynamics 365 Finance and Operations environment URL. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Fiscal connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.fiscal/ballerinax_microsoft_dynamics365_finance_fiscal_screenshot_02_connection_form.png)
@@ -65,6 +65,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 - **tokenUrl** (`string`) : The OAuth2 token endpoint used to obtain an access token for the target environment.
 - **clientId** (`string`) : The application (client) identifier from the Azure Active Directory registration.
 - **clientSecret** (`string`) : The client secret value from the Azure Active Directory registration.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The base URL of the target Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Fiscal List Fiscal Calendars operation

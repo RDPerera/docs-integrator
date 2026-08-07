@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable:
 
-- **Config** : Authentication object referencing the `tokenUrl`, `clientId`, and `clientSecret` configurable variables. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : Authentication object referencing the `tokenUrl`, `clientId`, `clientSecret`, and `scopes` configurable variables. Enter the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : URL of the target Dynamics 365 Finance and Operations environment, bound to the `serviceUrl` configurable variable. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 - **Connection Name** : Set to `cashmanagementClient`
 
@@ -66,6 +66,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 - **tokenUrl** (`string`) : The Microsoft identity platform token endpoint for your tenant
 - **clientId** (`string`) : The application (client) ID of your Microsoft Entra ID app registration
 - **clientSecret** (`string`) : The client secret generated for your Microsoft Entra ID app registration
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The OData root URL of your Dynamics 365 Finance and Operations environment
 
 ## Configuring the Microsoft Dynamics 365 Finance Cash Management List Cash Accounts operation

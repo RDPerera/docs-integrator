@@ -46,7 +46,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind the authentication and endpoint fields to configurable variables before you save the connection.
 
-- **Config** : Switch to an expression that binds the auth record to the tokenUrl, clientId, and clientSecret configurables. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Config** : Switch to an expression that binds the auth record to the tokenUrl, clientId, clientSecret, and scopes configurables. Enter the expression `{auth: {tokenUrl, clientId, clientSecret, scopes}}`.
 - **Service Url** : Open the helper panel and bind this field to a new configurable through the Configurables tab. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Tax Region connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.taxregion/ballerinax_microsoft_dynamics365_finance_taxregion_screenshot_02_connection_form.png)
@@ -65,6 +65,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 - **tokenUrl** (`string`) : The OAuth2 token endpoint used to obtain an access token for the client credentials grant.
 - **clientId** (`string`) : The Microsoft Entra ID application client identifier.
 - **clientSecret** (`string`) : The Microsoft Entra ID application client secret.
+- **scopes** (`string[]`) : The OAuth2 scope requested for the client-credentials token, set to the environment base URL followed by `/.default`
 - **serviceUrl** (`string`) : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment.
 
 ## Configuring the Microsoft Dynamics 365 Finance Tax Region List Tax Documents operation
