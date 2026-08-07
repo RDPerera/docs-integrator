@@ -41,11 +41,10 @@ The client secret value is shown only once. If you lose it, you must create a ne
 Granting admin consent requires Global Administrator or Privileged Role Administrator permissions in the tenant. If you do not have these permissions, ask your tenant administrator to complete this step.
 :::
 
-## Step 4: Add the application as a Dynamics 365 Finance user
+## Step 4: Register the application in Dynamics 365 Finance
 
-1. Sign in to your Dynamics 365 Finance environment and open **System administration → Users → New**.
-2. Choose to create the user from Microsoft Entra ID, and paste the **Application (client) ID** from Step 1 into the associated Microsoft Entra application field.
-3. Assign the security roles required for budgeting operations (for example, **Budget manager** or **Budget clerk**, or a custom role covering the entities you intend to use), then select **Save**.
+1. Sign in to your Dynamics 365 Finance environment and create a service account: open **System administration → Users → New**, and assign the security roles required for budgeting operations (for example, **Budget manager** or **Budget clerk**, or a custom role covering the entities you intend to use), then select **Save**.
+2. Go to **System administration → Setup → Microsoft Entra applications** and create an application entry using the **Application (client) ID** from Step 1, a descriptive **Name**, and the **User ID** of the service account you just created. Service-to-service authentication requires the Entra app identity to be registered here before the connector can act with the assigned roles — pasting the client ID directly into a **Users → New** record does not establish this mapping.
 
 :::tip
 Assign only the security roles that the integration actually needs. This limits the entities and operations the application's access token can be used against.

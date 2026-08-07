@@ -22,6 +22,8 @@ flowchart LR
 - The OAuth2 token endpoint URL for your Microsoft Entra ID tenant
 - The service URL of your Microsoft Dynamics 365 Finance and Operations environment
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Workflow integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -47,8 +49,8 @@ Select **Add Connection** in the **Connections** section.
 2. Switch **Config** from **Record** to **Expression** mode and enter an expression that references the three configurable variables under an `auth` record.
 3. Open the **Service Url** field's helper panel, select the **Configurables** tab, and create a string configurable variable named `serviceUrl`.
 
-- **Config** : The authentication settings used to connect to Microsoft Dynamics 365 Finance Workflow.
-- **Service Url** : The address of the target Microsoft Dynamics 365 Finance and Operations environment.
+- **Config** : The authentication settings used to connect to Microsoft Dynamics 365 Finance Workflow. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Service Url** : The address of the target Microsoft Dynamics 365 Finance and Operations environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Workflow connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.workflow/ballerinax_microsoft_dynamics365_finance_workflow_screenshot_02_connection_form.png)
 

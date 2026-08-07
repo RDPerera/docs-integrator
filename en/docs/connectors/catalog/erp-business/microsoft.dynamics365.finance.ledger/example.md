@@ -21,6 +21,8 @@ flowchart LR
 - A Microsoft Dynamics 365 Finance and Operations environment, either cloud-hosted or sandbox.
 - An Azure Active Directory (Entra ID) app registration with API permissions for Dynamics 365, providing a client identifier, a client secret, and a token endpoint.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Ledger integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -44,8 +46,8 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every connection field to a configurable variable rather than entering a literal value.
 
-- **Config** : The connection settings record, including the OAuth2 client credentials grant used to authenticate with Microsoft Dynamics 365 Finance.
-- **Service Url** : The base address of the target Microsoft Dynamics 365 Finance and Operations environment.
+- **Config** : The connection settings record, including the OAuth2 client credentials grant used to authenticate with Microsoft Dynamics 365 Finance. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Service Url** : The base address of the target Microsoft Dynamics 365 Finance and Operations environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Ledger connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.ledger/ballerinax_microsoft_dynamics365_finance_ledger_screenshot_02_connection_form.png)
 
@@ -90,7 +92,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 
 ### Step 8: Log the List Ledger Journal Headers result
 
-Add a log action for the returned value. Return to the visual flow to review the complete chain.
+Add a **Log Info** action, switch its **Msg** field to expression mode, and enter `ledgerLedgerjournalheaderscollection.toJsonString()` to log the result. Return to the visual flow to review the complete chain.
 
 ![Completed Microsoft Dynamics 365 Finance Ledger flow with the configured operation](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.ledger/ballerinax_microsoft_dynamics365_finance_ledger_screenshot_06_completed_flow.png)
 

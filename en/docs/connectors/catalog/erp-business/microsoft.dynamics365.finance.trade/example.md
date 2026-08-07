@@ -21,6 +21,8 @@ flowchart LR
 - A Microsoft Entra ID app registration with client credentials (client ID and client secret) authorized to call the Dynamics 365 Finance and Operations OData API.
 - The service URL of your Dynamics 365 Finance and Operations environment.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Trade integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -44,8 +46,8 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable.
 
-- **Config** : The configurations, including the `tokenUrl`, `clientId`, and `clientSecret` used to initialize the connector.
-- **Service Url** : URL of the target Microsoft Dynamics 365 Finance and Operations environment.
+- **Config** : The configurations, including the `tokenUrl`, `clientId`, and `clientSecret` used to initialize the connector. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Service Url** : URL of the target Microsoft Dynamics 365 Finance and Operations environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Trade connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.trade/ballerinax_microsoft_dynamics365_finance_trade_screenshot_02_connection_form.png)
 

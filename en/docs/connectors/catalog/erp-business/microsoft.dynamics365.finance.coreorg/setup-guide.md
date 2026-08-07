@@ -32,27 +32,23 @@ The **Application (client) ID**, **Directory (tenant) ID**, and client secret ma
 
 2. Search for the API that represents your Dynamics 365 Finance and Operations environment (this may appear as **Dynamics ERP**, **Microsoft Dynamics ERP**, or the name of your environment), and select it.
 
-3. Select **Application permissions**, choose the scope exposed by that API (commonly `user_impersonation`), and select **Add permissions**.
+3. Select **Application permissions**, choose the Dynamics ERP application role that matches the access the connector needs (do not select `user_impersonation` — that scope is delegated and only applies to interactive, signed-in-user flows), and select **Add permissions**.
 
 4. Select **Grant admin consent for `<your tenant>`** and confirm.
 
 :::note
-Because this connector authenticates using the OAuth2 client credentials grant (an app-only, non-interactive token), the access token is not tied to a signed-in user. Authorization within Dynamics 365 is instead enforced through the application user and security roles configured in Step 3.
+Because this connector authenticates using the OAuth2 client credentials grant (an app-only, non-interactive token), the access token is not tied to a signed-in user. Authorization within Dynamics 365 is instead enforced through the application user and security roles configured in Step 3. The `.default` value used later in Step 4 is not an application permission you select here — it is the scope you append to the resource URL when requesting the token.
 :::
 
-## Step 3: Add the application as a Dynamics 365 user
+## Step 3: Register the application in Dynamics 365
 
 1. Sign in to your Dynamics 365 Finance and Operations environment.
 
-2. Go to **System administration → Users**, and select **New**.
+2. Create a dedicated service account: go to **System administration → Users**, select **New**, and enter a **User name** and **User ID** for the application (e.g., `COREORG-APP`).
 
-3. Enter a **User name** and **User ID** for the application (e.g., `COREORG-APP`).
+3. Assign one or more **Security roles** that grant the access the connector needs — for example, a role with read/write access to **Organization administration → Organizations → Legal entities**, **Warehouse management → Warehouses**, **Global address book → Address book parameters, name sequences, name affixes, and salutations**, and **General ledger → Sales tax → VAT registration numbers**. Set the user's status to **Enabled** and save.
 
-4. In the user's **Identification** details, paste the **Application (client) ID** from Step 1 into the field used to associate the user record with a Microsoft Entra ID application (labeled **Microsoft Entra app ID** or **AAD object ID** depending on your environment's version). This tells Dynamics 365 to treat API calls made with that application's access token as calls made by this user.
-
-5. Assign one or more **Security roles** that grant the access the connector needs — for example, a role with read/write access to **Organization administration → Organizations → Legal entities**, **Warehouse management → Warehouses**, **Global address book → Address book parameters, name sequences, name affixes, and salutations**, and **General ledger → Sales tax → VAT registration numbers**.
-
-6. Set the user's status to **Enabled** and save.
+4. Go to **System administration → Setup → Microsoft Entra applications** (this may be labeled **Microsoft Entra ID applications** depending on your version) and select **New**. Enter the **Application (client) ID** from Step 1 as the **Client Id**, give the entry a descriptive **Name**, and set the **User ID** to the service account you created in step 2. This maps the Entra application identity to the Dynamics 365 user, so API calls made with the application's access token are authorized as that user. Do not use the user record's **Identity provider object ID** or **Azure AD object ID** field for this — that field serves a different, interactive sign-in purpose.
 
 ## Step 4: Locate the service URL
 

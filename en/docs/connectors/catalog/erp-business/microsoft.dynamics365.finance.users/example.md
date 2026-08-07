@@ -21,6 +21,8 @@ flowchart LR
 - A Microsoft Dynamics 365 Finance and Operations environment (cloud-hosted or sandbox).
 - An Azure Active Directory (Entra ID) app registration with API permissions for Dynamics 365, including an OAuth2 token endpoint, client ID, and client secret.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Users integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -45,7 +47,7 @@ Select **Add Connection** in the **Connections** section.
 Bind the authentication and service fields to configurable variables.
 
 - **Config** : Bind to the expression `{auth: {tokenUrl, clientId, clientSecret}}`, referencing three configurable variables for the OAuth2 client-credentials grant.
-- **Service Url** : Bind to the `serviceUrl` configurable variable, which holds the target Dynamics 365 Finance and Operations environment URL.
+- **Service Url** : Bind to the `serviceUrl` configurable variable, which holds the target Dynamics 365 Finance and Operations environment URL. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Users connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.users/ballerinax_microsoft_dynamics365_finance_users_screenshot_02_connection_form.png)
 

@@ -21,6 +21,8 @@ flowchart LR
 - A Microsoft Dynamics 365 Finance and Operations environment (cloud-hosted or sandbox) with a chart of accounts configured.
 - An Azure Active Directory (Entra ID) application registration with API permissions for Microsoft Dynamics 365 and a generated client secret.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Main Account integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -44,8 +46,8 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every connection field to a configurable variable.
 
-- **Config** : Binds the OAuth2 client credentials settings to the `tokenUrl`, `clientId`, and `clientSecret` configurable variables through an expression.
-- **Service Url** : Binds the target environment endpoint to the `serviceUrl` configurable variable.
+- **Config** : Binds the OAuth2 client credentials settings to the `tokenUrl`, `clientId`, and `clientSecret` configurable variables through an expression. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Service Url** : Binds the target environment endpoint to the `serviceUrl` configurable variable. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Main Account connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.mainaccount/ballerinax_microsoft_dynamics365_finance_mainaccount_screenshot_02_connection_form.png)
 
@@ -90,7 +92,7 @@ Select **Save** and verify that the connection appears in the **Connections** se
 
 ### Step 8: Log the List Main Accounts result
 
-Add a **Log Info** action that logs the result as JSON text, then return to the visual flow.
+Add a **Log Info** action, switch its **Msg** field to expression mode, and enter `mainaccountMainaccountscollection.toJsonString()` to log the result, then return to the visual flow.
 
 ![Completed Microsoft Dynamics 365 Finance Main Account flow with the configured List Main Accounts operation and log step](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.mainaccount/ballerinax_microsoft_dynamics365_finance_mainaccount_screenshot_06_completed_flow.png)
 

@@ -72,7 +72,7 @@ Returns: `CDSProjectsCollection|error`
 Sample code:
 
 ```ballerina
-CDSProjectsCollection result = check fo->listCDSProjects(
+project:CDSProjectsCollection result = check fo->listCDSProjects(
     queries = {
         filter: "ProjectType eq 'TimeMaterial'",
         top: 20,
@@ -104,7 +104,7 @@ Returns: `CDSProject|error`
 Sample code:
 
 ```ballerina
-CDSProject created = check fo->createCDSProjects({
+project:CDSProject created = check fo->createCDSProjects({
     dataAreaId: "usmf",
     projectID: "CDS-1001",
     projectName: "Warehouse Expansion",
@@ -139,7 +139,7 @@ Returns: `CDSProject|error`
 Sample code:
 
 ```ballerina
-CDSProject cdsProject = check fo->getCDSProjects("usmf", "CDS-1001");
+project:CDSProject cdsProject = check fo->getCDSProjects("usmf", "CDS-1001");
 ```
 
 </div>
@@ -194,7 +194,7 @@ Returns: `CDSProject|error`
 Sample code:
 
 ```ballerina
-CDSProject updated = check fo->updateCDSProjects(
+project:CDSProject updated = check fo->updateCDSProjects(
     "usmf",
     "CDS-1001",
     {description: "Warehouse Expansion - Phase 2"}
@@ -226,7 +226,7 @@ Returns: `PSAActualsCollection|error`
 Sample code:
 
 ```ballerina
-PSAActualsCollection result = check fo->listPSAActuals(
+project:PSAActualsCollection result = check fo->listPSAActuals(
     queries = {
         filter: "ProjId eq 'PROJ-100'",
         top: 50
@@ -257,7 +257,7 @@ Returns: `PSAActual|error`
 Sample code:
 
 ```ballerina
-PSAActual created = check fo->createPSAActuals({
+project:PSAActual created = check fo->createPSAActuals({
     dataAreaId: "usmf",
     projId: "PROJ-100",
     transId: "TRX-9001",
@@ -293,7 +293,7 @@ Returns: `PSAActual|error`
 Sample code:
 
 ```ballerina
-PSAActual actual = check fo->getPSAActuals("usmf", "TRX-9001");
+project:PSAActual actual = check fo->getPSAActuals("usmf", "TRX-9001");
 ```
 
 </div>
@@ -348,7 +348,7 @@ Returns: `PSAActual|error`
 Sample code:
 
 ```ballerina
-PSAActual updated = check fo->updatePSAActuals(
+project:PSAActual updated = check fo->updatePSAActuals(
     "usmf",
     "TRX-9001",
     {qty: 7.5d}
@@ -380,7 +380,7 @@ Returns: `PSAForecastsCollection|error`
 Sample code:
 
 ```ballerina
-PSAForecastsCollection result = check fo->listPSAForecasts(
+project:PSAForecastsCollection result = check fo->listPSAForecasts(
     queries = {
         filter: "ProjId eq 'PROJ-100'"
     }
@@ -410,7 +410,7 @@ Returns: `PSAForecast|error`
 Sample code:
 
 ```ballerina
-PSAForecast created = check fo->createPSAForecasts({
+project:PSAForecast created = check fo->createPSAForecasts({
     dataAreaId: "usmf",
     projId: "PROJ-100",
     transId: "FCST-2001",
@@ -446,7 +446,7 @@ Returns: `PSAForecast|error`
 Sample code:
 
 ```ballerina
-PSAForecast forecast = check fo->getPSAForecasts("usmf", "FCST-2001");
+project:PSAForecast forecast = check fo->getPSAForecasts("usmf", "FCST-2001");
 ```
 
 </div>
@@ -501,7 +501,7 @@ Returns: `PSAForecast|error`
 Sample code:
 
 ```ballerina
-PSAForecast updated = check fo->updatePSAForecasts(
+project:PSAForecast updated = check fo->updatePSAForecasts(
     "usmf",
     "FCST-2001",
     {qty: 45}
@@ -533,7 +533,7 @@ Returns: `ProjGrantsCollection|error`
 Sample code:
 
 ```ballerina
-ProjGrantsCollection result = check fo->listProjGrants(
+project:ProjGrantsCollection result = check fo->listProjGrants(
     queries = {
         filter: "GrantStatus eq 'Active'"
     }
@@ -563,7 +563,7 @@ Returns: `ProjGrant|error`
 Sample code:
 
 ```ballerina
-ProjGrant created = check fo->createProjGrants({
+project:ProjGrant created = check fo->createProjGrants({
     dataAreaId: "usmf",
     grantId: "GRANT-500",
     grantName: "Community Infrastructure Grant",
@@ -598,7 +598,7 @@ Returns: `ProjGrant|error`
 Sample code:
 
 ```ballerina
-ProjGrant grant = check fo->getProjGrants("usmf", "GRANT-500");
+project:ProjGrant grant = check fo->getProjGrants("usmf", "GRANT-500");
 ```
 
 </div>
@@ -653,7 +653,7 @@ Returns: `ProjGrant|error`
 Sample code:
 
 ```ballerina
-ProjGrant updated = check fo->updateProjGrants(
+project:ProjGrant updated = check fo->updateProjGrants(
     "usmf",
     "GRANT-500",
     {grantStatus: "Approved"}
@@ -685,7 +685,7 @@ Returns: `ProjGrantsV2Collection|error`
 Sample code:
 
 ```ballerina
-ProjGrantsV2Collection result = check fo->listProjGrantsV2(
+project:ProjGrantsV2Collection result = check fo->listProjGrantsV2(
     queries = {
         filter: "GrantStatus eq 'Awarded'",
         top: 10
@@ -716,7 +716,7 @@ Returns: `ProjGrantV2|error`
 Sample code:
 
 ```ballerina
-ProjGrantV2 created = check fo->createProjGrantsV2({
+project:ProjGrantV2 created = check fo->createProjGrantsV2({
     dataAreaId: "usmf",
     grantId: "GRANT-V2-500",
     grantName: "Rural Broadband Grant",
@@ -752,7 +752,7 @@ Returns: `ProjGrantV2|error`
 Sample code:
 
 ```ballerina
-ProjGrantV2 grant = check fo->getProjGrantsV2("usmf", "GRANT-V2-500");
+project:ProjGrantV2 grant = check fo->getProjGrantsV2("usmf", "GRANT-V2-500");
 ```
 
 </div>
@@ -807,7 +807,7 @@ Returns: `ProjGrantV2|error`
 Sample code:
 
 ```ballerina
-ProjGrantV2 updated = check fo->updateProjGrantsV2(
+project:ProjGrantV2 updated = check fo->updateProjGrantsV2(
     "usmf",
     "GRANT-V2-500",
     {grantStatus: "Awarded"}
@@ -839,7 +839,7 @@ Returns: `ProjectGroupsCollection|error`
 Sample code:
 
 ```ballerina
-ProjectGroupsCollection result = check fo->listProjectGroups(
+project:ProjectGroupsCollection result = check fo->listProjectGroups(
     queries = {
         filter: "ProjectType eq 'TimeMaterial'"
     }
@@ -869,7 +869,7 @@ Returns: `ProjectGroup|error`
 Sample code:
 
 ```ballerina
-ProjectGroup created = check fo->createProjectGroups({
+project:ProjectGroup created = check fo->createProjectGroups({
     dataAreaId: "usmf",
     projectGroup: "TM-CONSULT",
     name: "Time and Material Consulting",
@@ -903,7 +903,7 @@ Returns: `ProjectGroup|error`
 Sample code:
 
 ```ballerina
-ProjectGroup group = check fo->getProjectGroups("usmf", "TM-CONSULT");
+project:ProjectGroup group = check fo->getProjectGroups("usmf", "TM-CONSULT");
 ```
 
 </div>
@@ -958,7 +958,7 @@ Returns: `ProjectGroup|error`
 Sample code:
 
 ```ballerina
-ProjectGroup updated = check fo->updateProjectGroups(
+project:ProjectGroup updated = check fo->updateProjectGroups(
     "usmf",
     "TM-CONSULT",
     {name: "Time and Material Consulting - Revised"}
@@ -990,7 +990,7 @@ Returns: `ProjectStagesCollection|error`
 Sample code:
 
 ```ballerina
-ProjectStagesCollection result = check fo->listProjectStages(
+project:ProjectStagesCollection result = check fo->listProjectStages(
     queries = {
         filter: "Status eq 'InProcess'"
     }
@@ -1020,7 +1020,7 @@ Returns: `ProjectStage|error`
 Sample code:
 
 ```ballerina
-ProjectStage created = check fo->createProjectStages({
+project:ProjectStage created = check fo->createProjectStages({
     dataAreaId: "usmf",
     language: "en-us",
     status: "InProcess",
@@ -1054,7 +1054,7 @@ Returns: `ProjectStage|error`
 Sample code:
 
 ```ballerina
-ProjectStage stage = check fo->getProjectStages("usmf", "en-us", "InProcess");
+project:ProjectStage stage = check fo->getProjectStages("usmf", "en-us", "InProcess");
 ```
 
 </div>
@@ -1111,7 +1111,7 @@ Returns: `ProjectStage|error`
 Sample code:
 
 ```ballerina
-ProjectStage updated = check fo->updateProjectStages(
+project:ProjectStage updated = check fo->updateProjectStages(
     "usmf",
     "en-us",
     "InProcess",
@@ -1144,7 +1144,7 @@ Returns: `ProjectTasksCollection|error`
 Sample code:
 
 ```ballerina
-ProjectTasksCollection result = check fo->listProjectTasks(
+project:ProjectTasksCollection result = check fo->listProjectTasks(
     queries = {
         filter: "ProjectId eq 'PROJ-100'",
         orderby: "TaskDisplaySequence"
@@ -1175,7 +1175,7 @@ Returns: `ProjectTask|error`
 Sample code:
 
 ```ballerina
-ProjectTask created = check fo->createProjectTasks({
+project:ProjectTask created = check fo->createProjectTasks({
     dataAreaId: "usmf",
     projectId: "PROJ-100",
     taskId: "TASK-010",
@@ -1211,7 +1211,7 @@ Returns: `ProjectTask|error`
 Sample code:
 
 ```ballerina
-ProjectTask task = check fo->getProjectTasks("usmf", "PROJ-100", "TASK-010");
+project:ProjectTask task = check fo->getProjectTasks("usmf", "PROJ-100", "TASK-010");
 ```
 
 </div>
@@ -1268,7 +1268,7 @@ Returns: `ProjectTask|error`
 Sample code:
 
 ```ballerina
-ProjectTask updated = check fo->updateProjectTasks(
+project:ProjectTask updated = check fo->updateProjectTasks(
     "usmf",
     "PROJ-100",
     "TASK-010",
@@ -1301,7 +1301,7 @@ Returns: `ProjectsCollection|error`
 Sample code:
 
 ```ballerina
-ProjectsCollection result = check fo->listProjects(
+project:ProjectsCollection result = check fo->listProjects(
     queries = {
         filter: "ProjectGroup eq 'TM-CONSULT'",
         top: 25,
@@ -1333,7 +1333,7 @@ Returns: `Project|error`
 Sample code:
 
 ```ballerina
-Project created = check fo->createProjects({
+project:Project created = check fo->createProjects({
     dataAreaId: "usmf",
     projectID: "PROJ-100",
     projectName: "Client Portal Upgrade",
@@ -1369,7 +1369,7 @@ Returns: `Project|error`
 Sample code:
 
 ```ballerina
-Project proj = check fo->getProjects("usmf", "PROJ-100");
+project:Project proj = check fo->getProjects("usmf", "PROJ-100");
 ```
 
 </div>
@@ -1424,7 +1424,7 @@ Returns: `Project|error`
 Sample code:
 
 ```ballerina
-Project updated = check fo->updateProjects(
+project:Project updated = check fo->updateProjects(
     "usmf",
     "PROJ-100",
     {status: "InProcess"}
@@ -1456,7 +1456,7 @@ Returns: `ProjectsV2Collection|error`
 Sample code:
 
 ```ballerina
-ProjectsV2Collection result = check fo->listProjectsV2(
+project:ProjectsV2Collection result = check fo->listProjectsV2(
     queries = {
         filter: "ProjectGroupId eq 'TM-CONSULT'",
         top: 25
@@ -1487,7 +1487,7 @@ Returns: `ProjectV2|error`
 Sample code:
 
 ```ballerina
-ProjectV2 created = check fo->createProjectsV2({
+project:ProjectV2 created = check fo->createProjectsV2({
     dataAreaId: "usmf",
     projectId: "PROJ-200",
     projectName: "Data Center Migration",
@@ -1522,7 +1522,7 @@ Returns: `ProjectV2|error`
 Sample code:
 
 ```ballerina
-ProjectV2 proj = check fo->getProjectsV2("usmf", "PROJ-200");
+project:ProjectV2 proj = check fo->getProjectsV2("usmf", "PROJ-200");
 ```
 
 </div>
@@ -1577,7 +1577,7 @@ Returns: `ProjectV2|error`
 Sample code:
 
 ```ballerina
-ProjectV2 updated = check fo->updateProjectsV2(
+project:ProjectV2 updated = check fo->updateProjectsV2(
     "usmf",
     "PROJ-200",
     {scheduleEndDate: "2027-03-31"}

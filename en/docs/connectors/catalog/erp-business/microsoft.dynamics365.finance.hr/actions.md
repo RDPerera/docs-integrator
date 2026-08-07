@@ -63,7 +63,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `ListAbsenceCodesQueries` | No | OData query parameters: `$skip`, `$top`, `$filter`, `$orderby`, `$expand`, `cross-company`, `$count`, `$select`. |
+| `queries` | `ListAbsenceCodesQueries` | No | OData query parameters, set via the record fields `skip` (`$skip`), `top` (`$top`), `filter` (`$filter`), `orderby` (`$orderby`), `expand` (`$expand`), `crossCompany` (`cross-company`), `count` (`$count`), and `'select` (`$select`). |
 
 Returns: `AbsenceCodesCollection|error`
 
@@ -120,7 +120,7 @@ Parameters:
 | `dataAreaId` | `string` | Yes | The company data area identifier. |
 | `absenceCode` | `string` | Yes | The absence code key field. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `GetAbsenceCodesQueries` | No | OData query parameters: `$expand`, `$select`. |
+| `queries` | `GetAbsenceCodesQueries` | No | OData query parameters, set via the record fields `expand` (`$expand`) and `'select` (`$select`). |
 
 Returns: `AbsenceCode|error`
 
@@ -196,7 +196,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `ListAbsenceReasonsQueries` | No | OData query parameters: `$skip`, `$top`, `$filter`, `$orderby`, `$expand`, `cross-company`, `$count`, `$select`. |
+| `queries` | `ListAbsenceReasonsQueries` | No | OData query parameters, set via the record fields `skip` (`$skip`), `top` (`$top`), `filter` (`$filter`), `orderby` (`$orderby`), `expand` (`$expand`), `crossCompany` (`cross-company`), `count` (`$count`), and `'select` (`$select`). |
 
 Returns: `AbsenceReasonsCollection|error`
 
@@ -249,7 +249,7 @@ Parameters:
 | `absenceCode` | `string` | Yes | The absence code key field. |
 | `reasonCodeId` | `string` | Yes | The reason code id key field. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `GetAbsenceReasonsQueries` | No | OData query parameters: `$expand`, `$select`. |
+| `queries` | `GetAbsenceReasonsQueries` | No | OData query parameters, set via the record fields `expand` (`$expand`) and `'select` (`$select`). |
 
 Returns: `AbsenceReason|error`
 
@@ -328,7 +328,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `ListCityHolidaysQueries` | No | OData query parameters: `$skip`, `$top`, `$filter`, `$orderby`, `$expand`, `cross-company`, `$count`, `$select`. |
+| `queries` | `ListCityHolidaysQueries` | No | OData query parameters, set via the record fields `skip` (`$skip`), `top` (`$top`), `filter` (`$filter`), `orderby` (`$orderby`), `expand` (`$expand`), `crossCompany` (`cross-company`), `count` (`$count`), and `'select` (`$select`). |
 
 Returns: `CityHolidaysCollection|error`
 
@@ -384,7 +384,7 @@ Parameters:
 | `cityName` | `string` | Yes | The city name key field. |
 | `holidayDate` | `string` | Yes | The holiday date key field. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `GetCityHolidaysQueries` | No | OData query parameters: `$expand`, `$select`. |
+| `queries` | `GetCityHolidaysQueries` | No | OData query parameters, set via the record fields `expand` (`$expand`) and `'select` (`$select`). |
 
 Returns: `CityHoliday|error`
 
@@ -466,7 +466,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `ListEmploymentsQueries` | No | OData query parameters: `$skip`, `$top`, `$filter`, `$orderby`, `$expand`, `cross-company`, `$count`, `$select`. |
+| `queries` | `ListEmploymentsQueries` | No | OData query parameters, set via the record fields `skip` (`$skip`), `top` (`$top`), `filter` (`$filter`), `orderby` (`$orderby`), `expand` (`$expand`), `crossCompany` (`cross-company`), `count` (`$count`), and `'select` (`$select`). |
 
 Returns: `EmploymentsCollection|error`
 
@@ -522,7 +522,7 @@ Parameters:
 | `employmentStartDate` | `string` | Yes | The employment start date key field. |
 | `employmentEndDate` | `string` | Yes | The employment end date key field. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `GetEmploymentsQueries` | No | OData query parameters: `$expand`, `$select`. |
+| `queries` | `GetEmploymentsQueries` | No | OData query parameters, set via the record fields `expand` (`$expand`) and `'select` (`$select`). |
 
 Returns: `Employment|error`
 
@@ -615,7 +615,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `ListEssWorkersQueries` | No | OData query parameters: `$skip`, `$top`, `$filter`, `$orderby`, `$expand`, `cross-company`, `$count`, `$select`. |
+| `queries` | `ListEssWorkersQueries` | No | OData query parameters, set via the record fields `skip` (`$skip`), `top` (`$top`), `filter` (`$filter`), `orderby` (`$orderby`), `expand` (`$expand`), `crossCompany` (`cross-company`), `count` (`$count`), and `'select` (`$select`). |
 
 Returns: `EssWorkersCollection|error`
 
@@ -668,7 +668,7 @@ Parameters:
 |------|------|----------|-------------|
 | `personnelNumber` | `string` | Yes | The personnel number key field. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `GetEssWorkersQueries` | No | OData query parameters: `$expand`, `$select`. |
+| `queries` | `GetEssWorkersQueries` | No | OData query parameters, set via the record fields `expand` (`$expand`) and `'select` (`$select`). |
 
 Returns: `EssWorker|error`
 
@@ -741,7 +741,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `ListInjuryTypesQueries` | No | OData query parameters: `$skip`, `$top`, `$filter`, `$orderby`, `$expand`, `cross-company`, `$count`, `$select`. |
+| `queries` | `ListInjuryTypesQueries` | No | OData query parameters, set via the record fields `skip` (`$skip`), `top` (`$top`), `filter` (`$filter`), `orderby` (`$orderby`), `expand` (`$expand`), `crossCompany` (`cross-company`), `count` (`$count`), and `'select` (`$select`). |
 
 Returns: `InjuryTypesCollection|error`
 
@@ -789,7 +789,7 @@ Parameters:
 |------|------|----------|-------------|
 | `injuryTypeId` | `string` | Yes | The injury type id key field. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `GetInjuryTypesQueries` | No | OData query parameters: `$expand`, `$select`. |
+| `queries` | `GetInjuryTypesQueries` | No | OData query parameters, set via the record fields `expand` (`$expand`) and `'select` (`$select`). |
 
 Returns: `InjuryType|error`
 
@@ -862,7 +862,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `ListPeopleQueries` | No | OData query parameters: `$skip`, `$top`, `$filter`, `$orderby`, `$expand`, `cross-company`, `$count`, `$select`. |
+| `queries` | `ListPeopleQueries` | No | OData query parameters, set via the record fields `skip` (`$skip`), `top` (`$top`), `filter` (`$filter`), `orderby` (`$orderby`), `expand` (`$expand`), `crossCompany` (`cross-company`), `count` (`$count`), and `'select` (`$select`). |
 
 Returns: `PeopleCollection|error`
 
@@ -915,7 +915,7 @@ Parameters:
 |------|------|----------|-------------|
 | `partyNumber` | `string` | Yes | The party number key field. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `GetPeopleQueries` | No | OData query parameters: `$expand`, `$select`. |
+| `queries` | `GetPeopleQueries` | No | OData query parameters, set via the record fields `expand` (`$expand`) and `'select` (`$select`). |
 
 Returns: `Person|error`
 
@@ -988,7 +988,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `ListPersonImagesQueries` | No | OData query parameters: `$skip`, `$top`, `$filter`, `$orderby`, `$expand`, `cross-company`, `$count`, `$select`. |
+| `queries` | `ListPersonImagesQueries` | No | OData query parameters, set via the record fields `skip` (`$skip`), `top` (`$top`), `filter` (`$filter`), `orderby` (`$orderby`), `expand` (`$expand`), `crossCompany` (`cross-company`), `count` (`$count`), and `'select` (`$select`). |
 
 Returns: `PersonImagesCollection|error`
 
@@ -1039,7 +1039,7 @@ Parameters:
 |------|------|----------|-------------|
 | `partyNumber` | `string` | Yes | The party number key field. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `GetPersonImagesQueries` | No | OData query parameters: `$expand`, `$select`. |
+| `queries` | `GetPersonImagesQueries` | No | OData query parameters, set via the record fields `expand` (`$expand`) and `'select` (`$select`). |
 
 Returns: `PersonImage|error`
 
@@ -1112,7 +1112,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `ListPersonUsersQueries` | No | OData query parameters: `$skip`, `$top`, `$filter`, `$orderby`, `$expand`, `cross-company`, `$count`, `$select`. |
+| `queries` | `ListPersonUsersQueries` | No | OData query parameters, set via the record fields `skip` (`$skip`), `top` (`$top`), `filter` (`$filter`), `orderby` (`$orderby`), `expand` (`$expand`), `crossCompany` (`cross-company`), `count` (`$count`), and `'select` (`$select`). |
 
 Returns: `PersonUsersCollection|error`
 
@@ -1167,7 +1167,7 @@ Parameters:
 | `partyNumber` | `string` | Yes | The party number key field. |
 | `validFrom` | `string` | Yes | The valid from key field. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `GetPersonUsersQueries` | No | OData query parameters: `$expand`, `$select`. |
+| `queries` | `GetPersonUsersQueries` | No | OData query parameters, set via the record fields `expand` (`$expand`) and `'select` (`$select`). |
 
 Returns: `PersonUser|error`
 
@@ -1246,7 +1246,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `ListStateHolidaysQueries` | No | OData query parameters: `$skip`, `$top`, `$filter`, `$orderby`, `$expand`, `cross-company`, `$count`, `$select`. |
+| `queries` | `ListStateHolidaysQueries` | No | OData query parameters, set via the record fields `skip` (`$skip`), `top` (`$top`), `filter` (`$filter`), `orderby` (`$orderby`), `expand` (`$expand`), `crossCompany` (`cross-company`), `count` (`$count`), and `'select` (`$select`). |
 
 Returns: `StateHolidaysCollection|error`
 
@@ -1300,7 +1300,7 @@ Parameters:
 | `countryRegionId` | `string` | Yes | The country region id key field. |
 | `stateId` | `string` | Yes | The state id key field. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
-| `queries` | `GetStateHolidaysQueries` | No | OData query parameters: `$expand`, `$select`. |
+| `queries` | `GetStateHolidaysQueries` | No | OData query parameters, set via the record fields `expand` (`$expand`) and `'select` (`$select`). |
 
 Returns: `StateHoliday|error`
 

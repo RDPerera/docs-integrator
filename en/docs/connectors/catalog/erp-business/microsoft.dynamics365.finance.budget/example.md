@@ -21,6 +21,8 @@ flowchart LR
 - A Microsoft Dynamics 365 Finance & Operations environment with the Budgeting module configured
 - A Microsoft Entra ID app registration with Dynamics 365 API permissions, added as a user in the Dynamics 365 Finance environment
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Budget integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -44,8 +46,8 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable:
 
-- **Config** : Authentication object referencing the `tokenUrl`, `clientId`, and `clientSecret` configurable variables
-- **Service Url** : URL of the target Dynamics 365 Finance and Operations environment, bound to the `serviceUrl` configurable variable
+- **Config** : Authentication object referencing the `tokenUrl`, `clientId`, and `clientSecret` configurable variables. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Service Url** : URL of the target Dynamics 365 Finance and Operations environment, bound to the `serviceUrl` configurable variable. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 - **Connection Name** : Set to `budgetClient`
 
 ![Microsoft Dynamics 365 Finance Budget connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.budget/ballerinax_microsoft_dynamics365_finance_budget_screenshot_02_connection_form.png)

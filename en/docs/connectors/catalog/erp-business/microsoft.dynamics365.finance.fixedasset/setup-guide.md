@@ -31,18 +31,17 @@ The client secret value is shown only once. Store it securely and never commit i
 
 1. In the application, select **API permissions > Add a permission > APIs my organization uses**.
 2. Search for **Dynamics ERP** (this covers Dynamics 365 Finance and Operations environments) and select it.
-3. Choose **Application permissions**, select the `.default` scope, and select **Add permissions**.
+3. Choose **Application permissions**, select the Dynamics ERP application role appropriate for fixed asset maintenance (`.default` is not selected here — it is the token-request scope shown in Step 5), and select **Add permissions**.
 4. Select **Grant admin consent for `<your tenant>`** and confirm.
 
 :::note
 Because this connector uses the OAuth 2.0 client credentials grant, the application must be granted **application permissions**, not delegated permissions, and those permissions must be consented to by a tenant administrator before the connector can obtain an access token.
 :::
 
-## Step 4: Add the application as a Dynamics 365 Finance user
+## Step 4: Register the application in Dynamics 365 Finance
 
-1. In your Dynamics 365 Finance & Operations environment, go to **System administration > Users > New**.
-2. Set a **User name** and **User ID**, then in the **Identity provider object ID** field, paste the **Application (client) ID** from Step 1.
-3. Assign the security roles the integration needs (for example, roles that grant access to fixed asset maintenance duties, such as depreciation, asset value models, or leasing) and save the record.
+1. In your Dynamics 365 Finance & Operations environment, create a service account: go to **System administration > Users > New**, set a **User name** and **User ID**, assign the security roles the integration needs (for example, roles that grant access to fixed asset maintenance duties, such as depreciation, asset value models, or leasing), and save the record.
+2. Go to **System administration > Setup > Microsoft Entra applications** and select **New**. Enter the **Application (client) ID** from Step 1 as the **Client Id**, give the entry a descriptive **Name**, and map it to the **User ID** created above. Do not paste the client ID into the user record's **Identity provider object ID** field — that does not establish the required Finance application registration mapping.
 
 ## Step 5: Locate the service URL
 

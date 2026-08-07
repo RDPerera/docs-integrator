@@ -22,6 +22,8 @@ flowchart LR
 - An Azure Active Directory (Entra ID) application registered with API permissions for Dynamics 365, added as a user in the target environment.
 - The application's client ID, client secret, and token URL from the Azure AD app registration.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Expense integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -45,8 +47,8 @@ Select **Add Connection** in the **Connections** section.
 
 Bind the connection fields to configurable variables.
 
-- **Config** : The connection configuration for the connector, built as an expression that resolves `auth` from the `tokenUrl`, `clientId`, and `clientSecret` configurables.
-- **Service Url** : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment, bound to the `serviceUrl` configurable.
+- **Config** : The connection configuration for the connector, built as an expression that resolves `auth` from the `tokenUrl`, `clientId`, and `clientSecret` configurables. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Service Url** : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment, bound to the `serviceUrl` configurable. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Expense connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.expense/ballerinax_microsoft_dynamics365_finance_expense_screenshot_02_connection_form.png)
 

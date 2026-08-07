@@ -34,18 +34,17 @@ The client secret value is shown only once. If you lose it, you must create a ne
 
 1. In the registered application, go to **API permissions → Add a permission → APIs my organization uses**.
 2. Search for **Dynamics ERP** (the Microsoft Dynamics 365 Finance and Operations API) and select it.
-3. Choose **Application permissions**, select the `.default` scope, and select **Add permissions**.
+3. Choose **Application permissions**, select the Dynamics ERP application role required for working with the fiscal calendar and financial dimension framework (`.default` is not selected here — it is the token-request scope shown in Step 5), and select **Add permissions**.
 4. Select **Grant admin consent for `<your tenant>`** and confirm.
 
 :::note
 Granting admin consent requires Global Administrator or Privileged Role Administrator permissions in the tenant. If you do not have these permissions, ask your tenant administrator to complete this step.
 :::
 
-## Step 4: Add the application as a Dynamics 365 Finance user
+## Step 4: Register the application in Dynamics 365 Finance
 
-1. Sign in to your Dynamics 365 Finance environment and open **System administration → Users → New**.
-2. Choose to create the user from Microsoft Entra ID, and paste the **Application (client) ID** from Step 1 into the associated Microsoft Entra application field.
-3. Assign the security roles required for working with the fiscal calendar and financial dimension framework (for example, **General ledger manager** or **Financial dimension administrator**, or a custom role covering the entities you intend to use), then select **Save**.
+1. Sign in to your Dynamics 365 Finance environment and create a service account: open **System administration → Users → New**, set a **User ID** and **User name**, and assign the security roles required for working with the fiscal calendar and financial dimension framework (for example, **General ledger manager** or **Financial dimension administrator**, or a custom role covering the entities you intend to use), then select **Save**.
+2. Go to **System administration → Setup → Microsoft Entra applications** and select **New**. Enter the **Application (client) ID** from Step 1 as the **Client Id**, give the entry a descriptive **Name**, and map it to the **User ID** you just created. Do not paste the client ID into the user's **Identity provider object ID** or **Azure AD object ID** field — that does not establish the required Finance application registration mapping.
 
 :::tip
 Assign only the security roles that the integration actually needs. This limits the entities and operations the application's access token can be used against.

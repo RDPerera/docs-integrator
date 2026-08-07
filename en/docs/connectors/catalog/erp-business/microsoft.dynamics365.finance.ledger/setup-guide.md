@@ -38,7 +38,7 @@ Store the client secret in a secure secret store. If it expires or is lost, you 
 
 2. Search for **Dynamics ERP** (this represents the Dynamics 365 Finance and Operations API surface) and select it.
 
-3. Choose **Application permissions** and select the `user_impersonation` permission (or the `.default` scope, depending on how your tenant exposes the API).
+3. Choose **Application permissions** and select the Dynamics ERP application role appropriate for the ledger data you plan to access (do not select `user_impersonation` — that is a delegated scope for interactive, signed-in-user flows; `.default` is not selected here either, since it is the token-request scope used in Step 5).
 
 4. Select **Add permissions**, then select **Grant admin consent for &lt;your tenant&gt;** and confirm.
 
@@ -46,15 +46,11 @@ Store the client secret in a secure secret store. If it expires or is lost, you 
 Application permissions require a tenant administrator to grant consent. If you don't have administrator rights, ask your Microsoft Entra ID administrator to complete this step.
 :::
 
-## Step 4: Add the application as a Dynamics 365 Finance user
+## Step 4: Register the application in Dynamics 365 Finance
 
-1. Sign in to your Dynamics 365 Finance & Operations environment and navigate to **System administration → Users → New**.
+1. Sign in to your Dynamics 365 Finance & Operations environment and create a service account: navigate to **System administration → Users → New**, set the **User name** and **User ID**, and assign the security roles the application needs in order to work with ledger data — for example, roles that grant access to the General ledger module (such as **Accountant** or **General ledger clerk**), or a custom role scoped to the entities you plan to use. Save the user record and confirm it is **Enabled**.
 
-2. Set the **User name**, and for the identity/authentication type select the option for a Microsoft Entra ID application. Paste the **Application (client) ID** you noted in Step 1 into the corresponding client identifier field.
-
-3. Assign the security roles the application needs in order to work with ledger data — for example, roles that grant access to the General ledger module (such as **Accountant** or **General ledger clerk**), or a custom role scoped to the entities you plan to use.
-
-4. Save the user record and confirm it is **Enabled**.
+2. Go to **System administration → Setup → Microsoft Entra applications** and select **New**. Enter the **Application (client) ID** you noted in Step 1 as the **Client Id**, give the entry a descriptive **Name** (such as **Connector.FullAccess** or a name reflecting the service-level access granted), and map it to the **User ID** created above. Do not paste the client ID directly into a user record's identity field — that does not establish the required Finance application registration mapping.
 
 ## Step 5: Obtain the environment's service URL
 

@@ -20,6 +20,8 @@ flowchart LR
 
 - A Microsoft Dynamics 365 Finance and Operations environment with an Azure Active Directory app registration that has API permissions for Dynamics 365.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance HR Development integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -43,10 +45,8 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable.
 
-- **Token Url** : The OAuth2 token endpoint used to obtain an access token.
-- **Client Id** : The application (client) ID of the Azure AD app registration.
-- **Client Secret** : The client secret generated for the Azure AD app registration.
-- **Service Url** : The base URL of the Dynamics 365 Finance environment.
+- **Config** : Switch to an expression that references the `tokenUrl`, `clientId`, and `clientSecret` configurables nested under `auth`. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Service Url** : The base URL of the Dynamics 365 Finance environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance HR Development connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.hrdev/ballerinax_microsoft_dynamics365_finance_hrdev_screenshot_02_connection_form.png)
 
@@ -89,7 +89,7 @@ Select **Save** and verify that the connection appears in the **Connections** se
 
 ### Step 8: Log the List Skills result
 
-Add a log action for the returned value, then return to the visual flow.
+Add a **Log Info** action, switch its **Msg** field to expression mode, and enter `hrdevSkillscollection.toJsonString()` to log the result. Return to the visual flow to confirm the complete chain.
 
 ![Completed Microsoft Dynamics 365 Finance HR Development flow with the configured operation](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.hrdev/ballerinax_microsoft_dynamics365_finance_hrdev_screenshot_06_completed_flow.png)
 

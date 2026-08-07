@@ -21,6 +21,8 @@ flowchart LR
 - A Microsoft Dynamics 365 Finance and Operations environment, cloud-hosted or sandbox.
 - An Azure Active Directory (Entra ID) app registration with API permissions for Dynamics 365, providing a token URL, a client ID, and a client secret.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Core integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -46,8 +48,8 @@ Select **Add Connection** in the **Connections** section.
 2. Bind **Service Url** to a configurable variable for the target environment endpoint.
 3. Enter `coreClient` as the **Connection Name**.
 
-- **Config** : The authentication settings used to initialize the connector.
-- **Service Url** : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment.
+- **Config** : The authentication settings used to initialize the connector. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Service Url** : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Core connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.core/ballerinax_microsoft_dynamics365_finance_core_screenshot_02_connection_form.png)
 
@@ -92,7 +94,7 @@ Select **Save Connection** and verify that `coreClient` appears in the **Connect
 
 ### Step 8: Log the List Companies result
 
-Add a log action for the returned `coreCompaniescollection` value, then return to the visual flow.
+Add a **Log Info** action, switch its **Msg** field to expression mode, and enter `coreCompaniescollection.toJsonString()` to log the result. Return to the visual flow to confirm the complete chain.
 
 ![Completed Microsoft Dynamics 365 Finance Core flow with the configured List Companies operation](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.core/ballerinax_microsoft_dynamics365_finance_core_screenshot_06_completed_flow.png)
 

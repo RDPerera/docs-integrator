@@ -27,21 +27,20 @@ Store the client secret in a secrets manager or a configurable value — never c
 
 1. In the app registration, go to **API permissions → Add a permission → APIs my organization uses**.
 2. Search for **Dynamics ERP** (the enterprise application that represents Dynamics 365 Finance and Operations in your tenant) and select it.
-3. Choose **Application permissions**, select the `user_impersonation` (or `.default`) permission scope, and select **Add permissions**.
+3. Choose **Application permissions**, select the Dynamics ERP application role appropriate for the Vendor entities you plan to use (do not select `user_impersonation` — that is a delegated scope for interactive, signed-in-user flows; `.default` is not selected here either, since it is the token-request scope shown in Step 4), and select **Add permissions**.
 4. Select **Grant admin consent for `<your tenant>`** and confirm.
 
 :::note
 Admin consent is required because the connector uses the OAuth2 client credentials grant (application permissions). This grant has no interactive sign-in step where an individual user can consent, so a tenant administrator must approve access on behalf of the organization.
 :::
 
-## Step 3: Add the application as a Dynamics 365 Finance user
+## Step 3: Register the application in Dynamics 365 Finance
 
-Registering the application in Entra ID only lets it obtain an access token; it also needs a matching user record inside Dynamics 365 Finance with the appropriate security roles, or every request will be rejected with an authorization error.
+Registering the application in Entra ID only lets it obtain an access token; the application must also be registered inside Dynamics 365 Finance and mapped to a user with the appropriate security roles, or every request will be rejected with an authorization error.
 
-1. Sign in to your Dynamics 365 Finance environment and go to **System administration → Users → New**.
-2. Set a **User ID** and **User name** for the application user.
-3. Paste the Azure AD **Application (client) ID** you noted in Step 1 into the **Azure AD object ID** (or **Identity provider object ID**) field.
-4. Save the user, then assign it one or more security roles that grant access to the Vendor entities you plan to use — for example, the **Accounts payable clerk** or **Accounts payable manager** role — via **System administration → Security → Assign users to roles**.
+1. Sign in to your Dynamics 365 Finance environment and create a service account: go to **System administration → Users → New**, and set a **User ID** and **User name** for the application user.
+2. Assign it one or more security roles that grant access to the Vendor entities you plan to use — for example, the **Accounts payable clerk** or **Accounts payable manager** role — via **System administration → Security → Assign users to roles**. Save the user.
+3. Go to **System administration → Setup → Microsoft Entra applications** (labeled **Microsoft Entra ID applications** on some versions) and select **New**. Enter the Azure AD **Application (client) ID** you noted in Step 1 as the **Client Id**, give the entry a descriptive **Name**, and map it to the **User ID** created above. Do not paste the client ID into the user's **Azure AD object ID** or **Identity provider object ID** field — that does not establish the required Finance application registration mapping.
 
 ## Step 4: Locate the service URL
 

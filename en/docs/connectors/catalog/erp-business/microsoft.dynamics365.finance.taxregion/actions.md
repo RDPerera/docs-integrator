@@ -148,6 +148,7 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getEFDocSchemas response's ETag header
 check fo->deleteEFDocSchemas("Submit", "V4", {ifMatch: eTag});
 ```
 
@@ -172,6 +173,7 @@ Returns: `EFDocSchema|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getEFDocSchemas response's ETag header
 taxregion:EFDocSchema updated = check fo->updateEFDocSchemas(
     "Submit",
     "V4",
@@ -286,6 +288,7 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getISRConcepts response's ETag header
 check fo->deleteISRConcepts("MFG1", "Revenue", "401000", "MFG1_COA", {ifMatch: eTag});
 ```
 
@@ -312,6 +315,7 @@ Returns: `ISRConcept|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getISRConcepts response's ETag header
 taxregion:ISRConcept updated = check fo->updateISRConcepts(
     "MFG1",
     "Revenue",
@@ -428,6 +432,7 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getISRRates response's ETag header
 check fo->deleteISRRates("MFG1", 2026, 1, 5000.00d, {ifMatch: eTag});
 ```
 
@@ -454,6 +459,7 @@ Returns: `ISRRate|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getISRRates response's ETag header
 taxregion:ISRRate updated = check fo->updateISRRates(
     "MFG1",
     2026,
@@ -575,6 +581,7 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getIntervats response's ETag header
 check fo->deleteIntervats("BEL1", "INT-2026-Q1", "2026-01-01", "2026-03-31", {ifMatch: eTag});
 ```
 
@@ -601,6 +608,7 @@ Returns: `Intervat|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getIntervats response's ETag header
 taxregion:Intervat updated = check fo->updateIntervats(
     "BEL1",
     "INT-2026-Q1",
@@ -712,6 +720,7 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getNIPTables response's ETag header
 check fo->deleteNIPTables("POL1", "WAW01", {ifMatch: eTag});
 ```
 
@@ -736,6 +745,7 @@ Returns: `NIPTable|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getNIPTables response's ETag header
 taxregion:NIPTable updated = check fo->updateNIPTables(
     "POL1",
     "WAW01",
@@ -851,6 +861,7 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getNRTaxTrans response's ETag header
 check fo->deleteNRTaxTrans("LVA1", "LINE-0001", {ifMatch: eTag});
 ```
 
@@ -875,6 +886,7 @@ Returns: `NRTaxTrans|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getNRTaxTrans response's ETag header
 taxregion:NRTaxTrans updated = check fo->updateNRTaxTrans(
     "LVA1",
     "LINE-0001",
@@ -988,6 +1000,7 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getTax1099Fields response's ETag header
 check fo->deleteTax1099Fields("USMF", "F1099NEC", "1", {ifMatch: eTag});
 ```
 
@@ -1013,6 +1026,7 @@ Returns: `Tax1099Field|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getTax1099Fields response's ETag header
 taxregion:Tax1099Field updated = check fo->updateTax1099Fields(
     "USMF",
     "F1099NEC",
@@ -1129,6 +1143,7 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getTaxDocuments response's ETag header
 check fo->deleteTaxDocuments("USMF", "TAXDOC-000789", 100456, {ifMatch: eTag});
 ```
 
@@ -1154,6 +1169,7 @@ Returns: `TaxDocument|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from a prior getTaxDocuments response's ETag header
 taxregion:TaxDocument updated = check fo->updateTaxDocuments(
     "USMF",
     "TAXDOC-000789",

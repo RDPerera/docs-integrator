@@ -8,7 +8,7 @@ This guide walks you through registering an application in Microsoft Entra ID (A
 
 ## Prerequisites
 
-- An active Microsoft Dynamics 365 Finance & Operations environment (cloud-hosted, sandbox, or on-premises) with the Accounts payable module enabled.
+- An active Microsoft Dynamics 365 Finance & Operations environment (cloud-hosted or sandbox) with the Accounts payable module enabled.
 - Access to the [Azure portal](https://portal.azure.com/) with permission to register applications in Microsoft Entra ID (or an administrator who can do this for you).
 - A user account in Dynamics 365 Finance & Operations with System administration privileges to create application users and assign security roles.
 
@@ -38,23 +38,21 @@ Store the client secret in a secure secret store. If it expires or is lost, you 
 
 2. Search for the API that represents your Dynamics 365 Finance and Operations environment (this may appear as **Dynamics ERP**, **Microsoft Dynamics ERP**, or the name of your environment), and select it.
 
-3. Select **Application permissions**, choose the scope exposed by that API (commonly `user_impersonation`), and select **Add permissions**.
+3. Select **Application permissions**, choose the Dynamics ERP application role that matches the access the connector needs (do not select `user_impersonation` — that scope is delegated and only applies to interactive, signed-in-user flows), and select **Add permissions**.
 
 4. Select **Grant admin consent for `<your tenant>`** and confirm.
 
 :::note
-Because this connector authenticates using the OAuth2 client credentials grant (an app-only, non-interactive token), the access token is not tied to a signed-in user. Authorization within Dynamics 365 is instead enforced through the application user and security roles configured in Step 4.
+Because this connector authenticates using the OAuth2 client credentials grant (an app-only, non-interactive token), the access token is not tied to a signed-in user. Authorization within Dynamics 365 is instead enforced through the application user and security roles configured in Step 4. The `.default` value used later in Step 5 is not an application permission you select here — it is the scope you append to the resource URL when requesting the token.
 :::
 
-## Step 4: Add the application as a Dynamics 365 user
+## Step 4: Register the application in Dynamics 365
 
-1. Sign in to your Dynamics 365 Finance and Operations environment and navigate to **System administration → Users → New**.
+1. Sign in to your Dynamics 365 Finance and Operations environment and navigate to **System administration → Users → New** to create a dedicated service account. Enter a **User name** and **User ID** for the application (e.g., `VENDOREXT-APP`).
 
-2. Enter a **User name** and **User ID** for the application (e.g., `VENDOREXT-APP`), and for the identity/authentication type select the option for a Microsoft Entra ID application. Paste the **Application (client) ID** you noted in Step 1 into the corresponding client identifier field.
+2. Assign the security roles the application needs in order to work with vendor data — for example, roles that grant access to the Accounts payable module (such as **Accounts payable clerk**, **Accounts payable manager**, or **Vendor**), or a custom role scoped to the `VendorsV2` and `VendorsV3` entities you plan to use. Save the user record and confirm it is **Enabled**.
 
-3. Assign the security roles the application needs in order to work with vendor data — for example, roles that grant access to the Accounts payable module (such as **Accounts payable clerk**, **Accounts payable manager**, or **Vendor**), or a custom role scoped to the `VendorsV2` and `VendorsV3` entities you plan to use.
-
-4. Save the user record and confirm it is **Enabled**.
+3. Go to **System administration → Setup → Microsoft Entra applications** (this may be labeled **Microsoft Entra ID applications** depending on your version) and select **New**. Enter the **Application (client) ID** you noted in Step 1 as the **Client Id**, give the entry a descriptive **Name**, and set the **User ID** to the service account you created above. Do not paste the client ID into a user record's identity field for this — that is a different mechanism and does not establish the required Finance application registration mapping.
 
 ## Step 5: Locate the service URL
 

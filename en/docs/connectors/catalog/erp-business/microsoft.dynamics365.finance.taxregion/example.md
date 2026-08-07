@@ -21,6 +21,8 @@ flowchart LR
 - A Microsoft Entra ID application registered with Dynamics 365 API permissions and added as a user in the target Dynamics 365 Finance environment, secured with OAuth2 client credentials.
 - The service URL of the target Microsoft Dynamics 365 Finance and Operations environment.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Tax Region integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -44,8 +46,8 @@ Select **Add Connection** in the **Connections** section.
 
 Bind the authentication and endpoint fields to configurable variables before you save the connection.
 
-- **Config** : Switch to an expression that binds the auth record to the tokenUrl, clientId, and clientSecret configurables.
-- **Service Url** : Open the helper panel and bind this field to a new configurable through the Configurables tab.
+- **Config** : Switch to an expression that binds the auth record to the tokenUrl, clientId, and clientSecret configurables. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Service Url** : Open the helper panel and bind this field to a new configurable through the Configurables tab. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Tax Region connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.taxregion/ballerinax_microsoft_dynamics365_finance_taxregion_screenshot_02_connection_form.png)
 

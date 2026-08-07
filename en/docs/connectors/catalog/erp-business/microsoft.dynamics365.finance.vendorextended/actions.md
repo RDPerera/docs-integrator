@@ -37,12 +37,15 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string serviceUrl = ?;
 
+configurable string[] scopes = ["https://<your-org>.operations.dynamics.com/data/.default"];
+
 vendorextended:Client fo = check new (
     {
         auth: {
             tokenUrl,
             clientId,
-            clientSecret
+            clientSecret,
+            scopes
         }
     },
     serviceUrl

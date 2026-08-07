@@ -20,6 +20,8 @@ flowchart LR
 
 - A Microsoft Entra ID application registered with access to a Microsoft Dynamics 365 Finance and Operations environment, along with its client ID, client secret, and OAuth2 token URL.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance System Config integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -50,7 +52,7 @@ Select **Add Connection** in the **Connections** section.
 7. Open the helper panel for the **Service Url** field, select the **Configurables** tab, and create a string configurable named `serviceUrl`; it's inserted into the field automatically.
 
 - **Config** : The OAuth2 client credentials configuration used to authenticate the connection.
-- **Service Url** : URL of the target Microsoft Dynamics 365 Finance and Operations environment.
+- **Service Url** : URL of the target Microsoft Dynamics 365 Finance and Operations environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance System Config connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.sysconfig/ballerinax_microsoft_dynamics365_finance_sysconfig_screenshot_02_connection_form.png)
 

@@ -295,14 +295,21 @@ Parameters:
 
 Returns: `users:ExternalRole|error`
 
+:::note
+`ExternalRole` has only two fields — `role` and `'type` — and both together form the entity's key. OData entities reject updates that change key fields, so `updateExternalRoles` cannot be used to remap a role from one type to another (for example, from `"Customer"` to `"Vendor"`). To change the mapping, delete the existing external role and create a new one with the desired `role`/`'type` combination instead.
+:::
+
 Sample code:
 
 ```ballerina
-users:ExternalRole updated = check usersClient->updateExternalRoles(
-    "CUST-EXT-001", "Customer",
-    {'type: "Vendor"},
-    {ifMatch: eTag}
-);
+// updateExternalRoles cannot change the role/type mapping itself (both are key fields).
+// To remap "CUST-EXT-001" from "Customer" to "Vendor", delete and recreate the record:
+check usersClient->deleteExternalRoles("CUST-EXT-001", "Customer", {ifMatch: eTag});
+
+users:ExternalRole created = check usersClient->createExternalRoles({
+    role: "CUST-EXT-001",
+    'type: "Vendor"
+});
 ```
 
 </details>

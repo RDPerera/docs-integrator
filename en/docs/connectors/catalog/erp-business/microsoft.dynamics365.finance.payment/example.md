@@ -21,6 +21,8 @@ flowchart LR
 - A Microsoft Dynamics 365 Finance and Operations environment (cloud-hosted or sandbox).
 - An Azure Active Directory (Entra ID) app registration with API permissions for Dynamics 365, which provides a client ID, a client secret, and a token URL.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Payment integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -44,8 +46,8 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every connection field to a configurable variable.
 
-- **Config** : An expression that references the `auth` sub-fields — `tokenUrl`, `clientId`, and `clientSecret` — as configurable variables.
-- **Service Url** : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment, bound to the `serviceUrl` configurable variable.
+- **Config** : An expression that references the `auth` sub-fields — `tokenUrl`, `clientId`, and `clientSecret` — as configurable variables. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
+- **Service Url** : The base URL of the target Microsoft Dynamics 365 Finance and Operations environment, bound to the `serviceUrl` configurable variable. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Payment connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.payment/ballerinax_microsoft_dynamics365_finance_payment_screenshot_02_connection_form.png)
 
@@ -88,7 +90,7 @@ Select **Save** and verify that the connection appears in the **Connections** se
 
 ### Step 8: Log the List Payment Methods result
 
-Add a **Log Info** action that logs the result variable as a JSON string, then return to the visual flow.
+Add a **Log Info** action, switch its **Msg** field to expression mode, and enter `paymentPaymentmethodscollection.toJsonString()` to log the result, then return to the visual flow.
 
 ![Completed Microsoft Dynamics 365 Finance Payment flow with the configured operation](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.payment/ballerinax_microsoft_dynamics365_finance_payment_screenshot_06_completed_flow.png)
 

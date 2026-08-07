@@ -168,7 +168,9 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
-check fo->deletePayAgreements("usmf", "STD", {ifMatch: "*"});
+// eTag obtained from the `ETag` response header of a prior getPayAgreements call.
+// Using "*" here would match any current version and defeat the optimistic-concurrency check.
+check fo->deletePayAgreements("usmf", "STD", {ifMatch: eTag});
 ```
 
 </div>
@@ -196,11 +198,13 @@ Returns: `PayAgreement|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from the `ETag` response header of a prior getPayAgreements call.
+// Using "*" here would match any current version and defeat the optimistic-concurrency check.
 vendorpayment:PayAgreement updated = check fo->updatePayAgreements(
     "usmf",
     "STD",
     {description: "Standard pay agreement - revised"},
-    {ifMatch: "*"}
+    {ifMatch: eTag}
 );
 ```
 
@@ -324,7 +328,9 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
-check fo->deleteVendPWPTxts("usmf", "Table", "40", {ifMatch: "*"});
+// eTag obtained from the `ETag` response header of a prior getVendPWPTxts call.
+// Using "*" here would match any current version and defeat the optimistic-concurrency check.
+check fo->deleteVendPWPTxts("usmf", "Table", "40", {ifMatch: eTag});
 ```
 
 </div>
@@ -353,12 +359,14 @@ Returns: `VendPWPTxt|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from the `ETag` response header of a prior getVendPWPTxts call.
+// Using "*" here would match any current version and defeat the optimistic-concurrency check.
 vendorpayment:VendPWPTxt updated = check fo->updateVendPWPTxts(
     "usmf",
     "Table",
     "40",
     {payWhenPaidContractLanguage: "Payment will be issued within 15 business days of receipt of funds from the customer."},
-    {ifMatch: "*"}
+    {ifMatch: eTag}
 );
 ```
 
@@ -480,7 +488,9 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
-check fo->deleteVendorPaymentJournalHeaders("usmf", "VP-000123", {ifMatch: "*"});
+// eTag obtained from the `ETag` response header of a prior getVendorPaymentJournalHeaders call.
+// Using "*" here would match any current version and defeat the optimistic-concurrency check.
+check fo->deleteVendorPaymentJournalHeaders("usmf", "VP-000123", {ifMatch: eTag});
 ```
 
 </div>
@@ -508,11 +518,13 @@ Returns: `VendorPaymentJournalHeader|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from the `ETag` response header of a prior getVendorPaymentJournalHeaders call.
+// Using "*" here would match any current version and defeat the optimistic-concurrency check.
 vendorpayment:VendorPaymentJournalHeader updated = check fo->updateVendorPaymentJournalHeaders(
     "usmf",
     "VP-000123",
     {description: "Vendor payment run - August 2026 (revised)"},
-    {ifMatch: "*"}
+    {ifMatch: eTag}
 );
 ```
 
@@ -640,7 +652,9 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
-check fo->deleteVendorPaymentJournalLines("usmf", "VP-000123", 1, {ifMatch: "*"});
+// eTag obtained from the `ETag` response header of a prior getVendorPaymentJournalLines call.
+// Using "*" here would match any current version and defeat the optimistic-concurrency check.
+check fo->deleteVendorPaymentJournalLines("usmf", "VP-000123", 1, {ifMatch: eTag});
 ```
 
 </div>
@@ -669,12 +683,14 @@ Returns: `VendorPaymentJournalLine|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from the `ETag` response header of a prior getVendorPaymentJournalLines call.
+// Using "*" here would match any current version and defeat the optimistic-concurrency check.
 vendorpayment:VendorPaymentJournalLine updated = check fo->updateVendorPaymentJournalLines(
     "usmf",
     "VP-000123",
     1,
     {creditAmount: 1750.00},
-    {ifMatch: "*"}
+    {ifMatch: eTag}
 );
 ```
 
@@ -797,7 +813,9 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
-check fo->deleteVendorPaymentMethods("usmf", "CHECK", {ifMatch: "*"});
+// eTag obtained from the `ETag` response header of a prior getVendorPaymentMethods call.
+// Using "*" here would match any current version and defeat the optimistic-concurrency check.
+check fo->deleteVendorPaymentMethods("usmf", "CHECK", {ifMatch: eTag});
 ```
 
 </div>
@@ -825,11 +843,13 @@ Returns: `VendorPaymentMethod|error`
 Sample code:
 
 ```ballerina
+// eTag obtained from the `ETag` response header of a prior getVendorPaymentMethods call.
+// Using "*" here would match any current version and defeat the optimistic-concurrency check.
 vendorpayment:VendorPaymentMethod updated = check fo->updateVendorPaymentMethods(
     "usmf",
     "CHECK",
     {description: "Check payment - revised"},
-    {ifMatch: "*"}
+    {ifMatch: eTag}
 );
 ```
 

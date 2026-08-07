@@ -29,7 +29,7 @@ Copy the client secret **value** immediately after creating it — it is shown o
 
 1. In the app registration, go to **API permissions → Add a permission → APIs my organization uses**.
 
-2. Search for **Dynamics ERP** (the Dynamics 365 Finance and Operations API) and add the `.default` application permission scope.
+2. Search for **Dynamics ERP** (the Dynamics 365 Finance and Operations API), select **Application permissions**, and choose the Dynamics ERP application role appropriate for the HR development entities you plan to access. `.default` is not selected here as an application permission — it is the token-request scope you build in Step 5.
 
 3. Select **Grant admin consent for &lt;your tenant&gt;** and confirm.
 
@@ -37,17 +37,13 @@ Copy the client secret **value** immediately after creating it — it is shown o
 Granting admin consent requires Global Administrator or Privileged Role Administrator permissions in the tenant. If you don't have these permissions, ask your tenant administrator to complete this step.
 :::
 
-## Step 3: Add the application as a Dynamics 365 user
+## Step 3: Register the application in Dynamics 365
 
-The app registration must also be added as a user inside the Finance and Operations environment before it can call the OData API.
+The app registration must also be registered inside the Finance and Operations environment before it can call the OData API.
 
-1. Sign in to your Dynamics 365 Finance environment and go to **System administration → Users → New**.
+1. Sign in to your Dynamics 365 Finance environment and create a service account: go to **System administration → Users → New**, set a **User name** and **User ID**, and assign the security roles needed for the HR development entities this application will access (for example, roles that include permission to the CourseGroups, Teams, Skills, RatingModels, and related entities). Save the user record.
 
-2. Set a **User name**, then paste the Azure AD **Application (client) ID** you noted in Step 1 into the **Azure AD object ID** (or equivalent application identifier) field.
-
-3. Assign the security roles needed for the HR development entities this application will access (for example, roles that include permission to the CourseGroups, Teams, Skills, RatingModels, and related entities).
-
-4. Save the user record. It may take a few minutes for the permissions to propagate.
+2. Go to **System administration → Setup → Microsoft Entra applications** and select **New**. Enter the **Application (client) ID** you noted in Step 1 as the **Client Id**, give the entry a descriptive **Name**, and map it to the **User ID** created above. Do not paste the client ID into the user's **Azure AD object ID** field — that does not establish the required Finance application registration mapping. It may take a few minutes for the permissions to propagate.
 
 ## Step 4: Build the token URL
 

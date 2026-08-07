@@ -31,18 +31,17 @@ The client secret value is shown only once. Store it securely and never commit i
 
 1. In the application, select **API permissions > Add a permission > APIs my organization uses**.
 2. Search for **Dynamics ERP** (this covers Dynamics 365 Finance and Operations environments) and select it.
-3. Choose **Application permissions**, select the `.default` scope, and select **Add permissions**.
+3. Choose **Application permissions**, select the Dynamics ERP application role appropriate for this connector (do not select `user_impersonation` — that scope is delegated and applies only to interactive, signed-in-user flows), and select **Add permissions**.
 4. Select **Grant admin consent for `<your tenant>`** and confirm.
 
 :::note
-Because this connector uses the OAuth 2.0 client credentials grant, the application must be granted **application permissions**, not delegated permissions, and those permissions must be consented to by a tenant administrator before the connector can obtain an access token.
+Because this connector uses the OAuth 2.0 client credentials grant, the application must be granted **application permissions**, not delegated permissions, and those permissions must be consented to by a tenant administrator before the connector can obtain an access token. `.default` is not selected here as an application permission — it is the value appended to the resource URL when the connector requests a token (see Step 5).
 :::
 
-## Step 4: Add the application as a Dynamics 365 Finance user
+## Step 4: Register the application in Dynamics 365 Finance
 
-1. In your Dynamics 365 Finance & Operations environment, go to **System administration > Users > New**.
-2. Set a **User name** and **User ID**, then in the **Identity provider object ID** field, paste the **Application (client) ID** from Step 1.
-3. Assign the security roles the integration needs (for example, roles that grant access to customer maintenance duties) and save the record.
+1. In your Dynamics 365 Finance & Operations environment, create a service account: go to **System administration > Users > New**, set a **User name** and **User ID**, assign the security roles the integration needs (for example, roles that grant access to customer maintenance duties), and save the record.
+2. Go to **System administration > Setup > Microsoft Entra applications** (labeled **Microsoft Entra ID applications** on some versions) and select **New**. Enter the **Application (client) ID** from Step 1 as the **Client Id**, give the entry a descriptive **Name**, and set the **User ID** to the service account created above. Do not paste the **Application (client) ID** into a user record's **Identity provider object ID** field — that is a different mechanism and does not establish the required application registration mapping.
 
 ## Step 5: Locate the service URL
 

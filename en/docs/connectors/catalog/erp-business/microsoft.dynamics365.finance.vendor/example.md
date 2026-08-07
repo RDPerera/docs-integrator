@@ -21,6 +21,8 @@ flowchart LR
 - A Microsoft Dynamics 365 Finance and Operations environment (cloud-hosted or sandbox).
 - A Microsoft Entra ID application registration with API permissions granted for Dynamics 365 Finance and Operations, including a client ID, a client secret, and a token URL.
 
+- The application must be registered as a user in the target Dynamics 365 Finance and Operations environment and assigned the security roles required for this connector's operations.
+
 ## Setting up the Microsoft Dynamics 365 Finance Vendor integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
@@ -49,7 +51,7 @@ Bind the connection parameters to configurable variables before saving the conne
 3. Open the **Service Url** field's helper panel, select **Configurables**, and create a new configurable named `serviceUrl`.
 
 - **Config** : The connection settings, including the OAuth2 client-credentials authentication values.
-- **Service Url** : URL of the target Microsoft Dynamics 365 Finance and Operations environment.
+- **Service Url** : URL of the target Microsoft Dynamics 365 Finance and Operations environment. Use the OData root, for example `https://<your-org>.operations.dynamics.com/data`.
 
 ![Microsoft Dynamics 365 Finance Vendor connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.vendor/ballerinax_microsoft_dynamics365_finance_vendor_screenshot_02_connection_form.png)
 

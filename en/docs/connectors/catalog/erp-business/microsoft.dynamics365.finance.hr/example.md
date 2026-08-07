@@ -44,7 +44,7 @@ Select **Add Connection** in the **Connections** section.
 
 Bind every required connection field to a configurable variable.
 
-- **Config** : Switch to an expression that references the `tokenUrl`, `clientId`, and `clientSecret` configurables nested under `auth`.
+- **Config** : Switch to an expression that references the `tokenUrl`, `clientId`, and `clientSecret` configurables nested under `auth`. Enter the expression `{auth: {tokenUrl, clientId, clientSecret}}`.
 - **Service Url** : Bind to the `serviceUrl` configurable through the field's helper panel.
 
 ![Microsoft Dynamics 365 Finance HR connection form with all parameters bound before saving](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.hr/ballerinax_microsoft_dynamics365_finance_hr_screenshot_02_connection_form.png)
@@ -88,7 +88,7 @@ Select **Save Connection** and verify that the connection appears in the **Conne
 
 ### Step 8: Log the List People result
 
-Add a log action for the returned value, then return to the visual flow.
+Add a **Log Info** action, switch its **Msg** field to expression mode, and enter `hrPeoplecollection.toJsonString()` to log the result. Return to the visual flow to confirm the complete chain.
 
 ![Completed Microsoft Dynamics 365 Finance HR flow with the configured operation](/img/connectors/catalog/erp-business/microsoft.dynamics365.finance.hr/ballerinax_microsoft_dynamics365_finance_hr_screenshot_06_completed_flow.png)
 

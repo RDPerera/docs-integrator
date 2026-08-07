@@ -32,12 +32,12 @@ The **Application (client) ID**, **Directory (tenant) ID**, and client secret ma
 
 2. Search for the API that represents your Dynamics 365 Finance and Operations environment (this may appear as **Dynamics ERP**, **Microsoft Dynamics ERP**, or the name of your environment), and select it.
 
-3. Select **Application permissions**, choose the scope exposed by that API (commonly `user_impersonation`), and select **Add permissions**.
+3. Select **Delegated permissions** — the Dynamics ERP API does not expose individually selectable application permissions in the portal — choose the `user_impersonation` scope, and select **Add permissions**.
 
 4. Select **Grant admin consent for `<your tenant>`** and confirm.
 
 :::note
-Because this connector authenticates using the OAuth2 client credentials grant (an app-only, non-interactive token), the access token is not tied to a signed-in user. Authorization within Dynamics 365 is instead enforced through the application user and security roles configured in Step 3.
+Because this connector authenticates using the OAuth2 client credentials grant (an app-only, non-interactive token), the access token is not tied to a signed-in user. Authorization within Dynamics 365 is instead enforced through the application user and security roles configured in Step 3. `.default` is not an application permission you select here — it is the token-request scope used later, in Step 4.
 :::
 
 ## Step 3: Add the application as a Dynamics 365 user

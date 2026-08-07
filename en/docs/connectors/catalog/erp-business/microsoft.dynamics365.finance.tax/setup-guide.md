@@ -26,18 +26,17 @@ Use a dedicated app registration for each integration to make credential rotatio
 
 1. In the app registration, go to **API permissions → Add a permission → APIs my organization uses**.
 2. Search for **Dynamics ERP** (this is the service principal that represents your Dynamics 365 Finance & Operations environment) and select it.
-3. Choose **Application permissions**, then select the `user_impersonation` permission (or the equivalent scope exposed by your environment), and select **Add permissions**.
+3. Choose **Application permissions**, then select the Dynamics ERP application role appropriate for the tax entities you plan to work with (do not select `user_impersonation` — that is a delegated scope for interactive, signed-in-user flows, not client credentials), and select **Add permissions**.
 4. Select **Grant admin consent for `<your tenant>`** and confirm.
 
 :::note
 If **Dynamics ERP** does not appear in the list of APIs, an administrator must first consent to the Dynamics 365 service principal being present in the tenant. This typically happens automatically the first time a user signs in to the Dynamics 365 Finance environment.
 :::
 
-## Step 3: Add the application as a Dynamics 365 Finance user
+## Step 3: Register the application in Dynamics 365 Finance
 
-1. In your Dynamics 365 Finance environment, go to **System administration → Users → New**.
-2. Set the **User ID** and **User name**, then in the **Identity provider object ID** (or **Azure AD object ID**) field, paste the **Application (client) ID** noted in Step 1. This links the app registration to a D365 user identity.
-3. Assign the security roles required for the tax entities you plan to work with (for example, **Tax accountant** or **Tax administrator**) and save.
+1. In your Dynamics 365 Finance environment, create a service account: go to **System administration → Users → New**, set the **User ID** and **User name**, assign the security roles required for the tax entities you plan to work with (for example, **Tax accountant** or **Tax administrator**), and save.
+2. Go to **System administration → Setup → Microsoft Entra applications** (labeled **Microsoft Entra ID applications** on some versions) and select **New**. Enter the **Application (client) ID** noted in Step 1 as the **Client Id**, give the entry a descriptive **Name**, and map it to the **User ID** created above. Pasting the client ID into the user record's **Identity provider object ID** or **Azure AD object ID** field does not establish the required Finance application registration mapping.
 
 ## Step 4: Locate your service URL
 
