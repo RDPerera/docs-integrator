@@ -1200,6 +1200,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.budget/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.budget/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.budget/example',
           ],
         },
         {
@@ -1209,6 +1210,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.cashmanagement/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.cashmanagement/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.cashmanagement/example',
           ],
         },
         {
@@ -1218,6 +1220,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.core/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.core/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.core/example',
           ],
         },
         {
@@ -1227,6 +1230,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.coreorg/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.coreorg/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.coreorg/example',
           ],
         },
         {
@@ -1236,6 +1240,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.customer/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.customer/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.customer/example',
           ],
         },
         {
@@ -1245,6 +1250,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.customeraccount/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.customeraccount/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.customeraccount/example',
           ],
         },
         {
@@ -1254,6 +1260,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.customermain/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.customermain/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.customermain/example',
           ],
         },
         {
@@ -1263,6 +1270,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.document/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.document/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.document/example',
           ],
         },
         {
@@ -1272,6 +1280,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.expense/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.expense/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.expense/example',
           ],
         },
         {
@@ -1281,6 +1290,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.fiscal/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.fiscal/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.fiscal/example',
           ],
         },
         {
@@ -1290,6 +1300,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.fixedasset/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.fixedasset/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.fixedasset/example',
           ],
         },
         {
@@ -1299,6 +1310,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.hrdev/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.hrdev/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.hrdev/example',
           ],
         },
         {
@@ -1308,6 +1320,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.hr/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.hr/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.hr/example',
           ],
         },
         {
@@ -1317,6 +1330,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.journalentry/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.journalentry/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.journalentry/example',
           ],
         },
         {
@@ -1326,6 +1340,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.ledger/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.ledger/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.ledger/example',
           ],
         },
         {
@@ -1335,6 +1350,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.mainaccount/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.mainaccount/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.mainaccount/example',
           ],
         },
         {
@@ -1344,6 +1360,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.payment/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.payment/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.payment/example',
           ],
         },
         {
@@ -1353,6 +1370,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.procurement/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.procurement/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.procurement/example',
           ],
         },
         {
@@ -1362,6 +1380,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.project/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.project/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.project/example',
           ],
         },
         {
@@ -1371,6 +1390,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.receivable/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.receivable/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.receivable/example',
           ],
         },
         {
@@ -1380,6 +1400,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.system/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.system/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.system/example',
           ],
         },
         {
@@ -1389,6 +1410,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.sysconfig/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.sysconfig/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.sysconfig/example',
           ],
         },
         {
@@ -1398,6 +1420,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.tax/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.tax/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.tax/example',
           ],
         },
         {
@@ -1407,6 +1430,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.taxregion/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.taxregion/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.taxregion/example',
           ],
         },
         {
@@ -1416,6 +1440,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.trade/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.trade/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.trade/example',
           ],
         },
         {
@@ -1425,6 +1450,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.users/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.users/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.users/example',
           ],
         },
         {
@@ -1434,6 +1460,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendor/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendor/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendor/example',
           ],
         },
         {
@@ -1443,6 +1470,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorextended/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorextended/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorextended/example',
           ],
         },
         {
@@ -1452,6 +1480,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorpayment/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorpayment/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.vendorpayment/example',
           ],
         },
         {
@@ -1461,6 +1490,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.workflow/setup-guide',
             'connectors/catalog/erp-business/microsoft.dynamics365.finance.workflow/actions',
+            'connectors/catalog/erp-business/microsoft.dynamics365.finance.workflow/example',
           ],
         },
         {
