@@ -17,6 +17,7 @@ WSO2 Integrator, powered by Ballerina, provides native support for a wide range 
 | WebSocket | `ballerina/websocket` | Full-duplex communication over TCP | Real-time messaging, binary and text frames, ping/pong |
 | WebSub | `ballerina/websub`, `ballerina/websubhub` | W3C WebSub pub/sub protocol | Content distribution, webhook-based subscriptions |
 | GraphQL | `ballerina/graphql` | GraphQL query language protocol | Queries, mutations, subscriptions, schema introspection |
+| SOAP | `ballerina/soap` | Simple Object Access Protocol | SOAP 1.1/1.2, WS-Security, WSDL support |
 | gRPC | `ballerina/grpc` | Google Remote Procedure Call | Unary, server streaming, client streaming, bidirectional streaming |
 
 ### HTTP example
@@ -104,6 +105,7 @@ service class EchoService {
 |----------|--------|-------------|--------------|
 | FTP | `ballerina/ftp` | File Transfer Protocol | Upload, download, list, directory operations |
 | SFTP | `ballerina/ftp` | SSH File Transfer Protocol | Encrypted file transfer, key-based authentication |
+| SMB | `ballerina/smb` | Server Message Block Protocol | File sharing, directory operations, file event listening |
 
 ### FTP example
 
@@ -186,6 +188,7 @@ service "emailObserver" on imapListener {
 | HTTP | Request/Response | At-most-once | N/A | REST APIs, webhooks |
 | gRPC | Request/Response, Streaming | At-most-once | Per stream | Microservice-to-microservice |
 | GraphQL | Request/Response | At-most-once | N/A | Flexible API queries |
+| SOAP | Request/Response | At-most-once | N/A | Legacy web services, enterprise integration |
 | WebSocket | Bidirectional streaming | At-most-once | Per connection | Real-time updates |
 | Kafka | Pub/Sub | At-least-once, Exactly-once | Per partition | Event streaming, log aggregation |
 | RabbitMQ | Pub/Sub, Queue | At-least-once | Per queue | Task distribution, async processing |
