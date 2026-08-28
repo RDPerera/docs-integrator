@@ -25,17 +25,15 @@ WSO2 Integrator, powered by Ballerina, provides native support for a wide range 
 ```ballerina
 import ballerina/http;
 
-// HTTP/1.1 service
+// HTTP service (default: HTTP/2)
 service /api on new http:Listener(8080) {
     resource function get greeting() returns string {
         return "Hello, World!";
     }
 }
 
-// HTTP/2 client
-http:Client http2Client = check new ("https://api.example.com", {
-    httpVersion: http:HTTP_2_0
-});
+// HTTP client (default: HTTP/2)
+http:Client httpClient = check new ("https://api.example.com");
 ```
 
 ## Messaging protocols
