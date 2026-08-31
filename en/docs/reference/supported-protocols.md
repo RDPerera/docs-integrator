@@ -36,7 +36,7 @@ service /api on new http:Listener(8080) {
 http:Client httpClient = check new ("https://api.example.com");
 ```
 
-## Messaging protocols
+## Message brokers
 
 | Protocol | Module | Description | Key Features |
 |----------|--------|-------------|--------------|
@@ -47,7 +47,6 @@ http:Client httpClient = check new ("https://api.example.com");
 | NATS Streaming | `ballerinax/stan` | Streaming extension for NATS | Durable subscriptions, message replay, at-least-once delivery |
 | JMS | `ballerinax/java.jms` | Java Message Service | Queues, topics, durable subscribers, message selectors |
 | IBM MQ | `ballerinax/ibm.ibmmq` | IBM enterprise messaging | Queue managers, queues, topics, message persistence |
-| ActiveMQ | `ballerinax/activemq.classic` | Apache ActiveMQ message broker | Queues, topics, durable subscriptions, message persistence |
 | Solace | `ballerinax/solace` | Solace PubSub+ messaging | Pub/sub, queues, topic subscriptions, guaranteed delivery |
 | Azure Service Bus | `ballerinax/asb` | Azure cloud messaging | Queues, topics, sessions, dead-letter queues |
 | AWS SQS | `ballerinax/aws.sqs` | Amazon Simple Queue Service | Standard and FIFO queues, message visibility, dead-letter queues |
@@ -198,7 +197,6 @@ service "emailObserver" on imapListener {
 | MQTT | Pub/Sub | QoS 0/1/2 | Per topic | IoT, edge devices |
 | JMS | Pub/Sub, Queue | At-least-once | Per queue | Enterprise messaging |
 | IBM MQ | Pub/Sub, Queue | At-least-once | Per queue | Enterprise messaging, mainframe integration |
-| ActiveMQ | Pub/Sub, Queue | At-least-once | Per queue | Open-source message brokering |
 | Solace | Pub/Sub, Queue | At-least-once | Per queue | Event-driven enterprise messaging |
 | AWS SQS | Queue | At-least-once | FIFO optional | Cloud-native task queuing |
 | TCP | Stream | Reliable, ordered | Yes | Custom binary protocols |
