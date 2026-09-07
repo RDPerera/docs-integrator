@@ -1914,7 +1914,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'SAP JCo',
+          label: 'SAP ECC (JCo)',
           link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.jco/overview' },
           items: [
             'connectors/catalog/erp-business/sap.jco/setup-guide',
