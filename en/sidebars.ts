@@ -24,11 +24,10 @@ const sidebars: SidebarsConfig = {
     // ─────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Get started',
+      label: 'Get Started',
       collapsed: true,
       link: { type: 'doc', id: 'get-started/introduction' },
       items: [
-        'get-started/introduction',
         {
           type: 'category',
           label: 'Concepts',
@@ -40,7 +39,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Set up',
+          label: 'Set Up',
           link: { type: 'doc', id: 'get-started/setup/overview' },
           items: [
             'get-started/setup/local-setup',
@@ -50,11 +49,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Quick starts',
+          label: 'Quick Starts',
           items: [
             'get-started/build-automation',
             'get-started/build-ai-agent',
-            'get-started/build-api-integration',
+            'get-started/build-integration-api',
             'get-started/build-event-driven-integration',
             'get-started/build-file-driven-integration',
           ],
@@ -108,7 +107,7 @@ const sidebars: SidebarsConfig = {
               items: [
                 {
                   type: 'category',
-                  label: 'Flow Diagram editor',
+                  label: 'Flow Diagram Editor',
                   link: { type: 'doc', id: 'develop/understand-ide/editors/flow-diagram-editor/flow-diagram-editor' },
                   items: [
                     'develop/understand-ide/editors/flow-diagram-editor/connections',
@@ -135,7 +134,7 @@ const sidebars: SidebarsConfig = {
         // 6.3 Integration Artifacts
         {
           type: 'category',
-          label: 'Integration artifacts',
+          label: 'Integration Artifacts',
           link: { type: 'doc', id: 'develop/integration-artifacts/integration-artifacts' },
           items: [
             'develop/integration-artifacts/automation',
@@ -152,7 +151,7 @@ const sidebars: SidebarsConfig = {
               ],
             },
             {
-              type: 'category', label: 'Event-driven integration',
+              type: 'category', label: 'Event-Driven Integration',
               collapsed: true,
               items: [
                 'develop/integration-artifacts/event/kafka',
@@ -169,7 +168,7 @@ const sidebars: SidebarsConfig = {
               ],
             },
             {
-              type: 'category', label: 'File-driven integration',
+              type: 'category', label: 'File-Driven Integration',
               collapsed: true,
               items: [
                 {
@@ -179,30 +178,32 @@ const sidebars: SidebarsConfig = {
                   items: [
                     'develop/integration-artifacts/file/high-availability-and-coordination',
                     'develop/integration-artifacts/file/dependency-and-trigger-conditions',
-                    'develop/integration-artifacts/file/streaming-large-files',
                     'develop/integration-artifacts/file/csv-fault-tolerance',
                   ],
                 },
+                'develop/integration-artifacts/file/smb',
                 'develop/integration-artifacts/file/local-files',
+                'develop/integration-artifacts/file/azure-files'
               ],
             },
             {
-              type: 'category', label: 'Other artifacts',
+              type: 'category', label: 'Other Artifacts',
               collapsed: true,
               items: [
                 'develop/integration-artifacts/supporting/types',
                 'develop/integration-artifacts/supporting/connections',
                 'develop/integration-artifacts/supporting/configurations',
                 'develop/integration-artifacts/supporting/functions',
+                'develop/integration-artifacts/supporting/data-persistence',
                 {
                   type: 'category',
-                  label: 'Data mapper',
+                  label: 'Data Mapper',
                   collapsed: true,
                   link: { type: 'doc', id: 'develop/integration-artifacts/supporting/data-mapper/data-mapper' },
                   items: [
                     {
                       type: 'category',
-                      label: 'Access paths',
+                      label: 'Access Paths',
                       collapsed: true,
                       link: { type: 'doc', id: 'develop/integration-artifacts/supporting/data-mapper/access-paths/access-paths' },
                       items: [
@@ -213,7 +214,7 @@ const sidebars: SidebarsConfig = {
                     'develop/integration-artifacts/supporting/data-mapper/mapping-capabilities',
                     {
                       type: 'category',
-                      label: 'Array mappings',
+                      label: 'Array Mappings',
                       collapsed: true,
                       link: { type: 'doc', id: 'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-mappings' },
                       items: [
@@ -223,6 +224,7 @@ const sidebars: SidebarsConfig = {
                     },
                     'develop/integration-artifacts/supporting/data-mapper/generic-type-mappings',
                     'develop/integration-artifacts/supporting/data-mapper/submappings',
+                    'develop/integration-artifacts/supporting/data-mapper/ai-mapping',
                   ],
                 },
               ],
@@ -237,8 +239,11 @@ const sidebars: SidebarsConfig = {
             'develop/transform/json',
             'develop/transform/xml',
             'develop/transform/csv-flat-file',
+            'develop/transform/xlsx',
             'develop/transform/edi',
             'develop/transform/pdf',
+            'develop/transform/freemarker',
+            'develop/transform/zip',
             'develop/transform/yaml-toml'
           ],
         },
@@ -249,6 +254,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'develop/copilot/getting-started',
             'develop/copilot/overview',
+            'develop/copilot/mcp-tools',
           ],
         },
         // 6.6 Try & Test
@@ -259,7 +265,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: 'category',
-              label: 'Try-It tool',
+              label: 'Try-It Tool',
               link: { type: 'doc', id: 'develop/test/built-in-try-it-tool' },
               items: [
                 'develop/test/try-it-http',
@@ -286,23 +292,29 @@ const sidebars: SidebarsConfig = {
             'develop/test/ai-generated-cases',
           ],
         },
-        // 6.7 Debugging & Troubleshooting
+        // 6.7 Debug
         {
           type: 'category',
-          label: 'Debugging & Troubleshooting',
+          label: 'Debug',
           items: [
-            'develop/debugging/troubleshooting',
-            'develop/debugging/errors-and-stack-traces',
-            'develop/debugging/library-troubleshooting',
-            'develop/debugging/deployment-troubleshooting',
             'develop/debugging/editor',
-            'develop/debugging/remote',
-            'develop/debugging/strand-dump-analysis',
-            'develop/debugging/performance-profiling',
-            'develop/debugging/logging',
+            'develop/debugging/features',
           ],
         },
-        // 6.8 Tools
+        // 6.8 Troubleshooting
+        {
+          type: 'category',
+          label: 'Troubleshooting',
+          items: [
+            'develop/troubleshooting/errors-and-stack-traces',
+            'develop/troubleshooting/logging',
+            'develop/troubleshooting/deployment',
+            'develop/troubleshooting/strand-dump-analysis',
+            'develop/troubleshooting/profiling',
+            'develop/troubleshooting/ide-troubleshooting',
+          ],
+        },
+        // 6.9 Tools
         {
           type: 'category',
           label: 'Tools',
@@ -322,6 +334,7 @@ const sidebars: SidebarsConfig = {
                 'develop/tools/integration-tools/wsdl-tool',
                 'develop/tools/integration-tools/xsd-tool',
                 'develop/tools/integration-tools/persist-tool',
+                'develop/tools/integration-tools/connector-tool',
               ],
             },
             {
@@ -361,7 +374,7 @@ const sidebars: SidebarsConfig = {
     // ── Connector Catalog ──
     {
       type: 'category',
-      label: 'Connector catalog',
+      label: 'Connector Catalog',
       collapsed: true,
       link: { type: 'doc', id: 'connectors/catalog/index' },
       items: [
@@ -397,6 +410,16 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'Ardoq',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/ardoq/overview' },
+          items: [
+            'connectors/catalog/erp-business/ardoq/setup-guide',
+            'connectors/catalog/erp-business/ardoq/action-reference',
+            'connectors/catalog/erp-business/ardoq/example',
+          ],
+        },
+        {
+          type: 'category',
 
           label: 'Asana',
           link: { type: 'doc', id: 'connectors/catalog/productivity-collaboration/asana/connector-overview' },
@@ -404,6 +427,26 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/productivity-collaboration/asana/setup-guide',
             'connectors/catalog/productivity-collaboration/asana/actions',
             'connectors/catalog/productivity-collaboration/asana/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'AWS DynamoDB',
+          link: { type: 'doc', id: 'connectors/catalog/database/aws.dynamodb/connector-overview' },
+          items: [
+            'connectors/catalog/database/aws.dynamodb/setup-guide',
+            'connectors/catalog/database/aws.dynamodb/actions',
+            'connectors/catalog/database/aws.dynamodb/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'AWS DynamoDB Streams',
+          link: { type: 'doc', id: 'connectors/catalog/database/aws.dynamodbstreams/connector-overview' },
+          items: [
+            'connectors/catalog/database/aws.dynamodbstreams/setup-guide',
+            'connectors/catalog/database/aws.dynamodbstreams/actions',
+            'connectors/catalog/database/aws.dynamodbstreams/example',
           ],
         },
         {
@@ -439,7 +482,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'AWS Redshift Data',
-          link: { type: 'doc', id: 'connectors/catalog/database/aws.redshiftdata/aws-redshift-data-connector-overview' },
+          link: { type: 'doc', id: 'connectors/catalog/database/aws.redshiftdata/connector-overview' },
           items: [
             'connectors/catalog/database/aws.redshiftdata/setup-guide',
             'connectors/catalog/database/aws.redshiftdata/actions',
@@ -449,21 +492,41 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'AWS S3',
-          link: { type: 'doc', id: 'connectors/catalog/storage-file/aws.s3/aws-s3-connector-overview' },
+          link: { type: 'doc', id: 'connectors/catalog/storage-file/aws.s3/overview' },
           items: [
             'connectors/catalog/storage-file/aws.s3/setup-guide',
-            'connectors/catalog/storage-file/aws.s3/actions',
+            'connectors/catalog/storage-file/aws.s3/action-reference',
             'connectors/catalog/storage-file/aws.s3/example',
           ],
         },
         {
           type: 'category',
           label: 'AWS Secrets Manager',
-          link: { type: 'doc', id: 'connectors/catalog/security-identity/aws.secretmanager/aws-secrets-manager-connector-overview' },
+          link: { type: 'doc', id: 'connectors/catalog/security-identity/aws.secretmanager/connector-overview' },
           items: [
             'connectors/catalog/security-identity/aws.secretmanager/setup-guide',
             'connectors/catalog/security-identity/aws.secretmanager/actions',
             'connectors/catalog/security-identity/aws.secretmanager/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'AWS SES',
+          link: { type: 'doc', id: 'connectors/catalog/marketing-social/aws.ses/connector-overview' },
+          items: [
+            'connectors/catalog/marketing-social/aws.ses/setup-guide',
+            'connectors/catalog/marketing-social/aws.ses/actions',
+            'connectors/catalog/marketing-social/aws.ses/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'AWS SimpleDB',
+          link: { type: 'doc', id: 'connectors/catalog/database/aws.simpledb/connector-overview' },
+          items: [
+            'connectors/catalog/database/aws.simpledb/setup-guide',
+            'connectors/catalog/database/aws.simpledb/actions',
+            'connectors/catalog/database/aws.simpledb/example',
           ],
         },
         {
@@ -479,11 +542,11 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'AWS SQS',
-          link: { type: 'doc', id: 'connectors/catalog/messaging/aws.sqs/aws-sqs-connector-overview' },
+          link: { type: 'doc', id: 'connectors/catalog/messaging/aws.sqs/overview' },
           items: [
             'connectors/catalog/messaging/aws.sqs/setup-guide',
-            'connectors/catalog/messaging/aws.sqs/actions',
-            'connectors/catalog/messaging/aws.sqs/triggers',
+            'connectors/catalog/messaging/aws.sqs/action-reference',
+            'connectors/catalog/messaging/aws.sqs/trigger-reference',
             'connectors/catalog/messaging/aws.sqs/example',
           ],
         },
@@ -505,6 +568,17 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/ai-ml/azure.ai.search.index/setup-guide',
             'connectors/catalog/ai-ml/azure.ai.search.index/actions',
             'connectors/catalog/ai-ml/azure.ai.search.index/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Azure Files',
+          link: { type: 'doc', id: 'connectors/catalog/storage-file/azure.storage.files/overview' },
+          items: [
+            'connectors/catalog/storage-file/azure.storage.files/setup-guide',
+            'connectors/catalog/storage-file/azure.storage.files/action-reference',
+            'connectors/catalog/storage-file/azure.storage.files/trigger-reference',
+            'connectors/catalog/storage-file/azure.storage.files/example',
           ],
         },
         {
@@ -628,7 +702,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Github',
+          label: 'GitHub',
           link: { type: 'doc', id: 'connectors/catalog/developer-tools/github/connector-overview' },
           items: [
             'connectors/catalog/developer-tools/github/setup-guide',
@@ -1028,6 +1102,16 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'HubSpot Events Completions',
+          link: { type: 'doc', id: 'connectors/catalog/crm-sales/hubspot.events.completions/overview' },
+          items: [
+            'connectors/catalog/crm-sales/hubspot.events.completions/setup-guide',
+            'connectors/catalog/crm-sales/hubspot.events.completions/action-reference',
+            'connectors/catalog/crm-sales/hubspot.events.completions/example',
+          ],
+        },
+        {
+          type: 'category',
           label: 'HubSpot Marketing Campaigns',
           link: { type: 'doc', id: 'connectors/catalog/marketing-social/hubspot.marketing.campaigns/hubspot-marketing-campaigns' },
           items: [
@@ -1197,6 +1281,34 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'Microsoft SharePoint Pages',
+          link: { type: 'doc', id: 'connectors/catalog/storage-file/microsoft.sharepoint.pages/connector-overview' },
+          items: [
+            'connectors/catalog/storage-file/microsoft.sharepoint.pages/setup-guide',
+            'connectors/catalog/storage-file/microsoft.sharepoint.pages/action-reference',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Microsoft SharePoint Sites',
+          link: { type: 'doc', id: 'connectors/catalog/storage-file/microsoft.sharepoint.sites/connector-overview' },
+          items: [
+            'connectors/catalog/storage-file/microsoft.sharepoint.sites/setup-guide',
+            'connectors/catalog/storage-file/microsoft.sharepoint.sites/action-reference',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Microsoft Teams',
+          link: { type: 'doc', id: 'connectors/catalog/communication/microsoft.teams/overview' },
+          items: [
+            'connectors/catalog/communication/microsoft.teams/setup-guide',
+            'connectors/catalog/communication/microsoft.teams/action-reference',
+            'connectors/catalog/communication/microsoft.teams/example',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Milvus',
           link: { type: 'doc', id: 'connectors/catalog/ai-ml/milvus/connector-overview' },
           items: [
@@ -1308,6 +1420,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/database/oracledb/setup-guide',
             'connectors/catalog/database/oracledb/actions',
+            'connectors/catalog/database/oracledb/triggers',
             'connectors/catalog/database/oracledb/example',
           ],
         },
@@ -1363,6 +1476,16 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'Pricefx',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/pricefx/overview' },
+          items: [
+            'connectors/catalog/erp-business/pricefx/setup-guide',
+            'connectors/catalog/erp-business/pricefx/action-reference',
+            'connectors/catalog/erp-business/pricefx/example',
+          ],
+        },
+        {
+          type: 'category',
 
           label: 'PostgreSQL',
           link: { type: 'doc', id: 'connectors/catalog/database/postgresql/connector-overview' },
@@ -1406,12 +1529,163 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'SAP Business One Administration',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.administration/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.administration/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.administration/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.administration/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Banking',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.banking/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.banking/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.banking/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.banking/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Business Partners',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.businesspartners/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.businesspartners/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.businesspartners/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.businesspartners/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One CRM',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.crm/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.crm/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.crm/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.crm/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Financials',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.financials/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.financials/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.financials/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.financials/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Fixed Assets',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.fixedassets/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.fixedassets/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.fixedassets/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.fixedassets/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Human Resources',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.humanresources/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.humanresources/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.humanresources/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.humanresources/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Inventory',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.inventory/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.inventory/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.inventory/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.inventory/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Localization',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.localization/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.localization/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.localization/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.localization/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Production',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.production/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.production/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.production/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.production/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Projects',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.projects/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.projects/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.projects/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.projects/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Purchasing',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.purchasing/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.purchasing/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.purchasing/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.purchasing/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Sales',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.sales/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.sales/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.sales/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.sales/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP Business One Service',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.businessone.service/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.businessone.service/setup-guide',
+            'connectors/catalog/erp-business/sap.businessone.service/action-reference',
+            'connectors/catalog/erp-business/sap.businessone.service/example',
+          ],
+        },
+        {
+          type: 'category',
           label: 'SAP Commerce',
           link: { type: 'doc', id: 'connectors/catalog/ecommerce/sap.commerce.webservices/sap-commerce-connector-overview' },
           items: [
             'connectors/catalog/ecommerce/sap.commerce.webservices/setup-guide',
             'connectors/catalog/ecommerce/sap.commerce.webservices/actions',
             'connectors/catalog/ecommerce/sap.commerce.webservices/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SAP ECC (JCo)',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.jco/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.jco/setup-guide',
+            'connectors/catalog/erp-business/sap.jco/action-reference',
+            'connectors/catalog/erp-business/sap.jco/trigger-reference',
+            'connectors/catalog/erp-business/sap.jco/example',
           ],
         },
         {
@@ -1515,6 +1789,16 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'SAP Signavio',
+          link: { type: 'doc', id: 'connectors/catalog/erp-business/sap.signavio/overview' },
+          items: [
+            'connectors/catalog/erp-business/sap.signavio/setup-guide',
+            'connectors/catalog/erp-business/sap.signavio/action-reference',
+            'connectors/catalog/erp-business/sap.signavio/example',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Salesforce',
           link: { type: 'doc', id: 'connectors/catalog/crm-sales/salesforce/connector-overview' },
           items: [
@@ -1577,6 +1861,17 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'SMB',
+          link: { type: 'doc', id: 'connectors/catalog/storage-file/smb/overview' },
+          items: [
+            'connectors/catalog/storage-file/smb/setup-guide',
+            'connectors/catalog/storage-file/smb/action-reference',
+            'connectors/catalog/storage-file/smb/trigger-reference',
+            'connectors/catalog/storage-file/smb/example',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Snowflake',
           link: { type: 'doc', id: 'connectors/catalog/database/snowflake/connector-overview' },
           items: [
@@ -1594,6 +1889,17 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/solace/actions',
             'connectors/catalog/messaging/solace/triggers',
             'connectors/catalog/messaging/solace/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Solace (JMS)',
+          link: { type: 'doc', id: 'connectors/catalog/messaging/solace.jms/connector-overview' },
+          items: [
+            'connectors/catalog/messaging/solace.jms/setup-guide',
+            'connectors/catalog/messaging/solace.jms/actions',
+            'connectors/catalog/messaging/solace.jms/triggers',
+            'connectors/catalog/messaging/solace.jms/example',
           ],
         },
         {
@@ -1715,7 +2021,7 @@ const sidebars: SidebarsConfig = {
     // ── Build Your Own ──
     {
       type: 'category',
-      label: 'Build your own',
+      label: 'Build Your Own',
       link: { type: 'doc', id: 'connectors/build-your-own/build-own' },
       items: [
         'connectors/build-your-own/create-from-openapi-spec',
@@ -1738,7 +2044,7 @@ const sidebars: SidebarsConfig = {
         // Getting Started
         {
           type: 'category',
-          label: 'Getting started',
+          label: 'Getting Started',
           items: [
             'genai/getting-started/build-a-sentiment-analyzer',
             'genai/getting-started/build-a-hotel-finder-agent',
@@ -1747,7 +2053,7 @@ const sidebars: SidebarsConfig = {
         // Develop AI Applications
         {
           type: 'category',
-          label: 'Develop AI applications',
+          label: 'Develop AI Applications',
           items: [
             // Direct LLM Calls (single page)
             'genai/develop/direct-llm/overview',
@@ -1805,6 +2111,7 @@ const sidebars: SidebarsConfig = {
             'genai/develop/components/vector-stores',
             'genai/develop/components/knowledge-bases',
             'genai/develop/components/chunkers',
+            'genai/develop/components/data-loaders',
           ],
         },
         // Tutorials
@@ -1834,7 +2141,7 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'category',
-          label: 'Enterprise integration patterns',
+          label: 'Enterprise Integration Patterns',
           items: [
             'guides/patterns/message',
             'guides/patterns/message-filter',
@@ -1847,13 +2154,21 @@ const sidebars: SidebarsConfig = {
             'guides/patterns/message-mapper',
           ],
         },
+        {
+          type: 'category',
+          label: 'How to Guides',
+          items: [
+            'guides/howtoguides/sap-b1-low-stock-purchase-automation',
+            'guides/howtoguides/s3-events-via-sqs-listener',
+          ],
+        },
         // Migration Guides
         {
           type: 'category',
-          label: 'Migration guides',
+          label: 'Migration Guides',
           items: [
-            'guides/migration/coming-from-mulesoft',
-            'guides/migration/coming-from-tibco',
+            'guides/migration/from-mulesoft',
+            'guides/migration/from-tibco',
           ],
         },
       ],
@@ -1886,18 +2201,12 @@ const sidebars: SidebarsConfig = {
         // they're migrated too.
         {
           type: 'category',
-          label: 'Self-hosted',
+          label: 'Self-Hosted',
           items: [
-            'deploy/self-hosted/run-locally',
-            'deploy/self-hosted/docker',
-            'deploy/self-hosted/kubernetes',
-            'deploy/self-hosted/openshift',
-            'deploy-operate/deploy/vm-based-deployment',
+            'deploy/self-hosted/vm-deployment',
+            'deploy/self-hosted/containerized-deployment',
             'deploy-operate/deploy/serverless-deployment',
-            'deploy-operate/deploy/devant-ipaas',
-            'deploy-operate/deploy/aws-azure-gcp',
             'deploy-operate/deploy/graalvm-native-images',
-            'deploy-operate/deploy/environments',
             'deploy-operate/deploy/managing-configurations',
             'deploy-operate/deploy/scaling-high-availability',
           ],
@@ -1921,20 +2230,24 @@ const sidebars: SidebarsConfig = {
             'deploy-operate/observe/observability-overview',
             'deploy-operate/observe/metrics-overview',
             'deploy-operate/observe/logging-overview',
-            'deploy-operate/observe/integration-control-plane-icp',
-            // 'deploy-operate/observe/metrics-prometheus-grafana',
-            'deploy-operate/observe/jaeger-distributed-tracing',
-            'deploy-operate/observe/zipkin-tracing',
-            // 'deploy-operate/observe/datadog-integration',
-            'deploy-operate/observe/new-relic-integration',
-            // 'deploy-operate/observe/elastic-stack-elk',
-            // 'deploy-operate/observe/opensearch-integration',
-            'deploy-operate/observe/moesif-api-analytics',
-            'deploy-operate/observe/recipe-datadog-setup',
-            // 'deploy-operate/observe/recipe-local-development',
-            // 'deploy-operate/observe/recipe-kubernetes-production',
-            // 'deploy-operate/observe/recipe-elk-stack',
-            // 'deploy-operate/observe/recipe-opensearch-setup',
+            {
+              type: 'category',
+              label: 'Distributed Tracing',
+              items: [
+                'deploy-operate/observe/jaeger-distributed-tracing',
+                'deploy-operate/observe/zipkin-tracing',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Supported Platforms',
+              items: [
+                'deploy-operate/observe/integration-control-plane-icp',
+                'deploy-operate/observe/recipe-datadog-setup',
+                'deploy-operate/observe/new-relic-integration',
+                'deploy-operate/observe/moesif-api-analytics',
+              ],
+            },
           ],
         },
         // Secure
@@ -1954,10 +2267,10 @@ const sidebars: SidebarsConfig = {
         // Capacity Planning
         {
           type: 'category',
-          label: 'Capacity planning',
+          label: 'Capacity Planning',
           items: [
             'deploy-operate/capacity-planning/overview',
-            'deploy-operate/capacity-planning/performance-reports',
+            'deploy-operate/capacity-planning/performance-benchmarks',
           ],
         },
       ],
@@ -1980,14 +2293,9 @@ const sidebars: SidebarsConfig = {
           link: { type: 'doc', id: 'manage/cloud/overview' },
           items: [
             // Integrations
-            {
-              type: 'category',
-              label: 'Integrations',
-              items: [
-                'manage/cloud/integrations/viewing-deployed',
-                'manage/cloud/integrations/lifecycle',
-              ],
-            },
+            'manage/cloud/integrations',
+            // Projects
+            'manage/cloud/projects',
             // Configuration Management
             {
               type: 'category',
@@ -2037,7 +2345,7 @@ const sidebars: SidebarsConfig = {
             // Users and Access
             {
               type: 'category',
-              label: 'Users and access',
+              label: 'Users and Access',
               link: { type: 'doc', id: 'manage/cloud/users-and-access/overview' },
               items: [
                     'manage/cloud/users-and-access/access-control',
@@ -2055,7 +2363,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
-              label: 'Platform services',
+              label: 'Platform Services',
               items: [
                 'manage/cloud/platform-services/managed-databases',
               ],
@@ -2087,32 +2395,55 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/audit/compliance-data-residency',
               ],
             },
+            // API Management
+            {
+              type: 'category',
+              label: 'API Management',
+              link: { type: 'doc', id: 'manage/cloud/api-management/overview' },
+              items: [
+                'manage/cloud/api-management/lifecycle-management',
+                'manage/cloud/api-management/api-security',
+                {
+                  type: 'category',
+                  label: 'Consuming APIs',
+                  items: [
+                    'manage/cloud/api-management/consuming-apis/consuming-an-api-secured-with-an-api-key',
+                    'manage/cloud/api-management/consuming-apis/consuming-an-api-secured-with-oauth2',
+                  ],
+                },
+                'manage/cloud/api-management/api-rate-limiting',
+              ],
+            },
             // Private data plane
             {
               type: 'category',
-              label: 'Private data plane',
-              link: { type: 'doc', id: 'manage/cloud/private-date-plane/overview' },
+              label: 'Private Data Plane',
+              link: { type: 'doc', id: 'manage/cloud/private-data-plane/overview' },
               items: [
-                'manage/cloud/private-date-plane/management-models',
-                'manage/cloud/private-date-plane/security-levels',
+                'manage/cloud/private-data-plane/management-models',
+                'manage/cloud/private-data-plane/security-levels',
               ],
             },
           ],
         },
         {
           type: 'category',
-          label: 'ICP',
+          label: 'WSO2 Integration Control Plane',
           link: { type: 'doc', id: 'manage/icp/integration-control-plane' },
           items: [
             'manage/icp/install-icp',
+            'manage/icp/deploy-kubernetes',
             'manage/icp/icp-console-overview',
+            'manage/icp/quick-start',
             'manage/icp/connect-runtime',
             'manage/icp/observability-setup',
             'manage/icp/manage-projects',
             'manage/icp/manage-environments',
             'manage/icp/manage-integrations',
             'manage/icp/manage-runtimes',
+            'manage/icp/reverse-proxy',
             'manage/icp/access-control',
+            'manage/icp/encrypt-secrets',
             {
               type: 'category',
               label: 'User Stores',
@@ -2121,14 +2452,7 @@ const sidebars: SidebarsConfig = {
                 'manage/icp/user-stores/default-user-store',
                 'manage/icp/user-stores/ldap-user-store',
                 'manage/icp/user-stores/sso-configuration',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'MI Profile',
-              items: [
-                'manage/icp/mi-profile/observability-setup-mi',
-                'manage/icp/mi-profile/connect-runtime-mi',
+                'manage/icp/user-stores/sso-group-mapping',
               ],
             },
           ],
@@ -2162,10 +2486,17 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Configuration',
           items: [
-            'reference/config/ballerinatoml-reference',
+            'reference/config/configuration-management',
             'reference/config/configtoml-reference',
-            'reference/config/cloudtoml-reference',
-            'reference/config/environment-variables',
+          ],
+        },
+        // Project
+        {
+          type: 'category',
+          label: 'Project',
+          items: [
+            'reference/project/ballerinatoml-reference',
+            'reference/project/cloudtoml-reference',
           ],
         },
         // ICP Configuration
@@ -2191,9 +2522,10 @@ const sidebars: SidebarsConfig = {
         },
 
         'reference/supported-protocols',
+        'reference/streaming-capabilities',
         {
           type: 'category',
-          label: 'Supported data formats',
+          label: 'Supported Data Formats',
           link: { type: 'doc', id: 'reference/data-formats/supported-data-formats' },
           items: [
             'reference/data-formats/avro',
@@ -2205,11 +2537,13 @@ const sidebars: SidebarsConfig = {
             'reference/data-formats/protocol-buffers',
             'reference/data-formats/toml',
             'reference/data-formats/xml',
+            'reference/data-formats/xlsx',
             'reference/data-formats/yaml',
           ],
         },
         'reference/ballerina-by-example',
         'reference/ballerina-specifications',
+        'reference/ai-usage-and-data-handling-guidelines',
         // Miscellaneous
         {
           type: 'category',
@@ -2224,17 +2558,15 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Appendix',
           items: [
-            'reference/appendix/system-requirements',
-            'reference/error-code',
-            'reference/glossary',
-            'reference/faq',
-            'reference/release-notes',
+            'reference/appendix/error-code',
+            'reference/appendix/glossary',
+            'reference/appendix/faq',
+            'reference/appendix/release-notes',
           ],
         },
       ],
     },
   ],
 };
-
 
 export default sidebars;

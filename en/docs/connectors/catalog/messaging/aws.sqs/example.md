@@ -1,25 +1,32 @@
+---
+connector: true
+connector_name: "aws.sqs"
+title: "Examples"
+---
+
 # Example
 
 ## What you'll build
 
-Build an integration that sends a message to an Amazon SQS queue using the AWS SQS connector. The integration creates a connection to SQS using static AWS credentials and invokes the `sendMessage` operation from an automation entry point.
+In this guide, you'll create an integration that sends a message to an Amazon SQS queue using the AWS SQS connector. The integration uses configurable variables for authentication and queue details, keeping credentials separate from the integration logic.
 
 **Operations used:**
-- **sendMessage** : Sends a message to the specified SQS queue URL
+- **Send Message** : Delivers a message to a specified SQS queue
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    A((User)) --> B[sendMessage Operation]
+    A((User)) --> B[Send Message]
     B --> C[AWS SQS Connector]
-    C --> D((Amazon SQS Queue))
+    C --> D[(Amazon SQS Queue)]
 ```
 
 ## Prerequisites
 
-- An AWS account with SQS access and an existing SQS queue
-- Your AWS Access Key ID and Secret Access Key
+- An AWS account with access to Amazon SQS
+- An IAM user with SQS permissions and its access key ID and secret access key
+- An existing SQS queue URL
 
 ## Setting up the AWS SQS integration
 
@@ -29,64 +36,79 @@ flowchart LR
 
 ### Step 1: Open the connector palette
 
-Select **+ Add Connection** on the integration canvas to open the connector palette.
+Select **Add Connection** in the **Connections** section.
 
-![AWS SQS connector palette open with search field before any selection](/img/connectors/catalog/messaging/aws.sqs/aws_sqs_screenshot_01_palette.png)
+![AWS SQS connector palette open before selection](/img/connectors/catalog/messaging/aws.sqs/ballerinax_aws_sqs_screenshot_01_palette.png)
+
+### Step 2: Select the AWS SQS connector
+
+1. Enter `aws.sqs` in the search field.
+2. Select the **SQS** connector card.
 
 ## Configuring the AWS SQS connection
 
-### Step 2: Fill in the connection parameters
+### Step 3: Bind the connection parameters to configurable variables
 
-Search for `sqs` to locate the **AWS SQS** connector card, then select it to open the **Configure SQS** form. Bind each connection parameter to a configurable variable:
+Switch the **Auth** field to **Expression** mode and enter a record expression that references two configurable variables for the access key ID and secret access key. Switch the **Region** field to **Expression** mode and bind it to a configurable variable.
 
-- **region** : The AWS region where your SQS queue resides
-- **accessKeyId** : AWS Access Key ID, bound to a configurable variable
-- **secretAccessKey** : AWS Secret Access Key, bound to a configurable variable
-- **connectionName** : The name for this connection instance
+- **Auth** : Authentication configuration with static credentials for the AWS account
+- **Region** : AWS region where the SQS queue is hosted
 
-![AWS SQS connection form fully filled with all parameters before saving](/img/connectors/catalog/messaging/aws.sqs/aws_sqs_screenshot_02_connection_form.png)
+![AWS SQS connection form with all parameters bound before saving](/img/connectors/catalog/messaging/aws.sqs/ballerinax_aws_sqs_screenshot_02_connection_form.png)
 
-### Step 3: Save the connection
+### Step 4: Save the connection
 
-Select **Save Connection** to persist the connection. The `sqsClient` connection appears as a node on the design canvas and under **Connections** in the sidebar.
+Select **Save Connection** and verify that the connection appears in the **Connections** section.
 
-![AWS SQS Connections panel showing sqsClient entry after saving](/img/connectors/catalog/messaging/aws.sqs/aws_sqs_screenshot_03_connections_list.png)
+![AWS SQS connection visible after saving](/img/connectors/catalog/messaging/aws.sqs/ballerinax_aws_sqs_screenshot_03_connections_list.png)
 
-### Step 4: Set actual values for your configurables
+### Step 5: Set actual values for your configurables
 
-In the left panel, select **Configurations**. Set a value for each configurable listed below:
+1. Select **Configurations** at the bottom of the project tree under **Data Mappers**.
+2. Enter a value for each configurable listed below before you run the integration.
 
-- **sqsAccessKey** (string) : Your AWS Access Key ID
-- **sqsSecretKey** (string) : Your AWS Secret Access Key
+- **accessKeyId** (`string`) : AWS IAM access key ID for authentication
+- **secretAccessKey** (`string`) : AWS IAM secret access key for authentication
+- **region** (`string`) : AWS region identifier such as `us-east-1`
+- **queueUrl** (`string`) : Full URL of the target SQS queue
 
-## Configuring the AWS SQS sendMessage operation
+## Configuring the AWS SQS Send Message operation
 
-### Step 5: Add an automation entry point
+### Step 6: Add an automation entry point
 
-Select **+ Add Artifact** on the canvas toolbar, then select **Automation** and select **Create** to generate a new automation entry point named `main`.
+1. Select **Add Entry Point** next to **Entry Points**.
+2. Select **Automation**.
+3. Select **Create** to accept the settings.
 
-### Step 6: Select and configure the sendMessage operation
+### Step 7: Expand the connection and configure the Send Message operation
 
-Select the **+** (Add Step) button in the automation flow body, expand **sqsClient** under **Connections**, and select **Send Message** to open the `sendMessage` operation configuration form. Fill in the following fields:
+1. Select the **+** node in the automation flow.
+2. Expand **sqsClient** to display its operations.
 
-- **queueUrl** : The full URL of the target SQS queue
-- **messageBody** : The message content to send to the queue
+![AWS SQS connection expanded to display operations before selection](/img/connectors/catalog/messaging/aws.sqs/ballerinax_aws_sqs_screenshot_04_operations_panel.png)
 
-![AWS SQS connection node expanded showing all available operations before selection](/img/connectors/catalog/messaging/aws.sqs/aws_sqs_screenshot_04_operations_panel.png)
+3. Select **Send Message** and enter its required values.
 
-![AWS SQS sendMessage operation configuration filled with all values](/img/connectors/catalog/messaging/aws.sqs/aws_sqs_screenshot_05_operation_filled.png)
+- **Queue Url** : URL of the Amazon SQS queue to which the message is sent
+- **Message Body** : Content of the message to deliver to the queue
 
-Select **Save** to add the operation to the flow.
+![AWS SQS Send Message operation with all values entered before saving](/img/connectors/catalog/messaging/aws.sqs/ballerinax_aws_sqs_screenshot_05_operation_form.png)
 
-![Completed AWS SQS automation flow](/img/connectors/catalog/messaging/aws.sqs/aws_sqs_screenshot_06_completed_flow.png)
+4. Select **Save**.
+
+### Step 8: Log the Send Message result
+
+Add a log action for the returned value, then return to the visual flow.
+
+![Completed AWS SQS flow with the configured operation](/img/connectors/catalog/messaging/aws.sqs/ballerinax_aws_sqs_screenshot_06_completed_flow.png)
 
 ## Try it yourself
 
 Try this sample in WSO2 Integration Platform.
 
-[![Deploy to Devant](https://openindevant.choreoapps.dev/images/DeployDevant-White.svg)](https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/integrator-default-profile/connectors/aws.sqs_connector_sample)
+[![Deploy to Devant](https://openindevant.choreoapps.dev/images/DeployDevant-White.svg)](https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/integrator-default-profile/connectors/aws_sqs_connector_sample)
 
-[View source on GitHub](https://github.com/wso2/integration-samples/tree/main/integrator-default-profile/connectors/aws.sqs_connector_sample)
+[View source on GitHub](https://github.com/wso2/integration-samples/tree/main/integrator-default-profile/connectors/aws_sqs_connector_sample)
 
 ## More code examples
 

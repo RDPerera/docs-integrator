@@ -18,23 +18,23 @@ An AI agent uses an LLM to reason about user queries and call tools to retrieve 
 
 :::info Prerequisites
 
-- [WSO2 Integrator installed](setup/local-setup.md)
+A working WSO2 Integrator environment. Choose the path that fits how you want to work:
+
+- [Cloud setup](setup/cloud-setup.md) — launch WSO2 Integrator in a browser-based cloud editor.
+- [Local setup](setup/local-setup.md) — install and launch the WSO2 Integrator IDE on your machine.
 :::
 
 ## Architecture
 
-<ThemedImage
-    alt="AI agent architecture showing the chat listener connected to the AI agent and the model provider"
-    sources={{
-        light: useBaseUrl('/img/get-started/build-ai-agent/01-ai-agent-diagram-light.svg'),
-        dark: useBaseUrl('/img/get-started/build-ai-agent/02-ai-agent-diagram-dark.svg'),
-    }}
-/>
-
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-## Step 1: Create the project
+## Step 1: Create the integration
+
+:::info Note
+
+In the cloud editor, you're already inside a project. Skip to Step 2.
+:::
 
 1. Open WSO2 Integrator.
 2. Select **Create** in the **Create New Integration** card.
@@ -52,8 +52,8 @@ An AI agent uses an LLM to reason about user queries and call tools to retrieve 
 
 ## Step 2: Add an AI chat agent
 
-1. Select the **AIAgent** integration from the project panel.
-2. Select **+ Add Artifact** in the design view, or **+** next to **Entry Points** in the sidebar.
+1. Select your integration from the project overview canvas.
+2. Select **+ Add Artifact** in the design canvas.
 3. Select **AI Chat Agent** under **AI Integration**.
 4. Set **Name** to `Wso2IntegratorAssistant`.
 5. Select **Create**.
@@ -84,7 +84,7 @@ An AI agent uses an LLM to reason about user queries and call tools to retrieve 
 
 By default, the agent is configured to use the WSO2 model provider. If you want to use a different LLM, see [Model providers](../genai/develop/components/model-providers.md) for the full list of supported providers (OpenAI, Azure OpenAI, Anthropic, and others).
 
-If you are using the WSO2 model provider, the access token is obtained through WSO2 Integrator Copilot. If you have not already signed in, you will be prompted to do so.
+If you are using the WSO2 model provider, the access token is obtained through [WSO2 Integrator Copilot](../develop/copilot/getting-started.md). If you have not already signed in, you will be prompted to do so.
 :::
 
 ## Step 4: Run and test
@@ -137,20 +137,29 @@ service /wso2IntegratorAssistant on chatAgentListener {
 }
 ```
 
-Run `bal run` from the project directory. Send a test message with:
-
-```bash
-curl -X POST http://localhost:9090/wso2IntegratorAssistant/chat \
-  -H "Content-Type: application/json" \
-  -d '{"sessionId": "session-1", "message": "Hello"}'
-```
+Click the **Run** button in the top toolbar.
+Select **Chat** from the AI Chat Agent title bar or select **Test** from the pop-up. 
+Type `Hello` to check if it works.
 
 </TabItem>
 </Tabs>
 
+## Step 5: Deploy to WSO2 Cloud
+
+Deploy your integration to WSO2 Cloud - Integration Platform in any of the following ways:
+
+- If you're using the cloud editor, see [Save and deploy](/deploy/cloud/deploy-from-cloud-editor/#save-and-deploy).
+- If you're using the WSO2 Integrator IDE, see [Deploy from the IDE](/deploy/cloud/push-from-ide).
+- If you'd rather skip the build and try a ready-made sample, one-click deploy it:
+
+    <a href="https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/integrator-default-profile/quickstart/aiagent" target="_blank">
+        <img src="https://openindevant.choreoapps.dev/images/DeployDevant.svg" alt="Deploy to WSO2 Cloud" />
+    </a>
+
 ## What's next
 
 - [Build an automation](build-automation.md) — Build a scheduled job
-- [Build an API integration](build-api-integration.md) — Build an HTTP service
+- [Build an Integration as API](build-integration-api.md) — Build an HTTP service
 - [Build an event-driven integration](build-event-driven-integration.md) — React to messages from brokers
 - [Build a file-driven integration](build-file-driven-integration.md) — Process files from FTP or local directories
+- [AI agents](../genai/develop/agents/overview.md) — Learn how to build production-grade AI agents with tools, memory, and evaluations

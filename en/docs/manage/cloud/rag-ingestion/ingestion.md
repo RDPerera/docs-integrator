@@ -4,7 +4,7 @@ description: "Set up scheduled RAG ingestion in WSO2 Integration Platform to loa
 keywords: [wso2 integrator, rag, ingestion, vector store, knowledge base]
 ---
 
-# RAG ingestion
+# RAG Ingestion
 
 Retrieval-augmented generation (RAG) improves LLM answers by using relevant external data. RAG has two core stages: ingestion and retrieval. This page explains how to configure scheduled ingestion in WSO2 Cloud - Integration Platform.
 
@@ -131,4 +131,4 @@ If the **Send** button is unavailable, use the [RAG retrieval](./retrieval.md) t
 
 - [RAG retrieval](./retrieval.md) — Query the vector store after ingestion completes.
 - [RAG service](./service.md) — Ingest, chunk, and retrieve documents through the service API.
-- [Managed PostgreSQL and vector databases](./vector-databases.md) — Provision the vector store used by RAG.
+- [Managed vector databases](./vector-databases.md) — Provision the vector store used by RAG.

@@ -19,7 +19,6 @@ const CATEGORY_TAGS = {
   'database':                   { label: 'Database',                     color: '#0891b2', bg: '#ecfeff', border: '#a5f3fc' },
   'developer-tools':            { label: 'Developer Tools',              color: '#475569', bg: '#f8fafc', border: '#cbd5e1' },
   'ecommerce':                  { label: 'E-Commerce',                   color: '#db2777', bg: '#fdf2f8', border: '#f9a8d4' },
-  'erp-business':               { label: 'ERP & Business',               color: '#b45309', bg: '#fffbeb', border: '#fde68a' },
   'finance-accounting':         { label: 'Finance & Accounting',         color: '#15803d', bg: '#f0fdf4', border: '#bbf7d0' },
   'healthcare':                 { label: 'Healthcare',                   color: '#0f766e', bg: '#f0fdfa', border: '#99f6e4' },
   'hrms':                       { label: 'HRMS',                         color: '#7e22ce', bg: '#faf5ff', border: '#e9d5ff' },
@@ -136,36 +135,17 @@ function buildVersionedPath({
 }
 
 export default function DocBreadcrumbsWrapper(props) {
-  const { frontMatter } = useDoc();
+  const { frontMatter, metadata } = useDoc();
   const breadcrumbs = useSidebarBreadcrumbs();
   const location = useLocation();
   const history = useHistory();
+  const docsBaseUrl = useBaseUrl('/docs');
 
-  // URL for the raw markdown content
-  const getMarkdownUrl = () => {
-    const path = location.pathname;
-    const docsBaseUrl = useBaseUrl('/docs');
-
-    // Only generate markdown URLs for docs pages
-    if (!path.startsWith(docsBaseUrl)) {
-      return null;
-    }
-
-    // Ensure it matches /docs/ or /docs exactly (avoid matching /docs-something)
-    const nextChar = path[docsBaseUrl.length];
-    if (nextChar && nextChar !== '/') {
-      return null;
-    }
-
-    let markdownPath = path;
-    if (markdownPath.endsWith('/')) {
-      markdownPath += 'index.md';
-    } else {
-      markdownPath += '.md';
-    }
-    return markdownPath;
-  };
-  const markdownUrl = getMarkdownUrl();
+  // metadata.id is relative to docs/ with the extension stripped, and preserves
+  // "index" for directory index files — matching exactly what the export plugin writes.
+  const markdownUrl = location.pathname.startsWith(docsBaseUrl)
+    ? `${docsBaseUrl}/${metadata.id}.md`
+    : null;
 
   // Read connector version data from the plugin's global data.
   let allConnectorVersions = {};

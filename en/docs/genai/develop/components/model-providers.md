@@ -2,7 +2,7 @@
 sidebar_position: 2
 title: Model Providers for LLMs
 description: Reference for every model provider for LLM in WSO2 Integrator, covering create form fields, advanced configurations, defaults, and supported models for the Default WSO2 provider, OpenAI, Azure OpenAI, Anthropic, Google Vertex, Mistral, DeepSeek, Ollama, and OpenRouter.
-keywords: [wso2 integrator, model provider, llm, large language model, ai, anthropic, openai, azure openai, google vertex, mistral, deepseek, ollama, openrouter]
+keywords: [wso2 integrator, model provider, llm, large language model, ai, anthropic, openai, azure openai, google vertex, mistral, deepseek, ollama, openrouter, gpt-5, responses api, reasoning effort]
 ---
 
 # Model Providers for LLMs
@@ -11,11 +11,11 @@ A **Large Language Model (LLM)** is a neural network trained on large text corpo
 
 A **Model Provider** is WSO2 Integrator's unified abstraction over LLMs. It wraps the provider-specific API behind a consistent interface, so Direct LLM Calls, Natural Functions, the RAG `generate` node, and AI agents all work the same way regardless of which LLM you choose. Pick a provider, fill in the form, and click **Save**.
 
-Every model provider exposes the same two actions, so picking a different LLM is just a connection-level swap. The rest of your flow does not change.
+Every model provider exposes the same two actions, so switching LLMs is a connection-level swap that leaves the rest of your flow unchanged.
 
 ## Available actions
 
-Every model provider connection exposes these two actions in the right-side **Model Providers** panel.
+Every model provider exposes the following actions.
 
 | Action | What it does | Required parameters | Optional parameters |
 |---|---|---|---|
@@ -28,14 +28,11 @@ Per-call overrides are not exposed in the form. Anything that varies per request
 
 ## Where to find model providers for LLM
 
-Two equivalent places:
-
-- **Add Node** panel > **AI** > **Direct LLM** > **Model Provider** (adds an LLM provider connection to a flow).
-- **Right-side Model Providers** panel > **+ Add Model Provider** (adds a connection from anywhere in the project).
+- **Add Node** panel > **AI** > **Direct LLM** > **Model Provider** 
 
 ![Right-side Model Providers panel showing the search bar and a + Add Model Provider button at the top of an empty list.](/img/genai/develop/components/model-providers/01-panel-empty.png)
 
-Click **+ Add Model Provider** and the **Select Model Provider** picker opens with a card for each provider type:
+- Click **+ Add Model Provider** and the **Select Model Provider** picker opens with a card for each provider type:
 
 ![Select Model Provider picker listing Default Model Provider (WSO2), Anthropic, Azure OpenAI, DeepSeek, Google Vertex, Mistral, Ollama, OpenAI, with one-line descriptions for each.](/img/genai/develop/components/model-providers/02-select-list-top.png)
 
@@ -47,7 +44,7 @@ Scroll to see the remaining options:
 
 | Provider | Module | API key required? | Has embedding provider? |
 |---|---|---|---|
-| **Default WSO2** | `ballerina/ai` | No (signed-in via WSO2) | Yes. See [Default WSO2 Embedding Provider](/docs/genai/develop/components/embedding-providers#default-wso2-embedding-provider) |
+| **Default WSO2** | `ballerina/ai` | No (signed-in via WSO2) | Yes. See [Default WSO2 Embedding Provider](./embedding-providers.md#default-wso2-embedding-provider) |
 | **Anthropic** | [`ballerinax/ai.anthropic`](https://central.ballerina.io/ballerinax/ai.anthropic/latest) | Yes | No |
 | **Azure OpenAI** | [`ballerinax/ai.azure`](https://central.ballerina.io/ballerinax/ai.azure/latest) | Yes | Yes |
 | **DeepSeek** | [`ballerinax/ai.deepseek`](https://central.ballerina.io/ballerinax/ai.deepseek/latest) | Yes | No |
@@ -128,7 +125,7 @@ Plus the [Standard HTTP advanced configurations](#standard-http-advanced-configu
 
 ## Azure OpenAI
 
-Same family of models as OpenAI, hosted on Azure with per-resource deployments.
+Same family of models as OpenAI (including the GPT-5 family), hosted on Azure with per-resource deployments. Like the OpenAI provider, it can call either the **Chat Completions API** (the default) or the **Responses API**, and it supports both Azure's newer **v1** endpoint and the legacy date-based `api-version` endpoints. For details on the two API surfaces and their URL and `api-version` requirements, see the [Azure OpenAI API version lifecycle documentation](https://learn.microsoft.com/azure/ai-services/openai/api-version-lifecycle).
 
 Official website: [Azure OpenAI Service](https://azure.microsoft.com/services/cognitive-services/openai-service/).
 
@@ -138,24 +135,26 @@ Official website: [Azure OpenAI Service](https://azure.microsoft.com/services/co
 
 | Field | Required | Default | Available values |
 |---|---|---|---|
-| **Service URL** | Yes | - | Base URL of your Azure OpenAI resource, e.g. `https://your-resource.openai.azure.com`. |
+| **Service URL** | Yes | - | Base URL of your Azure OpenAI resource. Use the v1 URL (ends with `/v1`, e.g. `https://your-resource.services.ai.azure.com/openai/v1`) or the legacy URL (e.g. `https://your-resource.openai.azure.com`). See the [Azure OpenAI API version lifecycle documentation](https://learn.microsoft.com/azure/ai-services/openai/api-version-lifecycle). |
 | **API Key** | Yes | - | Azure OpenAI API key. |
 | **Deployment ID** | Yes | - | The deployment identifier you created in the Azure portal (the model name is implicit in the deployment). |
-| **API Version** | Yes | - | Azure OpenAI API version, e.g. `2023-07-01-preview`. |
+| **API Version** | No | `()` | **Required for legacy (non-`/v1`) service URLs**: a date-based version, e.g. `2024-10-21`. Optional on `/v1` URLs and normally omitted; pass `preview` or `v1` to opt into a specific v1 surface (date-based values are ignored on `/v1` URLs, with a warning). |
 
 ### Advanced configurations
 
-![Azure OpenAI Create Model Provider form with Advanced Configurations expanded. Visible fields: Maximum Tokens (default 512), Temperature (default 0.7), HTTP Version.](/img/genai/develop/components/model-providers/08-azure-openai-advanced.png)
+![Azure OpenAI Create Model Provider form with Advanced Configurations expanded. Visible fields: Maximum Tokens (default 4096), Temperature, HTTP Version.](/img/genai/develop/components/model-providers/08-azure-openai-advanced.png)
 
 | Field | Default | Available values | What it controls |
 |---|---|---|---|
-| **Maximum Tokens** | `512` | Any positive integer | Hard cap on response length. |
-| **Temperature** | `0.7` | `0.0`-`2.0` | Sampling temperature. |
+| **Maximum Tokens** | `4096` | Any positive integer | Hard cap on response length. |
+| **Temperature** | `()` (omitted) | `0.0`-`2.0` or empty | Sampling temperature. Leave empty for deployments of models that reject the parameter (the GPT-5 and o-series reasoning models). |
+| **Reasoning Effort** | `()` (omitted) | `none`, `minimal`, `low`, `medium`, `high`, `xhigh` | Effort spent on reasoning by reasoning-capable models. Not every model accepts every value (for example, `minimal` only on the original `gpt-5` reasoning models, `none` from `gpt-5.1` onward, `xhigh` from `gpt-5.1-codex-max` onward). Because the model is implicit in the deployment, the value is validated by the Azure service rather than at initialization; an unsupported value fails on the first call. |
+| **API Type** | `CHAT_COMPLETIONS` | `CHAT_COMPLETIONS`, `RESPONSES` | The Azure OpenAI API surface to use. Same semantics as the OpenAI provider — see [Chat Completions vs Responses API](#openai-api-type). |
 
 Plus the [Standard HTTP advanced configurations](#standard-http-advanced-configurations).
 
 :::info
-The Azure package also ships an **Embedding Provider** and the **Azure AI Search Knowledge Base**. See [Azure OpenAI](/docs/genai/develop/components/embedding-providers#azure-openai) and [Azure AI Search](/docs/genai/develop/components/knowledge-bases#azure-ai-search-knowledge-base).
+The Azure package also ships an **Embedding Provider** and the **Azure AI Search Knowledge Base**. See [Azure OpenAI](./embedding-providers.md#azure-openai) and [Azure AI Search](./knowledge-bases.md#azure-ai-search-knowledge-base).
 :::
 
 ## DeepSeek
@@ -207,7 +206,7 @@ Official website: [Vertex AI](https://cloud.google.com/vertex-ai).
 
 | Field | Default | Available values | What it controls |
 |---|---|---|---|
-| **Location** | `"global"` | `"global"`, `"us-central1"`, `"europe-west1"`, etc. | Google Cloud region. |
+| **Location** | `global` | `global`, `us-central1`, `europe-west1`, etc. | Google Cloud region. |
 | **Service URL** | `""` (auto-derived from Location) | URL string | Override the regional endpoint. Defaults to `https://\{location\}-aiplatform.googleapis.com`. |
 | **Maximum Tokens** | `512` | Any positive integer | Hard cap on response length. |
 | **Temperature** | `()` (omitted from request) | `0.0`-`2.0` or empty | Sampling temperature. Leave empty for models that reject the field (e.g. some Anthropic-on-Vertex calls). |
@@ -223,7 +222,7 @@ Plus the [Standard HTTP advanced configurations](#standard-http-advanced-configu
 | **Service account JSON path** | A file path string | Easiest - point at the downloaded service-account JSON file from the Google Cloud console. The connector reads `client_email` and `private_key` automatically and refreshes the token. |
 
 :::info
-Vertex also ships an **Embedding Provider**. See [Google Vertex](/docs/genai/develop/components/embedding-providers#google-vertex).
+Vertex also ships an **Embedding Provider**. See [Google Vertex](./embedding-providers.md#google-vertex).
 :::
 
 ## Mistral
@@ -297,7 +296,7 @@ Ollama is the only provider with **no API key**. Authentication is implicit beca
 
 ## OpenAI
 
-Connects to OpenAI's hosted models (GPT-4o, GPT-4.1, o1 reasoning models, GPT-3.5-turbo).
+Connects to OpenAI's hosted models (the GPT-5 family, GPT-4o, GPT-4.1, and the o-series reasoning models). The provider can call either the **Chat Completions API** (the default) or the newer **Responses API**, selected with the **API Type** advanced configuration — see [Chat Completions vs Responses API](#openai-api-type).
 
 Official website: [platform.openai.com](https://platform.openai.com/).
 
@@ -308,7 +307,7 @@ Official website: [platform.openai.com](https://platform.openai.com/).
 | Field | Required | Default | Available values |
 |---|---|---|---|
 | **API Key** | Yes | - | Your OpenAI API key (starts with `sk-…`). Reference a `configurable` in production. |
-| **Model Type** | Yes | - | `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `gpt-4-turbo`, `gpt-3.5-turbo`, `o1`, `o1-pro`, `chatgpt-4o-latest`, `gpt-4o-audio-preview`. Date-pinned variants (e.g. `gpt-4o-2024-11-20`) are also available for reproducibility. |
+| **Model Type** | Yes | - | `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-5-pro`, `gpt-5.1`, `gpt-5.2`, `gpt-5.2-pro`, `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4-pro`, `gpt-5.5`, `gpt-5.5-pro`, `gpt-5.6`, `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `gpt-4-turbo`, `gpt-3.5-turbo`, `o1`, `o1-pro`, `o3`, `o3-mini`, `o3-pro`, `o4-mini`, `chatgpt-4o-latest`, `gpt-4o-audio-preview`. Chat-tuned (`gpt-5-chat-latest`, `gpt-5.1-chat-latest`, `gpt-5.2-chat-latest`), Codex (`gpt-5-codex`, `gpt-5.1-codex`, `gpt-5.1-codex-mini`, `gpt-5.1-codex-max`, `gpt-5.2-codex`, `gpt-5.3-codex`, `codex-mini-latest`), and date-pinned variants (e.g. `gpt-4o-2024-11-20`) are also available. `gpt-5.6` is an alias that always routes to the latest `gpt-5.6-sol` snapshot; `gpt-5.6-sol`, `gpt-5.6-terra`, and `gpt-5.6-luna` pin a specific snapshot. |
 
 ### Advanced configurations
 
@@ -317,13 +316,39 @@ Official website: [platform.openai.com](https://platform.openai.com/).
 | Field | Default | Available values | What it controls |
 |---|---|---|---|
 | **Service URL** | `https://api.openai.com/v1` | URL string | OpenAI API base URL. Override only for OpenAI-compatible gateways. |
-| **Maximum Tokens** | `512` | Any positive integer | Hard cap on response length. |
-| **Temperature** | `0.7` | `0.0`-`2.0` | Sampling temperature. |
+| **Maximum Tokens** | `4096` | Any positive integer | Hard cap on response length (sent as `max_completion_tokens` on the Chat Completions API and `max_output_tokens` on the Responses API). |
+| **Temperature** | `()` (omitted) | `0.0`-`2.0` or empty | Sampling temperature. Leave empty for models that reject the parameter (the GPT-5 and o-series reasoning models). |
+| **Reasoning Effort** | `()` (omitted) | `none`, `minimal`, `low`, `medium`, `high`, `xhigh` | Effort spent on reasoning by reasoning-capable models. Lower effort returns faster and spends fewer reasoning tokens. Each model accepts only a subset of the values; the combination is validated when the provider is created, so an unsupported pairing fails at initialization with a descriptive error. See [Reasoning effort support by model](#openai-reasoning-effort). |
+| **API Type** | `CHAT_COMPLETIONS` | `CHAT_COMPLETIONS`, `RESPONSES` | The OpenAI endpoint the provider calls. See [Chat Completions vs Responses API](#openai-api-type). |
 
 Plus the [Standard HTTP advanced configurations](#standard-http-advanced-configurations) (Timeout, Retry, Circuit Breaker, Proxy, etc.).
 
+### Chat Completions vs Responses API {#openai-api-type}
+
+The **API Type** setting selects which OpenAI endpoint the provider talks to. Everything else in your flow stays the same: both endpoints support the same **Generate** and **Chat** actions, tool calling, and typed responses, so switching is a connection-level change.
+
+| API Type | Endpoint | Notes |
+|---|---|---|
+| **`CHAT_COMPLETIONS`** *(default)* | `POST /chat/completions` | OpenAI's long-standing chat API. |
+| **`RESPONSES`** | `POST /responses` | OpenAI's newer API surface. System prompts are sent as top-level `instructions`, and tool calls travel as typed input/output items. Requests are sent with `store: false`, so OpenAI does not retain them for later retrieval. |
+
+### Reasoning effort support by model {#openai-reasoning-effort}
+
+Reasoning effort applies only to reasoning models. The chat-tuned variants (`gpt-5-chat-latest`, `gpt-5.1-chat-latest`, `gpt-5.2-chat-latest`) are not reasoning models and reject the parameter.
+
+| Model | Accepted values |
+|---|---|
+| `gpt-5`, `gpt-5-mini`, `gpt-5-nano` | `minimal`, `low`, `medium`, `high` |
+| `gpt-5-pro` | `high` |
+| `gpt-5.1` | `none`, `low`, `medium`, `high` |
+| `gpt-5.2` | `none`, `low`, `medium`, `high`, `xhigh` |
+| `gpt-5.2-pro`, `gpt-5.4-pro`, `gpt-5.5-pro` | `medium`, `high`, `xhigh` |
+| `gpt-5.3-codex` | `low`, `medium`, `high`, `xhigh` |
+| `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.5`, and the `gpt-5.6` family | `none`, `low`, `medium`, `high`, `xhigh` |
+| o-series (`o1`, `o1-pro`, `o3`, `o3-mini`, `o3-pro`, `o4-mini`) and the Codex models | Accepted; the value is passed through without a per-model restriction list. |
+
 :::info
-The OpenAI package also ships an **Embedding Provider**. See [OpenAI](/docs/genai/develop/components/embedding-providers#openai).
+The OpenAI package also ships an **Embedding Provider**. See [OpenAI](./embedding-providers.md#openai).
 :::
 
 ## OpenRouter
@@ -356,24 +381,24 @@ Official website: [openrouter.ai](https://openrouter.ai/).
 Plus the [Standard HTTP advanced configurations](#standard-http-advanced-configurations).
 
 :::info
-The OpenRouter package also ships an **Embedding Provider**. See [OpenRouter](/docs/genai/develop/components/embedding-providers#openrouter).
+The OpenRouter package also ships an **Embedding Provider**. See [OpenRouter](./embedding-providers.md#openrouter).
 :::
 
 ## Model provider connections
 
-Once you click **Save**, the model provider becomes a **connection** in your project and shows up in three places at once:
+Once you **save** a model provider, it becomes a reusable project connection that can be accessed throughout your integration and AI flows.
 
-- The left **Connections** tree, under your project (e.g. `wso2ModelProvider`, `openaiModelprovider`).
-- The **Model Providers** panel on the right side of any flow editor.
-- Wherever a node asks for a model: a `generate` node, a natural function, or the **Model** field of an agent.
+The saved model provider appears in multiple places:
 
-The right-side **Model Providers** panel lists every provider connection in the project, with a **+** button to add another and a chevron to expand each connection's available actions:
+- In the **Connections** tree on the left side of the project explorer, where all project-level connections are listed (for example, `wso2ModelProvider` or `openaiModelProvider`).
 
-![The Model Providers right-side panel listing four model-provider connections - anthropicModelprovider, azureOpenaimodelprovider, openaiModelprovider, wso2ModelProvider - each with a chevron and provider logo.](/img/genai/develop/components/model-providers/21-model-providers-panel-multi.png)
-
-At the project level, every provider also appears in the left **Connections** tree, and the integration project's **Design** view wires each artifact to the provider it depends on:
+- The integration project's **Design** view wires each artifact to the provider it depends on:
 
 ![The integration project Design overview with the left sidebar Connections tree populated with four model-provider connections, and the main canvas wiring three artifacts (chat agent service, HTTP service, MCP service) to their respective model-provider nodes on the right with provider logos.](/img/genai/develop/components/model-providers/22-project-design-multi-providers.png)
+
+- The **Model Providers** panel lists every model provider connection available in the project. Use the **+** button to add a new provider connection, or expand a provider to view its available actions.
+
+![The Model Providers right-side panel listing four model-provider connections - anthropicModelprovider, azureOpenaimodelprovider, openaiModelprovider, wso2ModelProvider - each with a chevron and provider logo.](/img/genai/develop/components/model-providers/21-model-providers-panel-multi.png)
 
 ## Editing or replacing a model provider
 
@@ -394,7 +419,7 @@ Editing a connection follows the same pattern for every component type. Embeddin
 
 ## What's next
 
-- [Embedding providers](/docs/genai/develop/components/embedding-providers) — Vector embeddings for RAG. The OpenAI, Azure, Vertex, OpenRouter, and Default WSO2 packages also ship embedding providers.
-- [Vector stores](/docs/genai/develop/components/vector-stores.md) — Persist and query embeddings using Pinecone, Weaviate, Qdrant, pgvector, and other backends.
-- [Knowledge bases](/docs/genai/develop/components/knowledge-bases.md) — Managed retrieval sources, including Azure AI Search, that plug directly into RAG flows.
-- [Chunkers](/docs/genai/develop/components/chunkers.md) — Split documents into chunks before embedding for ingestion into a vector store.
+- [Embedding providers](./embedding-providers.md) — Vector embeddings for RAG. The OpenAI, Azure, Vertex, OpenRouter, and Default WSO2 packages also ship embedding providers.
+- [Vector stores](./vector-stores.md) — Persist and query embeddings using Pinecone, Weaviate, Qdrant, pgvector, and other backends.
+- [Knowledge bases](./knowledge-bases.md) — Managed retrieval sources, including Azure AI Search, that plug directly into RAG flows.
+- [Chunkers](./chunkers.md) — Split documents into chunks before embedding for ingestion into a vector store.

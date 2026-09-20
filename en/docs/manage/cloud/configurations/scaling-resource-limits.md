@@ -4,7 +4,7 @@ description: "Configure autoscaling and scale-to-zero for integrations deployed 
 keywords: [wso2 integrator, wso2 cloud, scaling, replicas, autoscale, scale to zero, hpa]
 ---
 
-# Scale integrations
+# Scale Integrations
 
 WSO2 Cloud - Integration Platform supports two scaling modes: horizontal autoscaling based on resource consumption, and scale-to-zero for Integration as APIs using HTTP. Both modes can be configured independently per environment.
 
@@ -89,4 +89,4 @@ If the first request to a scale-to-zero integration returns a `503` error, the r
 
 ## What's next
 
-- [Environments](../environments/overview) — Organize your integration lifecycle with multiple environments.
+- [Environments](../environments/overview.md) — Organize your integration lifecycle with multiple environments.
