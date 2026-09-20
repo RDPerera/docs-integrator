@@ -114,7 +114,18 @@ You can run ingestion at intervals such as minutely, hourly, daily, monthly, or 
 
 ![Schedule recurring ingestion](/img/manage/cloud/rag-ingestion/rag-schedule-light.gif)
 
+### Step 7: Verify retrieval
 
+After ingestion completes, verify that you can retrieve content from the ingested files.
+
+1. On the automation overview page, switch to the **Retrieval** tab.
+2. If you need to change the default retrieval values, click **Query Configurations**, adjust **Maximum chunks to retrieve** and **Minimum similarity threshold**, then click **Done**. Otherwise, the default values are used.
+3. Enter a query related to the content of your ingested files and click **Send**.
+4. Review the returned chunks to confirm that relevant content is retrieved.
+
+If the **Send** button is unavailable, use the [RAG retrieval](./retrieval.md) to verify retrieval.
+
+![Configure retrieval values and verify results in the Retrieval tab](/img/manage/cloud/rag-ingestion/rag-retrieval-verification.gif)
 
 ## What's next
 
