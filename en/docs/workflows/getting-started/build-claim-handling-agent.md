@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: "Build a Claim Handling Agent"
+title: "Build a Claim Handling Durable Agent"
 description: Build your first durable agentic workflow in WSO2 Integrator — an AI agent that validates expense claims and pays them only after a Finance reviewer approves.
 keywords: [wso2 integrator, durable workflow, agentic workflow, durable agent, claim workflow, human in the loop, approval]
 ---
@@ -8,7 +8,7 @@ keywords: [wso2 integrator, durable workflow, agentic workflow, durable agent, c
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Build a Claim Handling Agent
+# Build a Claim Handling Durable Agent
 
 **Time:** 15 minutes | **What you'll build:** A durable AI agent that receives expense claims, validates them, and pays them out — but only after a Finance reviewer approves the payment from the Integration Control Plane. If the process crashes while waiting, it resumes exactly where it left off.
 

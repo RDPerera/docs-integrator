@@ -143,5 +143,5 @@ Reach for an agentic workflow when the logic is branchy and judgment-heavy ("req
 ## Next steps
 
 - [Run a Durable Agent](run-durable-agent.md) — starting an instance of the agent from an integration flow.
-- [Build a Claim Handling Agent](../getting-started/build-claim-handling-agent.md) — the end-to-end getting started guide.
+- [Build a Claim Handling Durable Agent](../getting-started/build-claim-handling-agent.md) — the end-to-end getting started guide.
 - [Complete human tasks](../icp/human-tasks.md) — approving the agent's gated steps and reading its progress.
