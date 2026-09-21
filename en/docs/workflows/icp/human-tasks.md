@@ -229,4 +229,4 @@ The deadline is the **Timeout** the workflow declared for the task. See [Bound t
 - [Await data events](../develop/data-events.md) — wait for data from a system or a person instead of a decision
 - [Workflow executions](executions.md) — see where the waiting run is halted
 - [Workflow permissions](permissions.md) — the permissions behind each view and action
-- [Management API](../reference/management-api.md) — complete tasks and decide reviews programmatically
+- [Management API](../management-api.md) — complete tasks and decide reviews programmatically

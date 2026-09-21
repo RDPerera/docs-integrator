@@ -2144,15 +2144,8 @@ const sidebars: SidebarsConfig = {
             'workflows/icp/permissions',
           ],
         },
-        // API Reference
-        {
-          type: 'category',
-          label: 'API Reference',
-          items: [
-            'workflows/reference/management-api',
-          ],
-        },
         'workflows/deployment-modes',
+        'workflows/management-api',
       ],
     },
 

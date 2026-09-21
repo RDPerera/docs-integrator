@@ -55,7 +55,7 @@ So hand the ID back to whoever will need it:
 | Route | Use it for                                                                             |
 |---|----------------------------------------------------------------------------------------|
 | [Integration Control Plane](../icp/start.md) | Starting a run by hand from a generated form, for testing, onboarding, and operations. |
-| [Management API](../reference/management-api.md) | `POST /workflows` for custom portals and automation of your own.                       |
+| [Management API](../management-api.md) | `POST /workflows` for custom portals and automation of your own.                       |
 
 ## Next steps
 

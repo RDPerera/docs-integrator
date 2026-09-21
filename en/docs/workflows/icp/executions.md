@@ -151,4 +151,4 @@ The status doesn't change the moment you select **Suspend**. It can still read *
 - [Start a workflow](start.md) — launch a new execution from the console
 - [Complete human tasks](human-tasks.md) — decide the tasks and reviews a halted run is waiting on
 - [Activities](../develop/activities.md) — how the steps on the timeline are recorded and retried
-- [Management API](../reference/management-api.md) — read the same history and execution graph over REST
+- [Management API](../management-api.md) — read the same history and execution graph over REST

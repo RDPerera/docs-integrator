@@ -100,4 +100,4 @@ The environment overview also summarizes workflow activity by status:
 - [Workflow executions](executions.md) — inspect workflow runs and their progress
 - [Complete human tasks](human-tasks.md) — decide the tasks and reviews a halted run is waiting on
 - [Workflow permissions](permissions.md) — the permissions and roles that control each view
-- [Management API](../reference/management-api.md) — the REST API the console calls
+- [Management API](../management-api.md) — the REST API the console calls

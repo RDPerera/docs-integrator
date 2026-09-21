@@ -82,7 +82,7 @@ Use a timer for a delay you always want, and a timeout when you are waiting on s
 
 ## Watching timers
 
-A pending timer appears as a `TIMER` node in the instance's execution graph in the [Integration Control Plane](../icp/executions.md), so a workflow that looks stalled can be identified as simply waiting, and you can see what it is waiting for and until when. The same graph is available over the [Management API](../reference/management-api.md).
+A pending timer appears as a `TIMER` node in the instance's execution graph in the [Integration Control Plane](../icp/executions.md), so a workflow that looks stalled can be identified as simply waiting, and you can see what it is waiting for and until when. The same graph is available over the [Management API](../management-api.md).
 
 ## Next steps
 

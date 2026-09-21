@@ -90,7 +90,7 @@ Use a human task when a person is making a **decision** the Control Plane should
 A workflow never exposes its own endpoint for finishing a task. Completion happens outside the workflow, in one of two places:
 
 - **[Complete human tasks](../icp/human-tasks.md)** in the Integration Control Plane, where the task appears in the inbox of everyone holding a matching role, rendered as a form built from the completion type with the task input shown beside it. This is the route for the people actually deciding.
-- **[Management API](../reference/management-api.md)**, whose `POST /human-tasks/{taskId}/complete` accepts the same decision as JSON, for building your own portal or automating a decision.
+- **[Management API](../management-api.md)**, whose `POST /human-tasks/{taskId}/complete` accepts the same decision as JSON, for building your own portal or automating a decision.
 
 ## Next steps
 

@@ -42,7 +42,7 @@ namespace = "default"
 taskQueue = "ORDER_WORKFLOW_TASK_QUEUE"
 ```
 
-The Management API has its own table, `[ballerina.workflow.management]`. See [Management API](reference/management-api.md).
+The Management API is a separate module with its own table, `[ballerina.workflow.management.rest]`. See [Management API](management-api.md).
 
 ## Connection settings
 
@@ -94,4 +94,4 @@ These four set the retry policy applied to every activity that does not override
 - [Activities](develop/activities.md) — the recorded units of work these retry settings apply to
 - [Error handling and review activities](develop/review-activity-and-error-handling.md) — overriding the default policy on a single activity call
 - [Getting started](icp/getting-started.md) — registering the integration with the Integration Control Plane
-- [Management API](reference/management-api.md) — the REST surface served by the integration runtime
+- [Management API](management-api.md) — the REST surface served by the integration runtime
