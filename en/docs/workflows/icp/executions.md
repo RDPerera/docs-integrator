@@ -43,7 +43,7 @@ Use the following filters to find an execution:
 | **Refresh** | Reloads the execution list. |
 | **Start New Workflow** | Opens the form for starting a new workflow execution. |
 
-:::info
+:::tip
 When auto-refresh is enabled, the console periodically retrieves the latest execution data without requiring a manual refresh.
 :::
 
@@ -107,7 +107,7 @@ Select a step to view its details, including the input and execution status.
 
 ![Execution flow diagram, timeline, and step details panel for a selected step](/img/workflows/icp/step-details.png)
 
-:::info
+:::warning
 The execution flow is generated from workflow checkpoints and is an approximation of the execution. It may not show every action performed during the workflow run.
 :::
 
