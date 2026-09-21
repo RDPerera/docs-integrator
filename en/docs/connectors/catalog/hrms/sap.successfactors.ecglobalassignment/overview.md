@@ -7,14 +7,13 @@ description: "Overview of the ballerinax/sap.successfactors.ecglobalassignment c
 
 [SAP SuccessFactors Employee Central](https://www.sap.com/products/hcm/core-hr-payroll.html) is a comprehensive human capital management solution that helps organizations manage their workforce effectively. It provides a unified platform for HR processes including employee data management, organizational structures, and employment lifecycle management.
 
-The `ballerinax/sap.successfactors.ecglobalassignment` package provides APIs to interact with the SAP SuccessFactors Employee Central Global Assignment API.
+WSO2 SAP Successfactors Global Assignment provides a way to interact with the [SAP SuccessFactors Employee Central APIs](https://api.sap.com/package/SuccessFactorsEmployeeCentral/overview).
 
 ## Key Features
 
 - Manage global assignment data for internationally mobile employees
 - Track assignment details and right-to-return records
 - Query secondary assignment items and global assignment history
-- Support for basic and OAuth 2.0 authentication
 
 ## Actions
 

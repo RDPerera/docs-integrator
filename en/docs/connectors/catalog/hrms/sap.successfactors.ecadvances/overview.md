@@ -7,14 +7,13 @@ description: "Overview of the ballerinax/sap.successfactors.ecadvances connector
 
 [SAP SuccessFactors Employee Central](https://www.sap.com/products/hcm/core-hr-payroll.html) is a comprehensive human capital management solution that helps organizations manage their workforce effectively. It provides a unified platform for HR processes including employee data management, organizational structures, and employment lifecycle management.
 
-The `ballerinax/sap.successfactors.ecadvances` package provides APIs to interact with the SAP SuccessFactors Employee Central Advances API.
+WSO2 SAP Successfactors Advances provides a way to interact with the [SAP SuccessFactors Employee Central APIs](https://api.sap.com/package/SuccessFactorsEmployeeCentral/overview).
 
 ## Key Features
 
 - Manage employee salary advance requests and eligibility
 - Track advance accumulation and repayment schedules
 - Query installment plans and advance history
-- Support for basic and OAuth 2.0 authentication
 
 ## Actions
 

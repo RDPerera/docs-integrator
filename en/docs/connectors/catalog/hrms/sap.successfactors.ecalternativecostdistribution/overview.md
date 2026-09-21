@@ -7,14 +7,13 @@ description: "Overview of the ballerinax/sap.successfactors.ecalternativecostdis
 
 [SAP SuccessFactors Employee Central](https://www.sap.com/products/hcm/core-hr-payroll.html) is a comprehensive human capital management solution that helps organizations manage their workforce effectively. It provides a unified platform for HR processes including employee data management, organizational structures, and employment lifecycle management.
 
-The `ballerinax/sap.successfactors.ecalternativecostdistribution` package provides APIs that enable seamless integration with the [SAP SuccessFactors Alternative Cost Distribution API v1.0](https://help.sap.com/docs/SAP_SUCCESSFACTORS_PLATFORM/d599f15995d348a1b45ba5603e2aba9b/c508d8543026442d88457f3654b4e91d.html). The service allows to manage employee cost distribution across multiple cost centers and organizational units.
+WSO2 SAP Successfactors Alternative Cost Distribution provides a way to interact with the [SAP SuccessFactors Employee Central APIs](https://api.sap.com/package/SuccessFactorsEmployeeCentral/overview). The service allows to manage employee cost distribution across multiple cost centers and organizational units.
 
 ## Key Features
 
 - Manage alternative cost distribution scenarios for employee expenses
 - Configure cost center allocations and distribution percentages
 - Query and update cost distribution records
-- Support for basic and OAuth 2.0 authentication
 
 ## Actions
 

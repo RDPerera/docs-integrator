@@ -7,14 +7,13 @@ description: "Overview of the ballerinax/sap.successfactors.ecpaymentinformation
 
 [SAP SuccessFactors Employee Central](https://www.sap.com/products/hcm/core-hr-payroll.html) is a comprehensive human capital management solution that helps organizations manage their workforce effectively. It provides a unified platform for HR processes including employee data management, organizational structures, and employment lifecycle management.
 
-The `ballerinax/sap.successfactors.ecpaymentinformation` package provides APIs to interact with the SAP SuccessFactors Employee Central Payment Information API.
+WSO2 SAP Successfactors Payment Information provides a way to interact with the [SAP SuccessFactors Employee Central APIs](https://api.sap.com/package/SuccessFactorsEmployeeCentral/overview).
 
 ## Key Features
 
 - Manage employee payment information and bank accounts
 - Configure payment methods and direct deposit details
 - Query payment information across multiple regions
-- Support for basic and OAuth 2.0 authentication
 
 ## Actions
 
