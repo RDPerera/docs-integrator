@@ -868,3 +868,12 @@ hr {
   color: inherit;
   display: inline-block;
 }
+
+/* A markdown image lands in a <p>, which supplies its block spacing. ThemedImage
+   renders a bare <img> straight into .markdown, so it matches no spacing rule and
+   stays inline, butting up against the next block. Give it the same treatment. */
+.markdown > img {
+  display: block;
+  height: auto;
+  margin-bottom: var(--ifm-leading);
+}

@@ -5,9 +5,6 @@ keywords: [wso2 integrator, integration control plane, icp, workflow runtime, en
 sidebar_label: "Connect a Workflow Runtime"
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Connect a Workflow Runtime
 
 A durable workflow runs inside your integration. The Integration Control Plane (ICP) can list its executions, hand out its human tasks, and control running instances only after the integration is registered with an ICP server. There are two ways to do that: run the ICP that ships with WSO2 Integrator, which registers the integration for you, or register it yourself on an ICP server you installed.
@@ -24,7 +21,7 @@ For development and evaluation, WSO2 Integrator ships its own ICP server and wri
 
 Start ICP before the integration, so the integration has somewhere to publish to as it comes up. The project and the integration are both created for you, and because the integration carries a durable workflow it is registered as a workflow integration.
 
-For more information, see [Configuring the integration node with ICP](../../deploy-operate/observe/integration-control-plane-icp#configuring-the-integration-node-with-icp)
+For more information, see [Configuring the integration node with ICP](../../deploy-operate/observe/integration-control-plane-icp.md#configuring-the-integration-node-with-icp).
 
 ## Register the integration on an installed ICP
 

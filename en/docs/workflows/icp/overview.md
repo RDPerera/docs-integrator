@@ -41,7 +41,6 @@ The **Workflow Executions** page lists the workflow runs for the integration. Yo
 
 To start a workflow, select **Start New Workflow**. The console opens the **Start Workflow** dialog, where you select a workflow definition and enter its input values. For instructions on starting a workflow, see [Start a workflow](start.md).
 
-
 ## What's next
 
 - [Connect a workflow runtime](connect-runtime.md) — connect the runtime that hosts the workflows.

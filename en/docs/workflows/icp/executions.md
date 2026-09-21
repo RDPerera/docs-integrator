@@ -81,7 +81,7 @@ The **Execution** card shows the current status of the run and the details that 
 
 ![Execution details card showing the instance ID, workflow name, and started time](/img/workflows/icp/execution_details.png)
 
-### Workflow Input
+### Workflow input
 
 The **Workflow Input** card shows the data that was provided when the execution started. For example, if you started a workflow with a customer's order details, those details appear here.
 

@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Await Human Task
 
-Real processes wait on people: a manager approves an expense, a reviewer checks documents, an HR lead assigns a new joiner to a team. An **Await Human Task** step stops the workflow at exactly that point, hands a task to a role, and resumes the moment someone submits a decision, whether that takes a minute or a month. While it waits it holds no threads and no connections.
+Real processes wait on people: a manager approves an expense, a reviewer checks documents, an HR lead assigns a new joiner to a team. An **Await Human Task** step stops the workflow at exactly that point, hands a task to a role, and resumes the moment someone submits a decision, whether that takes a minute or a month. While it waits, it holds no threads and no connections.
 
 <ThemedImage
     alt="The employeeOnboarding workflow halted on an Await Human Task step whose result is HRFeedback, with a dashed arrow arriving from an HRManager role marker"
@@ -52,7 +52,7 @@ The workflow suspends at this step, and the task appears in the [Integration Con
 
 ## Show the decider what they need
 
-**Task Input** is the information the person needs to understand the task. It is shown as read-only information alongside the form and helps answer, “What am I deciding about?”, which the decision form itself cannot.
+**Task Input** is the information the person needs to understand the task. It is shown as read-only information alongside the form and answers the question “What am I deciding about?”, which the decision form itself cannot.
 
 In the onboarding example that is the employee, so **Task Input** is set to the workflow's input, the `EmployeeDetails` record. The new joiner's ID and name then appear alongside the form when the task is completed in the Control Plane.
 
@@ -71,10 +71,10 @@ For the onboarding task, the HR lead answers with a team and a team lead:
 | `team` | `string` |
 | `lead` | `string` |
 
-That record produces a two-field form in the inbox, and the workflow resumes with the values as an ordinary typed value. Records created this way are ordinary types, editable later from **Types** in the sidebar. See [Types](../../develop/integration-artifacts/supporting/types.md) for the type editor and the kinds it supports.
+That record produces a two-field form in the inbox, and the workflow resumes with those values as an ordinary typed record. Records created this way are ordinary types, editable later from **Types** in the sidebar. See [Types](../../develop/integration-artifacts/supporting/types.md) for the type editor and the kinds it supports.
 
 :::tip Design for the form
-Whatever you put in the completion type is exactly what the decider fills in. Keep it small: an action, a comment, maybe a corrected value. Use an enum for a fixed set of choices and the Control Plane renders it as a dropdown.
+Whatever you put in the completion type is exactly what the decider fills in. Keep it small: an action, a comment, maybe a corrected value. Use an enum for a fixed set of choices, and the Control Plane renders it as a dropdown.
 :::
 
 ## Bound the wait

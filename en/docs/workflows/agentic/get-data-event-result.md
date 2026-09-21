@@ -48,7 +48,7 @@ The saved step is drawn as **Get Data Event Result** with a dashed connector to 
 **Wait For Answer** decides what happens while the agent is still working on the turn.
 
 - **Selected**, the default, waits until the turn is answered.
-- **Cleared** reads without waiting. While the turn is unanswered the step returns a `workflow:AgentBusyError`, which the flow can handle and check back later. This suits a caller that should not be held, such as a poll from a UI or a scheduled sweep.
+- **Cleared** reads without waiting. While the turn is unanswered the step returns a `workflow:AgentBusyError`, which the flow can handle so it can check back later. This suits a caller that should not be held, such as a poll from a UI or a scheduled sweep.
 
 ## Type the answer
 

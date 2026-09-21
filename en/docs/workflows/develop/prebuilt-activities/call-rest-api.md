@@ -22,7 +22,7 @@ Use it whenever a workflow needs to talk to an HTTP service and you would otherw
 | **Message**          | For `POST`, `PUT`, and `PATCH` | The request body. Accepts a record, `json`, `xml`, a string, or bytes.                                                                                   |
 | **Headers**          | No                             | Request headers. Under the advanced fields.                                                                                                              |
 | **Result**           | Yes                            | The variable that receives the response.                                                                                                                 |
-| **Databinding Type** | Yes                            | The type to bind the response payload to. Eg: A `GET` with a **Databinding Type** of `OrderStatus` hands the workflow a typed value rather than raw JSON |
+| **Databinding Type** | Yes                            | The type to bind the response payload to. For example, a `GET` with a **Databinding Type** of `OrderStatus` hands the workflow a typed value rather than raw JSON. |
 
 **Retry Policy** and **Check Error** work the same as for every prebuilt activity. See [Prebuilt activities](index.md#fields-shared-by-all-three).
 

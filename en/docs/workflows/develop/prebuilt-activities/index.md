@@ -1,7 +1,7 @@
 ---
 sidebar_position: 10
 title: "Prebuilt Activities"
-description: Ready-made durable wrappers for the calls every integration makes, so REST, SOAP, and email run as recorded workflow activities without writing one.
+description: Ready-made durable wrappers for the calls every integration makes, so REST, SOAP, and email run as recorded workflow activities without writing a wrapper.
 keywords: [wso2 integrator, durable workflow, prebuilt activity, builtin activity, rest api, soap, smtp email, connection]
 ---
 
@@ -38,7 +38,7 @@ Each prebuilt activity has its own fields, covered on its page. These two are co
 | **Check Error** | Propagates a failure to the workflow with `check`. Clear it to handle the error yourself. |
 
 :::tip Idempotent side effects
-A completed prebuilt activity never runs twice, but a failed attempt runs again once **Auto Retry** is on. That matters most for calls that change something: a retried `POST` or a retried email can duplicate. Send an idempotency key with the request where the API supports one, or keep retries off for calls that cannot be repeated safely.
+A completed prebuilt activity never runs twice, but a failed attempt runs again once **Auto Retry** is on. That matters most for calls that change something: a retried `POST` or a retried email can create a duplicate. Send an idempotency key with the request where the API supports one, or keep retries off for calls that cannot be repeated safely.
 :::
 
 ## When to write your own activity instead

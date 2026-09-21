@@ -28,7 +28,7 @@ import TabItem from '@theme/TabItem';
 4. Set **Integration Name** to `ClaimHandler`.
 5. Click **Create**.
 
-## Step 2: Add a Durable Agentic Workflow
+## Step 2: Add a durable agentic workflow
 
 Creating the agent is also where you describe it: the model it thinks with, its role, and the instructions it plans from.
 
@@ -106,7 +106,7 @@ Activities are the units of work the agent can call. Each one runs durably — c
 3. Set **Activity Name** to `validateClaim`.
 4. Under **Parameters**, click **+ Add Parameter**. Set **Type** to the `ExpenseClaim` record created in Step 2 and **Name** to `expenseClaim`, then click **Add**.
 5. Set **Return Type** to `boolean` and click **Save**.
-6. Open the register form under current integration, where the activity becomes one of the agent's capabilities. Leave **Retry Policy** on **No Automatic Retry** and click **Save**.
+6. Click the `validateClaim` form under **Current Integration**. Leave **Retry Policy** on **No Automatic Retry** and click **Save**.
 
 ![Creating the validateClaim activity and registering it on the claimAgent node](/img/workflows/getting-started/build-a-claim-workflow-agent/attach-validate-claim.gif)
 
@@ -149,10 +149,10 @@ function validateClaim(ExpenseClaim expenseClaim) returns boolean {
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-Creating the activity gives it a signature but an empty body. The activity is a function, so its flow returns the validation result. Let's make it return `true` only for positive claim amounts.:
+Creating the activity gives it a signature but an empty body. The activity is a function, so its flow returns the validation result. Make it return `true` only for positive claim amounts:
 
 1. In the left sidebar, expand **Workflow Activities** and select `validateClaim`.
-2. In the node panel on the right, click **+**, then under **Control**, select **Return**.
+2. Click **+** on the flow diagram to open the node panel, then under **Control**, select **Return**.
 3. Click the **Expression** field to open the value helper, then select **Inputs** > `expenseClaim` > `amount`.
 4. With the cursor after the inserted value, type `> 0d` to require a positive amount.
 5. Click **Save**, then select `claimAgent` under **Workflows** to return to the agent diagram.
@@ -179,17 +179,15 @@ function validateClaim(ExpenseClaim expenseClaim) returns boolean {
 
 Paying out is the risky step, so gate it behind a person. The activity is created the same way as the validator, and the register form is where the gate goes on:
 
-1. Click **+** on the activity anchor at the **bottom right** of the agent node, then under Current Integration, click the **+** icon to create the activity.
+1. Click **+** on the activity anchor at the **bottom right** of the agent node, then under **Current Integration**, click the **+** icon to create the activity.
 2. Set **Activity Name** to `payClaim`.
 3. Under **Parameters**, click **+ Add Parameter**. Set **Type** to `ExpenseClaim` and **Name** to `expenseClaim`, then click **Add**.
 4. Leave **Return Type** empty and click **Save**.
 
-5. Click the `payClaim` form under current integration, expand **Advanced Configurations** and select **Requires Approval**. Before the agent runs the activity, a review activity is created and the agent suspends durably until a reviewer proceeds or rejects.
+5. Click the `payClaim` form under **Current Integration** to open its register form, expand **Advanced Configurations**, and select **Requires Approval**. Now, before the agent runs the activity, a review activity is created and the agent suspends durably until a reviewer proceeds or rejects.
 
-6. On the register form, expand **Advanced Configurations** and check **Requires Approval**. Now, before the agent runs the activity, a review activity is created and the agent suspends durably until a reviewer proceeds or rejects.
-
-7. Set **Reviewer Roles** to `Finance`, the roles permitted to decide that approval.
-8. Click **Save**.
+6. Set **Reviewer Roles** to `Finance`, the roles permitted to decide that approval.
+7. Click **Save**.
 
 ![Creating the payClaim activity and registering it with Requires Approval and the Finance reviewer role](/img/workflows/getting-started/build-a-claim-workflow-agent/attach-pay-claim.gif)
 
@@ -237,7 +235,7 @@ An agent does nothing until something starts it. Give the integration an HTTP re
 
 1. Click **+ Add Artifact**, then under **Integration as API**, click **HTTP Service**.
 2. On the **Create HTTP Service** form, keep **Service Contract** on **Design From Scratch**, leave **Service Base Path** as `/`, and click **Create**.
-3. The service opens with no resources. Click **Add Resource**.
+3. The service opens with no resources. Click **+ Add Resource**.
 4. Set **HTTP Method** to **POST** and **Resource Path** to `claim`.
 5. Click **+ Define Payload**, open the **Browse Existing Types** tab, select `ExpenseClaim` under the current integration, and click **Save**.
 6. Click **Save** to create the resource. Its own diagram opens.
@@ -385,13 +383,13 @@ The run is now sitting on the `payClaim` approval, and the ICP console is where 
 
    - **Workflow Input** shows the claim the run started from, the **Query** it was given, and the agent name.
    - The timeline below is the run so far: the agent thought, completed `validateClaim`, thought again.
-   - At the last of the timeline you will see agent opened **review-payClaim**, which is still running. That open review is the gate holding the payment.
+   - At the end of the timeline, you will see that the agent opened **review-payClaim**, which is still running. That open review is the gate holding the payment.
 
 ![Opening the ICP console on the auto-registered claimhandler integration and drilling into the running claimAgent execution waiting on review-payClaim](/img/workflows/getting-started/build-a-claim-workflow-agent/view-claim-in-icp.gif)
 
 ## Step 10: Assign the Finance role to your user
 
-The review is on the timeline, but it is not yet addressed to you. `payClaim` was registered with `Finance` as its reviewer role, and the console signs you in as `admin`, a super admin that does not carry that role, so the approval will not reach you until your user does.
+The review is on the timeline, but it is not yet addressed to you. `payClaim` was registered with `Finance` as its reviewer role, and the console signs you in as `admin`, a super admin who does not carry that role, so the approval will not reach you until your user does.
 
 1. In the left navigation, under **MANAGEMENT**, click **Access-control**. The **Users** tab lists a single user, `admin` (**System Administrator**), in the **Super Admins** and **default-project Admins** groups.
 2. Open the **Roles** tab. It holds only the built-in roles (**Admin**, **Developer**, **Project Admin**, **Super Admin**, **Viewer**), so click **+ Create Role**, set **Role Name** to `Finance`, and click **Create**. Leave every permission group unchecked.
@@ -415,7 +413,7 @@ The console confirms **Role(s) added to group successfully**, and the group's ro
 
 5. Click **Proceed**. **Confirm Proceed** repeats the arguments and warns that the activity runs with them and that this cannot be undone. Click **Proceed** to release the payment.
 
-The console reports **Activity proceeded.**, and on the next refresh the list reads **No pending tasks**.
+The console reports **Activity proceeded**, and on the next refresh the list reads **No pending tasks**.
 
 ![Opening the payClaim approval under Human Tasks and releasing the payment with Proceed](/img/workflows/getting-started/build-a-claim-workflow-agent/approve-pay-claim.gif)
 

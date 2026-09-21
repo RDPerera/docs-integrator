@@ -20,16 +20,15 @@ A durable agentic workflow flips the authoring model: instead of wiring steps to
     }}
 />
 
-
 ## Why durable agents are different
 
-| Standard AI agent                                     | Durable agentic workflows |
+| Standard AI agent                                     | Durable agentic workflow  |
 |-------------------------------------------------------| --- |
 | Crash loses the conversation and in-flight tool calls | Every turn and tool call is recorded; restarts resume mid-plan |
 | Waiting for external input holds a process            | Waits are suspended with zero resources, for days if needed |
 | Retry logic in every tool                             | Declarative per-activity retry policies |
 
-## Add durable agent artifact
+## Add a durable agent artifact
 
 1. In the design view, click **+ Add Artifact**.
 2. On the **Artifacts** page, under **Durable Workflow**, click **Durable Agentic Workflow**.
@@ -91,7 +90,7 @@ Unlike a [Call Activity](../develop/activities.md#call-an-activity-from-a-workfl
 
 Durable agents wait for data events much as durable workflows do: each event is a named slot an external sender delivers a typed payload into, and the agent suspends durably until it arrives. See [Await Data Events](../develop/data-events.md) for the same wait in a hand-wired workflow.
 
-In addition, an agent's event can declare a **response type**: the value the agent returns to the sender after it has received and acted on that event. This makes the agent's data waits bidirectional, where in durable workflows are one-way. Leave the response type empty and the event behaves exactly like the durable workflows, delivering data without answering back.
+In addition, an agent's event can declare a **response type**: the value the agent returns to the sender after it has received and acted on that event. This makes the agent's data waits bidirectional, whereas in durable workflows they are one-way. Leave the response type empty, and the event behaves exactly like a durable workflow's, delivering data without answering back.
 
 To register a data event:
 
@@ -111,7 +110,7 @@ To register a data event:
 
 ### Human tasks
 
-A human task is an escalation point the agent raises on its own judgement, for example when a claim looks unusual or its documents need a second pair of eyes. The task lands in the [Control Plane](../icp/human-tasks.md) inbox of the roles you name, and the agent suspends durably until someone submits a decision, exactly like an [Await Human Task](../develop/await-human-task.md) step in a hand-wired workflow.
+A human task is an escalation point the agent raises on its own judgment, for example when a claim looks unusual or its documents need a second pair of eyes. The task lands in the [Control Plane](../icp/human-tasks.md) inbox of the roles you name, and the agent suspends durably until someone submits a decision, exactly like an [Await Human Task](../develop/await-human-task.md) step in a hand-wired workflow.
 
 To register a human task with the agent:
 
@@ -124,12 +123,12 @@ To register a human task with the agent:
    | **User Roles**      | Yes      | The roles permitted to complete this task, for example `Finance`. Only users holding a matching role see the task.                                                                                                                                                                                        |
    | **Title**           | No       | Short summary shown in the task inbox.                                                                                                                                                                                                                                                                    |
    | **Description**     | No       | Context shown to the person completing the task, for example `Check that the claim documents are legitimate`.                                                                                                                                                                                             |
-   | **Timeout**         | No       | Maximum time to wait for completion as a duration. On expiry the agent is told the task timed out, so it can react rather than wait on. Omit it to wait indefinitely.                                                                                                                                     |
+   | **Timeout**         | No       | Maximum time to wait for completion, as a duration. On expiry, the agent is told the task timed out, so it can react rather than keep waiting. Omit it to wait indefinitely.                                                                                                                                     |
    | **Completion Type** | No       | The type of the result the person submits, which drives the completion form rendered in the inbox. A plain approve or reject is a `boolean`, while anything richer wants a record. Defaults to `anydata`, a free-form completion form. See [Type the decision](../develop/await-human-task.md#type-the-decision). |
 
 3. Click **Save**.
 
-![Registering ReviewDocuments as a durable agent human task, with the Finance role, a description, a four hour timeout, and a boolean completion type](/img/workflows/agentic/create-durable-agent/register-human-task.gif)
+![Registering ReviewDocuments as a durable agent human task, with the Finance role, a description, a four-hour timeout, and a boolean completion type](/img/workflows/agentic/create-durable-agent/register-human-task.gif)
 
 The task joins the agent node as a capability, drawn to the left of the node under its task name. **Task Name**, **User Roles**, and **Title** each take either text or an expression, so any of them can be built in code, for example from a configurable.
 
@@ -139,10 +138,10 @@ Unlike an [Await Human Task](../develop/await-human-task.md) step, the register 
 
 ## Traditional or agentic?
 
-Reach for an agentic workflow when the logic is branchy and judgement-heavy ("request whatever is missing, escalate the odd ones"); keep a hand-wired [durable workflow](../getting-started/build-order-processing.md) when the steps are fixed and auditable. The two share activities, tasks, and the runtime — a claim system can use both side by side.
+Reach for an agentic workflow when the logic is branchy and judgment-heavy ("request whatever is missing, escalate the odd ones"); keep a hand-wired [durable workflow](../getting-started/build-order-processing.md) when the steps are fixed and auditable. The two share activities, tasks, and the runtime — a claim system can use both side by side.
 
 ## Next steps
 
 - [Run a Durable Agent](run-durable-agent.md) — starting an instance of the agent from an integration flow.
-- [Build a Claim Handling Agent](../getting-started/build-claim-handling-agent.md) — the end-to-end getting started.
+- [Build a Claim Handling Agent](../getting-started/build-claim-handling-agent.md) — the end-to-end getting started guide.
 - [Complete human tasks](../icp/human-tasks.md) — approving the agent's gated steps and reading its progress.

@@ -7,7 +7,7 @@ sidebar_label: "Permissions"
 
 # Workflow Permissions
 
-Workflows and Human Tasks views in the Integration Control Plane are gated by role-based access, so each person sees only the work that belongs to them. This page covers the permissions that open each view and the roles that carry them by default.
+The **Workflows** and **Human Tasks** views in the Integration Control Plane are gated by role-based access, so each person sees only the work that belongs to them. This page covers the permissions that open each view and the roles that carry them by default.
 
 ## The Workflow-Management permissions
 
@@ -34,7 +34,7 @@ The project-level **Workflows** page checks permissions granted at project level
 
 ## How roles decide who sees a task
 
-:::warning Project-scope access
+:::note Permissions open the view, roles fill it
 Permissions decide who can open the workflow views. **Roles** decide which tasks and reviews appear inside them.
 :::
 

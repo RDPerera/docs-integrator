@@ -20,7 +20,7 @@ Most integrations start simple and end up long-lived: an order needs a manager's
     }}
 />
 
-A Workflow is a step-by-step process which completes a larger task. WSO2 Integrator lets you design workflows that: 
+A workflow is a step-by-step process that completes a larger task. WSO2 Integrator lets you design workflows that:
 
 - **Survive crashes and restarts** — every completed step is recorded, and the workflow resumes exactly where it left off. A finished step is never re-executed.
 - **Wait for as long as it takes** — pause for hours, days, or months for a human decision or an external event, consuming no threads or connections while suspended.
@@ -35,7 +35,7 @@ A Workflow is a step-by-step process which completes a larger task. WSO2 Integra
 | Explicit, predictable path | Adapts to each request at runtime                                    |
 | Best for known, fixed business logic | Best for branchy, hard-to-enumerate logic                            |
 
-Both run on the same durable runtime, so an AI agent gets crash-safety, human tasks, timers, and retries for free.
+Both run on the same durable runtime, so an AI agent gets crash safety, human tasks, timers, and retries for free.
 
 ## Getting started
 

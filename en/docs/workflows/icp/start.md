@@ -22,7 +22,7 @@ Workflows usually start from your own integration logic, but during testing, onb
    - Select **Overview** in the console navigation, and then select **Start New Workflow** on the card for the environment where you want to run the workflow.
    - Select **Workflows** in the console navigation, and then select **Start New Workflow**.
 
-2. Then **Start Workflow** form opens.
+2. The **Start Workflow** form opens.
 
 3. In the **Workflow Name** field, select the workflow you want to run. The list shows the workflow definitions available in the current integration.
 
@@ -34,14 +34,13 @@ Workflows usually start from your own integration logic, but during testing, onb
 
 6. Enter the values for the fields shown in the form. If the workflow defines additional options, they can appear under **Advanced**.
 
-7. Click **Start** to launch the workflow. After you click **Start**, the console shows a confirmation message with the workflow name and the generated workflow ID.
-You can then:
+7. Click **Start** to launch the workflow. After you click **Start**, the console shows a confirmation message with the workflow name and the generated workflow ID. You can then:
 
    - **Copy Workflow ID** puts the ID on your clipboard, which is useful for correlating logs.
    - **View Running Workflow** opens the **Workflow Executions** tab filtered to that ID.
    - **Close** returns to the list.
 
-8. Then workflow is started and appears in the **Workflow Executions** list with a status such as **Running**. You can then inspect the execution, monitor its progress, and review activity details.
+8. The workflow starts and appears in the **Workflow Executions** list with a status such as **Running**. You can then inspect the execution, monitor its progress, and review activity details.
 
 ![Starting a workflow from the Workflow Executions page and confirming the workflow ID before viewing the running workflow](/img/workflows/icp/start-workflow.gif)
 

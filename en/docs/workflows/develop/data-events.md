@@ -22,7 +22,7 @@ Sometimes a workflow needs *data*, not a decision — the employee submits the s
 
 Like every other durable wait, it holds no thread and no connection while it waits, and it survives a restart.
 
-## Pause workflow for data event
+## Pause a workflow for a data event
 
 1. On the workflow diagram, click **+** where the workflow should wait.
 2. In the node panel, under **Workflow** > **Steps**, click **Await Data Event**. The **Await Data** form opens.
@@ -36,7 +36,7 @@ Like every other durable wait, it holds no thread and no connection while it wai
    | **Min Count** | No | Under **Advanced Configurations**. How many of the awaited events must arrive before the workflow continues. Defaults to all of them. |
    | **Timeout** | No | Under **Advanced Configurations**. The longest the workflow waits, as a duration record. The wait returns an error when the timeout expires, which your workflow can handle. |
 
-   **Timeout** opens a **Record Configuration** editor: tick the units you want, such as **minutes**, and fill in their values. Switch the field to **Expression** to write the record yourself instead.
+   **Timeout** opens a **Record Configuration** editor: select the units you want, such as **minutes**, and fill in their values. Switch the field to **Expression** to write the record yourself instead.
 
 4. Click **Add** to commit the **Data Waits** entry. It collapses to a row showing its type and variable. Use **+ Add Data Waits** to wait on more than one event.
 5. Click **Save**.

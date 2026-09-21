@@ -4,6 +4,7 @@ title: "Build an Order Processing Workflow"
 description: Build a crash-safe order processing workflow in WSO2 Integrator that reserves inventory, waits for a payment confirmation, and then confirms or cancels the order.
 keywords: [wso2 integrator, durable workflow, order processing, activity, data event, wait, crash recovery]
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import ThemedImage from '@theme/ThemedImage';
@@ -37,7 +38,7 @@ The finished flow has three steps:
 
 1. Open WSO2 Integrator.
 2. Click **Create** in the **Create a Project** card.
-3. Set **Project Name** to `OrderBlock`
+3. Set **Project Name** to `OrderBlock`.
 4. Set **Integration Name** to `OrderProcessor`.
 5. Click **Create**.
 
@@ -45,30 +46,30 @@ The finished flow has three steps:
 
 ![Create a new project with project and integration names set](/img/workflows/getting-started/build-an-order-processing-workflow/create-project.png)
 
-## Step 2: Add durable workflow artifact
+## Step 2: Add the durable workflow artifact
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
 1. In the design view, click **Add Artifact Manually**.
-2. On the **Artifacts** page, under **Durable Workflow**, click **Durable Workflow**. Then **Create New Durable Workflow** form opens.
+2. On the **Artifacts** page, under **Durable Workflow**, click **Durable Workflow**. The **Create New Durable Workflow** form opens.
 3. Set **Name** to `orderWorkflow`.
-4. Click the **Workflow Input Data Type** field. Let's create a new type for the order information that the workflow needs.
-5. Click **+ Create New Type**. 
+4. Click the **Workflow Input Data Type** field, then create a new type for the order information that the workflow needs.
+5. Click **+ Create New Type**.
 6. In the **Create New Type** dialog, select the **Create from scratch** tab.
 7. Set **Kind** to **Record**.
 8. Change **Name** from `MyType` to `OrderInfo`.
 9. Add each field with the **+** next to **Fields**, then set its name and type:
-   
+
    | Field | Type |
-      |---|---|
+   |---|---|
    | `id` | `string` |
    | `customerId` | `string` |
    | `customerEmail` | `string` |
    | `total` | `int` |
 
-8. Click **Save**. The record is added to your project and appears under **Types** in the sidebar.
-9. Click **Create**. The workflow is generated and its diagram opens with a single **Start** node, ready for the first step.
+10. Click **Save**. The record is added to your project and appears under **Types** in the sidebar.
+11. Click **Create**. The workflow is generated and its diagram opens with a single **Start** node, ready for the first step.
 
 ![Creating the orderWorkflow durable workflow and its OrderInfo input type](/img/workflows/getting-started/build-an-order-processing-workflow/create-workflow.gif)
 </TabItem>
@@ -88,7 +89,7 @@ function orderWorkflow(workflow:Context ctx, OrderInfo orderInfo) returns json|e
 }
 ```
 </TabItem>
-</Tabs> 
+</Tabs>
 
 :::tip Reuse an existing type
 **+ Create New Type** is only one way to fill **Workflow Input Data Type**. Pick any type already in the project straight from the list, or click **Open Type Browser** to search the wider set. Either way the result is an ordinary record you can edit later from **Types** in the sidebar. See [Types](../../develop/integration-artifacts/supporting/types.md).
@@ -109,16 +110,16 @@ The first step of the order process reserves stock. You create the activity and 
 4. In the **Workflow Activity** form, set **Activity Name** to `reserveInventory`.
 5. Under **Parameters**, click **+ Add Parameter**, set **Type** to `OrderInfo` and **Name** to `orderInfo`, then click **Add**.
 6. Leave **Return Type** empty. This activity holds stock and returns nothing. Click **Save**.
-7. In the Activities panel, under Current Integration, click `reserveInventory` to add the activity call to the workflow diagram.
+7. In the **Activities** panel, under **Current Integration**, click `reserveInventory` to add the activity call to the workflow diagram.
 8. Fill in the call form:
 
    | Field | Value |
    |---|---|
-   | **Order Info** | The order to reserve. Switch to **Expression** and set it to the workflow's input parameter |
+   | **Order Info** | The order to reserve. Switch to **Expression** and set it to the workflow's input parameter. |
    | **Retry Policy** | **No Automatic Retry** for now. |
 
 9. Click **Save**. The `reserveInventory` node appears on the diagram.
-10. Give the activity something to do. Click the open icon on the node to open its own diagram. To make it simple, let's mock the implementation with a log line.
+10. Give the activity something to do. Click the open icon on the node to open its own diagram. To keep it simple, mock the implementation with a log line.
 11. Click **+**, then **Log Info** under **Logging**. Set **Msg** to `Inventory reserved` and click **Save**.
 
 ![Creating the reserveInventory activity and calling it from the workflow](/img/workflows/getting-started/build-an-order-processing-workflow/add-activity.gif)
@@ -163,7 +164,7 @@ Payment is confirmed by something outside the workflow, such as a payment gatewa
    | Field | Value | Description                                                                                                                                         |
    |---|---|-----------------------------------------------------------------------------------------------------------------------------------------------------|
    | **Data Receive Variable Name** | `payment` | The variable that receives the value once it arrives.                                                                                               |
-   | **Data Type** | `boolean` | The type of the value the workflow expects. To make this article simple, let's go with `boolean`. If the payment is received, the value will be `true` |
+   | **Data Type** | `boolean` | The type of the value the workflow expects. To keep this guide simple, use `boolean`. If the payment is received, the value is `true`. |
    | **Data Name** | `payment` | The name used when sending the data into this workflow.                                                                                             |
 
 6. Click **Add** then click **Save**.
@@ -209,7 +210,7 @@ The value that arrived decides what happens next, so split the flow in two.
 4. Click **Add Else Block**.
 5. Click **Save**.
 
-The diagram splits into a`payment`path and an **Else** path, each with its own **+**.
+The diagram splits into a `payment` path and an **Else** path, each with its own **+**.
 
 ![Branching the workflow on the payment result](/img/workflows/getting-started/build-an-order-processing-workflow/branch-on-payment.gif)
 </TabItem>
@@ -239,11 +240,11 @@ The `payment` path tells the customer the order is confirmed. Create that activi
 
 3. Set **Activity Name** to `sendEmail`. Click **+ Add Parameter**, set **Type** to `OrderInfo` and **Name** to `orderInfo`, click **Add**, then click **Save**.
 
-4. Click `sendEmail` in the **Activities** panel under **Current integration**.
+4. Click `sendEmail` in the **Activities** panel under **Current Integration**.
 
-5. In the **Order Info** field, switch from Record to **Expression**, then select the workflow's input, and click **Save**.
+5. In the **Order Info** field, switch from **Record** to **Expression**, then select the workflow's input, and click **Save**.
 
-6. Click the open icon on the `sendEmail` node to open its diagram, To make it simple let's mock the implementation to a log line.
+6. Click the open icon on the `sendEmail` node to open its diagram. To keep it simple, mock the implementation with a log line.
 
 7. Click **+**, then click **Log Info** under **Logging**.
 
@@ -280,9 +281,9 @@ The **Else** path releases the hold instead.
 
 3. Set **Activity Name** to `cancelOrder`. Click **+ Add Parameter**, set **Type** to `OrderInfo` and **Name** to `orderInfo`, click **Add**, then click **Save**.
 
-4. Click `cancelOrder` in the **Activities** panel under **Current integration**.
+4. Click `cancelOrder` in the **Activities** panel under **Current Integration**.
 
-5. In the **Order Info** field, switch from Record to **Expression**, then select the workflow's input, and click **Save**.
+5. In the **Order Info** field, switch from **Record** to **Expression**, then select the workflow's input, and click **Save**.
 
 Both branches now end in an activity, and the workflow is complete.
 
@@ -320,35 +321,35 @@ A workflow does not start itself. It is launched from an entry point such as a s
 
 1. At the top of the screen, click `OrderProcessor` to return to the project.
 2. Click **+ Add Artifact**, then under **Integration as API**, click **HTTP Service**.
-3. On the **Create HTTP Service** form, keep **Service Contract** on **Design From Scratch**, put **Service Base Path** as `/'order`, and click **Create**.
-4. The service opens with no resources. Click **+Add Resource**.
+3. On the **Create HTTP Service** form, keep **Service Contract** on **Design From Scratch**, set **Service Base Path** to `/'order`, and click **Create**.
+4. The service opens with no resources. Click **+ Add Resource**.
 5. Set **HTTP Method** to **POST** and **Resource Path** to `.`.
 6. Click **+ Define Payload**, open the **Browse Existing Types** tab, click `OrderInfo` under the current integration, and click **Save**.
 7. Click **Save** to create the resource. Its own diagram opens.
 8. Click **+**, then under **Workflow**, click **Run Workflow**.
 9. Select the `orderWorkflow` under **Current Integration**.
-10. Under Input, switch from Record to **Expression** and set **Input** to the request payload and leave **Workflow ID Variable Name** as `workflowId`. Click **Save**.
-11. Click **+** below the Run Workflow node, click **Return** under **Control**. In the **Expression** field, select variables, then select `workflowId`, and click **Save**.
+10. Under **Input**, switch from **Record** to **Expression** and set **Input** to the request payload. Leave **Workflow ID Variable Name** as `workflowId`, then click **Save**.
+11. Click **+** below the **Run Workflow** node, then click **Return** under **Control**. In the **Expression** field, select **Variables**, then select `workflowId`, and click **Save**.
 
 The resource now starts a run for every order it receives and answers with that run's workflow ID.
 
 ![Adding an HTTP service with a POST order resource that starts the workflow](/img/workflows/getting-started/build-an-order-processing-workflow/step-8-start-workflow.gif)
 </TabItem>
 <TabItem value="code" label="Ballerina code">
-   ```ballerina
-   import ballerina/http;
-   import ballerina/workflow;
-   
-   listener http:Listener httpDefaultListener = http:getDefaultListener();
-   
-   service /'order' on httpDefaultListener {
-   
-       resource function post .(OrderInfo payload) returns json|error {
-           string workflowId = check workflow:run(orderWorkflow, payload);
-           return workflowId;
-       }
-   }
-   ```
+```ballerina
+import ballerina/http;
+import ballerina/workflow;
+
+listener http:Listener httpDefaultListener = http:getDefaultListener();
+
+service /'order' on httpDefaultListener {
+
+    resource function post .(OrderInfo payload) returns json|error {
+        string workflowId = check workflow:run(orderWorkflow, payload);
+        return workflowId;
+    }
+}
+```
 </TabItem>
 </Tabs>
 
@@ -416,11 +417,12 @@ A durable workflow keeps its record in a workflow engine, and by default the run
 3. In the box under `mode`, enter `"IN_MEMORY"`.
 
    ![Setting the workflow mode to IN_MEMORY in Configurable Variables](/img/workflows/getting-started/build-an-order-processing-workflow/set-in-memory-mode.gif)
+
    :::warning `IN_MEMORY` does not survive a restart
-   The in-memory engine keeps the record in the integration's own memory, so stopping the integration loses every run that was in flight. It is meant for trying a workflow out, not for the crash-safety this guide is about. To see a suspended order survive a restart, set `mode` back to `"LOCAL"` and start a Temporal server with `temporal server start-dev` before running.
+   The in-memory engine keeps the record in the integration's own memory, so stopping the integration loses every run that was in flight. It is meant for trying a workflow out, not for the crash safety this guide is about. To see a suspended order survive a restart, set `mode` back to `"LOCAL"` and start a Temporal server with `temporal server start-dev` before running.
    :::
 4. Click **Run** at the top of the Integrator window to start the integration.
-5. Post an order and keep the returned workflow ID, e.g.: `019ffed4-c12e-7e24-a438-8bdaae2b5a29`
+5. Post an order and keep the returned workflow ID, for example `019ffed4-c12e-7e24-a438-8bdaae2b5a29`:
 
    ```bash
    curl -X POST http://localhost:9090/order \
@@ -429,15 +431,17 @@ A durable workflow keeps its record in a workflow engine, and by default the run
    ```
 
    The workflow reserves the inventory and then suspends on the `payment` event.
-```bash
+
+   ```bash
    Compiling source (UP-TO-DATE)
-   dulminakodagoda/orderprocessor:0.1.0
+   myorg/orderprocessor:0.1.0
 
    Running executable
-   
-   time=2026-08-14T11:23:04.009+05:30 level=INFO module=dulminakodagoda/orderprocessor message="Inventory reserved"
-   time=2026-08-14T11:23:04.028+05:30 level=INFO module=dulminakodagoda/orderprocessor message="Waiting for payment"
+
+   time=2026-08-14T11:23:04.009+05:30 level=INFO module=myorg/orderprocessor message="Inventory reserved"
+   time=2026-08-14T11:23:04.028+05:30 level=INFO module=myorg/orderprocessor message="Waiting for payment"
    ```
+
 6. Confirm the payment with the workflow ID from the previous response:
 
    ```bash
@@ -448,7 +452,7 @@ A durable workflow keeps its record in a workflow engine, and by default the run
    The workflow resumes and sends the confirmation email. Post `false` instead and it cancels the order.
 
    ```bash
-   time=2026-08-14T11:34:13.224+05:30 level=INFO module=dulminakodagoda/orderprocessor message="Email sent to ann@example.com"
+   time=2026-08-14T11:34:13.224+05:30 level=INFO module=myorg/orderprocessor message="Email sent to ann@example.com"
    ```
 
 ## Watch it run

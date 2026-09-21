@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Send a Data Event
 
-A run parked on an [await data event](data-events.md) stays there until something delivers the value it is waiting for or timeout is reached. That delivery is a **Send Data Event** step, and it usually lives in the entry point a partner system or a person calls back on: the payment gateway's webhook, the resource where an employee uploads the missing document, a scheduled automation that posts the day's file.
+A run parked on an [await data event](data-events.md) stays there until something delivers the value it is waiting for, or the timeout is reached. That delivery is a **Send Data Event** step, and it usually lives in the entry point a partner system or a person calls back on: the payment gateway's webhook, the resource where an employee uploads the missing document, a scheduled automation that posts the day's file.
 
 <ThemedImage
     alt="A POST payment resource holding a single Send to paymentInfo step, drawn with a dashed arrow across to the orderWorkflow it delivers into"
@@ -31,7 +31,7 @@ The delivery does not create a run. It resumes one, so it needs the workflow ID 
    | Field | Required | Description |
    |---|---|---|
    | **Workflow Name** | Yes | The workflow to deliver into. The dropdown lists every workflow in the project. |
-   | **Target Workflow Id** | Yes | Which run to resume, so this is the ID that [starting the run](start.md) returned. |
+   | **Target Workflow Id** | Yes | Which run to resume. This is the ID that [starting the run](start.md) returned. |
    | **Data Name** | Yes | The event to fill. The dropdown lists the data events declared by the workflow chosen above, so the two cannot drift apart. |
    | **Data** | Yes | The value to deliver. It has to match the type the event declares. |
 

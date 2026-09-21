@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Start a Workflow
 
-A workflow does not start itself. Something has to launch it. It can be any type of trigger: a service resource that receives a request, an automation that runs on a schedule, a file handler on file receive or an operator starting one by hand. Whatever the trigger, starting a run returns a **workflow ID**, and that ID is the handle to the run from then on.
+A workflow does not start itself. Something has to launch it. It can be any type of trigger: a service resource that receives a request, an automation that runs on a schedule, a file handler that runs when a file arrives, or an operator starting one by hand. Whatever the trigger, starting a run returns a **workflow ID**, and that ID is the handle to the run from then on.
 
 <ThemedImage
     alt="A POST resource that starts a workflow: a Run Workflow step capturing workflowId, with a link across to the orderWorkflow it starts, followed by a Return of that same workflowId"

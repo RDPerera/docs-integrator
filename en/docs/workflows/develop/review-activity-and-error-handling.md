@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-title: "Error Handling & Review Activities"
+title: "Error Handling and Review Activities"
 description: Gate risky workflow steps behind human approval and turn failures into human-reviewed retries in WSO2 Integrator durable workflows.
 keywords: [wso2 integrator, durable workflow, review activity, retry, error handling, approval gate, human review, replay, crash safe, state management]
 ---
@@ -8,7 +8,7 @@ keywords: [wso2 integrator, durable workflow, review activity, retry, error hand
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Error Handling & Review Activities
+# Error Handling and Review Activities
 
 Failures and risky steps are where durable workflows earn their keep. Instead of scattering try/catch blocks and retry loops through your flow, you attach a **retry policy** to each activity call — and for the steps that matter most, you put a **human review** in front of the step or behind its failure.
 
@@ -18,7 +18,7 @@ Every activity call takes a **Retry Policy**, which says what the workflow shoul
 
 | Policy                           | What happens on failure                                                                                                          |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| **No Automatic Retry** (default) | Error will be returned from the workflow if the first activity execution attempt fails.                                          |
+| **No Automatic Retry** (default) | An error is returned from the workflow if the first activity execution attempt fails.                                           |
 | **Auto Retry**                   | The engine re-executes the activity with configurable attempts, delay, and backoff.                                              |
 | **Human Review**                 | A **review task** is created for the roles you name. The reviewer can retry as-is, retry with corrected input, or fail the step. |
 
@@ -39,13 +39,13 @@ Choosing **Auto Retry** adds the backoff fields to the form. Every one of them i
 
 ## Human review — when a person should fix it
 
-Choosing **Human Review** hands a failure to a person instead of to the engine. The workflow does not fail along with the activity and the engine does not retry on its own: the run parks at that step, and a review task is raised carrying the failing input and the error it produced. The task takes its name from the activity being called, so there is nothing to name in the form.
+Choosing **Human Review** hands a failure to a person instead of to the engine. The workflow does not fail along with the activity, and the engine does not retry on its own: the run parks at that step, and a review task is raised carrying the failing input and the error it produced. The task takes its name from the activity being called, so there is nothing to name in the form.
 
 The review is listed on the **Human Tasks** page of the [Control Plane](../icp/human-tasks.md) for the roles you name below, matched by exact role name. Until one of them decides it, the run waits there durably and holds no threads or connections, the same as any other durable wait. The decision is what resumes it.
 
 | Field              | Required | Description                                                                                                                                          |
 |--------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Reviewer Roles** | No       | The role permitted to decide the review, for example `"Finance"`, or a list such as `["finance", "manager"]`. Leave it empty to let any role decide. |
+| **Reviewer Roles** | No       | The role permitted to decide the review, for example `"Finance"`, or a list of roles such as `["finance", "manager"]`. Leave it empty to let any role decide. |
 
 ![The activity call form with Human Review chosen, showing the Reviewer Roles field set to Finance](/img/workflows/develop/review-activity/human-review.png)
 
@@ -56,7 +56,7 @@ Some steps should never run without sign-off, even when nothing has failed. A ga
 | Field                 | Required | Description                                                                                                                                                    |
 |-----------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Requires Approval** | No       | Gates the activity. Cleared by default, so an activity runs unattended unless you say otherwise.                                                                |
-| **Reviewer Roles**    | No       | The role permitted to decide this activity's approval reviews, for example `"Finance"`, or a list such as `["finance", "manager"]`. Left empty, the agent's own approval roles apply. |
+| **Reviewer Roles**    | No       | The role permitted to decide this activity's approval reviews, for example `"Finance"`, or a list of roles such as `["finance", "manager"]`. Left empty, the agent's own approval roles apply. |
 
 ![The payClaim activity registration form with Requires Approval selected and Reviewer Roles set to Finance](/img/workflows/develop/review-activity/requires-approval.png)
 
@@ -96,7 +96,7 @@ Both branches rejoin the flow after the **If**, so `startShipment` runs whether 
 | --- | --- |
 | Flaky downstream, safe to repeat | Auto Retry |
 | Bad input a person could correct | Human Review |
-| Risky/irreversible step (payments, deletions) | Approval gate (**Requires Approval**) |
+| Risky or irreversible step (payments, deletions) | Approval gate (**Requires Approval**) |
 | Business-level failure with a fallback path | No Automatic Retry + workflow logic |
 
 ## Crash recovery
@@ -111,9 +111,9 @@ Everything above rests on one guarantee: the engine writes down the outcome of e
 | A durable timer   | The original deadline, so an elapsed wait does not restart its clock.                                             |
 | Current time      | The instant the run first reached that step. The workflow always works with the time at which it first got there. |
 
-This is why a durable workflow needs no state management of its own. You write no checkpoint rows, no status columns, and no resume logic, and you do not reload progress when a run picks back up: the variables in the workflow body are rebuilt from the record, so the code after a wait sees exactly what the code before it left behind. The recorded events for a run are listed on the **History** tab in the [Control Plane](../icp/executions.md#history).
+This is why a durable workflow needs no state management of its own. You write no checkpoint rows, no status columns, and no resume logic, and you do not reload progress when a run picks back up: the variables in the workflow body are rebuilt from the record, so the code after a wait sees exactly what the code before it left behind. The recorded events for a run are listed on the **History** tab in the [Control Plane](../icp/executions.md).
 
-What this asks of you in return is a deterministic workflow body, since that is the part which runs again on every replay. See [Activities](activities.md#why-the-split-matters).
+What this asks of you in return is a deterministic workflow body, since that is the part that runs again on every replay. See [Activities](activities.md#why-the-split-matters).
 
 ## Next steps
 

@@ -30,7 +30,7 @@ The activity returns nothing, so there is no result variable to name.
 | **Content Type**  | No       | MIME content type override, for example `text/plain`. |
 | **Email Headers** | No       | Additional mail headers.                              |
 
-**Retry Policy** and **Check Error** work the same as for every prebuilt activity. See [Prebuilt activities](index.md#fields-shared-by-all-three).  
+**Retry Policy** and **Check Error** work the same as for every prebuilt activity. See [Prebuilt activities](index.md#fields-shared-by-all-three).
 
 Set **HTML Body** as well when you want a formatted message. The plain-text **Body** is still sent, so clients that cannot render HTML have something to show.
 

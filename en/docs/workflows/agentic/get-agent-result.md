@@ -53,10 +53,10 @@ A gated activity or a human task counts as still working: the instance is suspen
 
 ## Final result or one turn's answer?
 
-Both reads are addressed by the instance ID, and they answer different questions.
+Both reads are addressed by the instance ID, but they answer different questions.
 
 - **Get Agent Result** returns what the run concluded, once. Use it for the outcome.
-- [Get Data Event Result](get-data-event-result.md) returns the answer to one delivered turn, selected by that turn's correlation token. Use it for a conversation or sending additional information to agent during a run.
+- [Get Data Event Result](get-data-event-result.md) returns the answer to one delivered turn, selected by that turn's correlation token. Use it for a conversation, or for sending additional information to the agent during a run.
 
 ## Next steps
 

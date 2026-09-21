@@ -9,7 +9,7 @@ keywords: [wso2 integrator, durable workflow, create workflow, workflow artifact
 
 A **durable workflow** is an artifact in your integration, the same as a service or an automation. You create it once, give it the shape of the data it starts with, and then design its steps on a diagram.
 
-## Launching the wizard 
+## Launch the wizard
 
 1. In the design view, click **+ Add Artifact**.
 2. On the **Artifacts** page, under **Durable Workflow**, click **Durable Workflow**.
@@ -33,7 +33,7 @@ A **durable workflow** is an artifact in your integration, the same as a service
 
 4. Click **Create**.
 
-The workflow opens on its own diagram with a single **Start** node, and appears under **Workflows** in the sidebar.
+The workflow opens on its own diagram with a single **Start** node and appears under **Workflows** in the sidebar.
 
 For a worked example that fills this in end to end, see [Build an order processing workflow](../getting-started/build-order-processing.md).
 

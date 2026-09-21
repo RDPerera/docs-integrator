@@ -33,7 +33,7 @@ Permissions and roles do different jobs. A permission decides whether you may op
 
 ## Find your tasks
 
-In the integration view, open **Human Tasks** in the sidebar and pick an environment. The page holds one queue of the work waiting on a person: human tasks, and the review activities raised by gated or failed activities. Only the items applicable to you are listed.
+In the integration view, open **Human Tasks** in the sidebar and pick an environment. The page holds one queue of the work waiting on a person: human tasks and the review activities raised by gated or failed activities. Only the items applicable to you are listed.
 
 ![The Human Tasks page listing three pending items for one integration: a review failure, a human task, and an approval gate review](/img/workflows/icp/human-tasks/human-tasks-page.png)
 
@@ -61,7 +61,7 @@ Beside the filters, the refresh icon fetches immediately, and the **auto-refresh
 | **Task** | The item's title, with an icon for its kind. A review activity also carries a badge reading **Approval gate**, **Review failure**, or **Review**. A **Read-only** badge means you can see the item but hold no matching role to complete it. |
 | **Workflow Name** | The workflow definition the parent instance runs. |
 | **Integration** | The integration whose runtime owns the item, resolved from its task queue. Shown at project level when more than one integration is in scope. |
-| **Task ID** | The item's own identifier, which the management API and audit records name it by. |
+| **Task ID** | The item's own identifier, which the management API and audit records use to name it. |
 | **Workflow ID** | The parent workflow instance waiting on this item. |
 | **Status** | Pending, Completed, Failed, Canceled, or Terminated. |
 | **Started** | When the item was created. |
@@ -89,7 +89,7 @@ Open a human task from the queue. The panel gathers what you need in order to an
 | Card | What it holds |
 | --- | --- |
 | **Description** | The context the workflow supplied. Shown only when the task carries one. |
-| **Task** | **Task Name**, the **Workflow Name** and **Parent Workflow** it belongs to, when it was **Created**, the **Eligible Roles** that may complete it, and the **Administrators** that may reassign it or change its deadline. Each row of roles is shown as one chip per role. |
+| **Task** | **Task Name**, the **Workflow Name** and **Parent Workflow** it belongs to, when it was **Created**, the **Eligible Roles** that may complete it, and the **Administrators** who may reassign it or change its deadline. Each row of roles is shown as one chip per role. |
 | **Task Input** | The payload the workflow sent with the task, read-only, one row per value. Use the braces icon to read it as JSON, or the copy icon to copy it. |
 | **Actions** | **Complete Task** and **Mark as Failed**. Shown while the task is pending, to users holding `workflow_mgt:manage_human_tasks`. |
 | **Administer** | **Reassign** and **Change Deadline**. Shown while the task is pending, to users holding one of its administrator roles. See [Administer a task](#administer-a-task). |

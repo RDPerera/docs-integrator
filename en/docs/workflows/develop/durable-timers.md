@@ -36,10 +36,10 @@ The `emailChangeRequest` workflow puts that rule in one place. It validates the 
    |--------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
    | **Duration** | Yes      | How long to wait. Keep the field on **Record** to build the duration from units in a form, or switch it to **Expression** to write the record yourself, for example to take the period from a configurable. |
 
-4. On **Record**, click the field to open the **Record Configuration** editor, tick the units the wait is expressed in, and fill in their values. The cooling-off period here is one day, so **days** is ticked and set to `1`.
+4. On **Record**, click the field to open the **Record Configuration** editor, select the units the wait is expressed in, and fill in their values. The cooling-off period here is one day, so **days** is selected and set to `1`.
 5. Click **Save**.
 
-![Adding a Sleep step between validateEmailChange and performEmailChange, ticking days in the Record Configuration editor and setting it to 1](/img/workflows/develop/durable-timers/add-sleep-step.gif)
+![Adding a Sleep step between validateEmailChange and performEmailChange, selecting days in the Record Configuration editor and setting it to 1](/img/workflows/develop/durable-timers/add-sleep-step.gif)
 
 ### Duration units
 
@@ -55,7 +55,7 @@ The `emailChangeRequest` workflow puts that rule in one place. It validates the 
 | `minutes` | `int`     |
 | `seconds` | `decimal` |
 
-Express the wait in whichever unit reads like the rule it implements. A cooling-off period written as 24 hours can be ticked as `hours` set to `24` or, as in the recording above, `days` set to `1`. In code the same step is a call on the workflow context:
+Express the wait in whichever unit reads like the rule it implements. A cooling-off period written as 24 hours can be selected as `hours` set to `24` or, as in the recording above, `days` set to `1`.
 
 ## What makes it durable
 
@@ -66,7 +66,7 @@ A durable sleep is not a blocked thread. When the workflow reaches the timer:
 - On crash recovery, an **already-elapsed timer does not wait again.** Like a completed activity, it is read back from the record, so a restart never restarts the clock.
 
 :::warning
-Never use regular **Standard Library Sleep** inside a workflow. It blocks a thread, it is invisible to the runtime, and the wait is lost on restart, so the workflow resumes with the delay silently skipped or repeated. Always use the workflow context's durable sleep.
+Never use the regular **Standard Library Sleep** inside a workflow. It blocks a thread, it is invisible to the runtime, and the wait is lost on restart, so the workflow resumes with the delay silently skipped or repeated. Always use the workflow context's durable sleep.
 :::
 
 ## Timers versus task timeouts
