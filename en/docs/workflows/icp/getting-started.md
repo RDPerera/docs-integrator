@@ -38,11 +38,11 @@ The **Workflow** integration type is what tells ICP that this integration hosts 
 1. Go to **Projects** > *your project*, or click **+ Create Project** first.
 2. Click **+ Create Integration** and fill in the **Create New Integration** form:
 
-   | Field | Value |
-   | --- | --- |
-   | **Display Name** | A readable name, for example `Order workflow` |
-   | **Name** | The URL-safe handle derived from the display name. Click the edit icon to override it. |
-   | **Technology** | **WSO2 Integrator** |
+   | Field                | Value                                                                                      |
+   |----------------------|--------------------------------------------------------------------------------------------|
+   | **Display Name**     | A readable name, for example `Order workflow`                                              |
+   | **Name**             | The URL-safe handle derived from the display name. Click the edit icon to override it.     |
+   | **Technology**       | **WSO2 Integrator**                                                                        |
    | **Integration Type** | **Workflow**, which orchestrates long-running processes with durable state and human tasks |
 
 3. Click **Create**.
@@ -71,35 +71,28 @@ Once the runtime's heartbeat reaches ICP:
 
 Once an integration is registered, the Integration Control Plane provides workflow management views for it. From an integration overview, you can review the available workflows, open their executions, start a workflow, and view the connected runtimes.
 
-Select **Overview** in the console navigation to open the integration overview. From there:
-
-1. Open the integration that contains the workflows, such as `orderprocessor`.
-2. Review the environment cards shown for the integration, such as **Dev** and **Prod**. The page displays the workflow definitions available for each environment and actions for viewing workflows and runtimes.
+Select **Overview** in the console navigation to open the integration overview.
 
 ![Integration overview showing workflow definitions, workflow actions, and runtime status](/img/workflows/icp/integration-overview.png)
 
+From the overview page you can take three actions:
+
+| Action                           | What it does                                                                                                                              |
+|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| **Select a workflow definition** | The **Workflow Definitions** dropdown lists the workflows the integration provides. Selecting one shows its details.                      |
+| **View Workflows**               | Opens the **Workflow Executions** page, which lists the executions for the selected integration and environment.                          |
+| **Start New Workflow**           | Opens the **Start Workflow** dialog, where you choose a workflow definition and enter its input values. See [Start a workflow](start.md). |
+
 The environment overview also summarizes workflow activity by status:
 
-| Status | Description |
-| --- | --- |
-| **Running** | Workflow instances that are currently executing or paused. Select the status to open the execution list. |
-| **Suspended** | Workflow instances paused by an operator and waiting to resume. |
-| **Failed (24h)** | Workflow instances that failed within the last 24 hours. |
-| **Completed (24h)** | Workflow instances that completed successfully within the last 24 hours. |
-| **Pending reviews** | Workflow instances waiting for a review decision, such as an approval or a failed activity review. |
-| **Pending tasks** | Human tasks waiting for action from an eligible user. |
-
-## View workflow definitions
-
-The **Workflow Definitions** section lists the workflows that the integration provides. Select a workflow definition to see the workflow available for execution.
-
-Select **View Workflows** to open the **Workflow Executions** page. This page lists the executions for the selected integration and environment.
-
-## View workflow executions
-
-The **Workflow Executions** page lists the workflow runs for the integration. You can search for executions, review their status, and inspect individual runs.
-
-To start a workflow, select **Start New Workflow**. The console opens the **Start Workflow** dialog, where you select a workflow definition and enter its input values. For instructions on starting a workflow, see [Start a workflow](start.md).
+| Status              | Description                                                                                              |
+|---------------------|----------------------------------------------------------------------------------------------------------|
+| **Running**         | Workflow instances that are currently executing or paused. Select the status to open the execution list. |
+| **Suspended**       | Workflow instances paused by an operator and waiting to resume.                                          |
+| **Failed (24h)**    | Workflow instances that failed within the last 24 hours.                                                 |
+| **Completed (24h)** | Workflow instances that completed successfully within the last 24 hours.                                 |
+| **Pending reviews** | Workflow instances waiting for a review decision, such as an approval or a failed activity review.       |
+| **Pending tasks**   | Human tasks waiting for action from an eligible user.                                                    |
 
 ## What's next
 
