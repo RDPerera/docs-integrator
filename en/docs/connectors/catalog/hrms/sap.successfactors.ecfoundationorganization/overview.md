@@ -7,14 +7,13 @@ description: "Overview of the ballerinax/sap.successfactors.ecfoundationorganiza
 
 [SAP SuccessFactors Employee Central](https://www.sap.com/products/hcm/core-hr-payroll.html) is a comprehensive human capital management solution that helps organizations manage their workforce effectively. It provides a unified platform for HR processes including employee data management, organizational structures, and employment lifecycle management.
 
-The `ballerinax/sap.successfactors.ecfoundationorganization` package provides APIs to interact with the SAP SuccessFactors Employee Central Foundation Organization API.
+WSO2 SAP Successfactors Foundation Organization provides a way to interact with the [SAP SuccessFactors Employee Central APIs](https://api.sap.com/package/SuccessFactorsEmployeeCentral/overview).
 
 ## Key Features
 
 - Access foundation objects including legal entities and departments
 - Manage divisions, job classifications, and cost centers
 - Query pay structures and organizational hierarchies
-- Support for basic and OAuth 2.0 authentication
 
 ## Actions
 
