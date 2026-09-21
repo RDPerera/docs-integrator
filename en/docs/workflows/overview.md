@@ -25,7 +25,7 @@ A Workflow is a step-by-step process which completes a larger task. WSO2 Integra
 - **Survive crashes and restarts** — every completed step is recorded, and the workflow resumes exactly where it left off. A finished step is never re-executed.
 - **Wait for as long as it takes** — pause for hours, days, or months for a human decision or an external event, consuming no threads or connections while suspended.
 - **Recover from failures** — retry failed steps automatically, or hand the failure to a human who can fix the input and retry.
-- **Keep humans in the loop** — assign role-based tasks that people decide from the [Integration Control Plane](icp/manage.md) task inbox.
+- **Keep humans in the loop** — assign role-based tasks that people decide from the [Integration Control Plane](icp/human-tasks.md) task inbox.
 
 ## Two ways to build, one durable runtime
 
@@ -64,12 +64,11 @@ Both run on the same durable runtime, so an AI agent gets crash-safety, human ta
 
 ## Manage running workflows
 
-- **[Integration Control Plane](icp/manage.md):** Where workflow management lives in the console, and the permissions and roles that control each view.
+- **[Workflow permissions](icp/permissions.md):** The permissions behind each workflow view, and the roles that decide whose tasks are whose.
 - **[Connect a workflow runtime](icp/connect-runtime.md):** Register an integration so its workflows, tasks, and reviews appear in the console.
 - **[Start a workflow](icp/start.md):** Launch an execution from a form generated out of the workflow's input type.
 - **[Workflow executions](icp/executions.md):** Follow a run through its timeline, execution graph, and history, and suspend, resume, or terminate it.
-- **[Complete human tasks](icp/human-tasks.md):** Decide the tasks a workflow is waiting on, from the task inbox.
-- **[Review activities](icp/review-activities.md):** Approve, correct, or reject an activity before it runs or after it fails.
+- **[Complete human tasks](icp/human-tasks.md):** Complete the tasks a run is waiting on, and approve, correct, or reject a gated or failed activity.
 
 ## Reference
 

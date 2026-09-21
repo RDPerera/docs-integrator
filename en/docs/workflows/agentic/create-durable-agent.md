@@ -61,7 +61,7 @@ Click the agent node to open the **Configure Agent** form, which holds the agent
 
 A durable agent uses the same activities as durable workflows. Instead of you wiring the call order, the model chooses which activity to call and when, and each call is recorded exactly as it is in a hand-wired workflow.
 
-In addition, you can enable **Requires Approval** on sensitive activities, so a person approves the execution before the agent runs the activity. Those approval requests are listed in the **Review Activities** tab of the [Control Plane](../icp/review-activities.md).
+In addition, you can enable **Requires Approval** on sensitive activities, so a person approves the execution before the agent runs the activity. Those approval requests are listed on the **Human Tasks** page of the [Control Plane](../icp/human-tasks.md).
 
 To register an activity with the agent:
 
@@ -145,4 +145,4 @@ Reach for an agentic workflow when the logic is branchy and judgement-heavy ("re
 
 - [Run a Durable Agent](run-durable-agent.md) — starting an instance of the agent from an integration flow.
 - [Build a Claim Handling Agent](../getting-started/build-claim-handling-agent.md) — the end-to-end getting started.
-- [Integration Control Plane](../icp/manage.md) — approving the agent's gated steps and reading its progress.
+- [Complete human tasks](../icp/human-tasks.md) — approving the agent's gated steps and reading its progress.

@@ -2136,14 +2136,13 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Integration Control Plane',
-          link: { type: 'doc', id: 'workflows/icp/manage' },
           items: [
             'workflows/icp/connect-runtime',
             'workflows/icp/overview',
             'workflows/icp/start',
             'workflows/icp/executions',
             'workflows/icp/human-tasks',
-            'workflows/icp/review-activities',
+            'workflows/icp/permissions',
           ],
         },
         // API Reference

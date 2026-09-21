@@ -51,7 +51,7 @@ Use a **data event** when a system or a person is submitting *content* the workf
 
 ## Watching a waiting workflow
 
-While the workflow waits, the execution graph in the [Integration Control Plane](../icp/manage.md) marks the halt point as a `DATA` node named after the event, with status `WAITING` — so anyone can see exactly what the process is blocked on rather than guessing that it is stuck.
+While the workflow waits, the execution graph in the [Integration Control Plane](../icp/executions.md) marks the halt point as a `DATA` node named after the event, with status `WAITING` — so anyone can see exactly what the process is blocked on rather than guessing that it is stuck.
 
 The same graph is available over the [Management API](../reference/management-api.md).
 

@@ -41,7 +41,7 @@ Choosing **Auto Retry** adds the backoff fields to the form. Every one of them i
 
 Choosing **Human Review** hands a failure to a person instead of to the engine. The workflow does not fail along with the activity and the engine does not retry on its own: the run parks at that step, and a review task is raised carrying the failing input and the error it produced. The task takes its name from the activity being called, so there is nothing to name in the form.
 
-The task is listed in the **Review Activities** tab of the [Control Plane](../icp/review-activities.md) for the roles you name below, matched by exact role name. Until one of them decides it, the run waits there durably and holds no threads or connections, the same as any other durable wait. The decision is what resumes it.
+The review is listed on the **Human Tasks** page of the [Control Plane](../icp/human-tasks.md) for the roles you name below, matched by exact role name. Until one of them decides it, the run waits there durably and holds no threads or connections, the same as any other durable wait. The decision is what resumes it.
 
 | Field              | Required | Description                                                                                                                                          |
 |--------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -60,7 +60,7 @@ Some steps should never run without sign-off, even when nothing has failed. A ga
 
 ![The payClaim activity registration form with Requires Approval selected and Reviewer Roles set to Finance](/img/workflows/develop/review-activity/requires-approval.png)
 
-With the gate on, the agent suspends durably before every call to that activity and raises a review activity showing the arguments it *proposes*. Gates are decided in the **Review Activities** tab of the Control Plane. See [Review activities](../icp/review-activities.md).
+With the gate on, the agent suspends durably before every call to that activity and raises a review activity showing the arguments it *proposes*. Gates are decided on the **Human Tasks** page of the Control Plane. See [Decide a review activity](../icp/human-tasks.md#decide-a-review-activity).
 
 ## Error handling in the workflow logic
 

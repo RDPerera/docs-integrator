@@ -14,7 +14,7 @@ Access control in ICP determines who can view, edit, and manage resources across
 
 A **role** is a named set of permissions. ICP ships with five built-in roles (see [Default roles](#default-roles)). You can also create custom roles tailored to your team's needs.
 
-Permissions cover five areas: environment management, integration management, observability, project management, and user management. Each area contains two to five granular permissions (see [Permissions](#permissions)).
+Permissions cover six areas: environment management, integration management, observability, project management, user management, and workflow management. Each area contains two to five granular permissions (see [Permissions](#permissions)).
 
 Roles and their permissions are defined at the organization level only. Lower levels (project, integration) can use roles in mappings but cannot change what a role is allowed to do.
 
@@ -207,8 +207,20 @@ Each new project also auto-creates a `<Project Name> Admins` group mapped to the
 | `user_mgt:update_group_roles` | Assign and remove roles from groups |
 | `user_mgt:update_users` | Edit user profile and properties |
 
+#### Workflow management
+
+| Permission | Description |
+|------------|-------------|
+| `workflow_mgt:manage_human_tasks` | Complete, fail, and cancel human tasks, and decide review activities |
+| `workflow_mgt:manage_workflows` | Start, suspend, resume, cancel, and terminate workflow executions, and decide review activities |
+| `workflow_mgt:view_human_tasks` | View human tasks |
+| `workflow_mgt:view_workflows` | View workflow executions |
+
+The **Create Role** form lists these under **Workflow-Management**. For which view each one opens and how the built-in roles grant them, see [Workflow permissions](../../workflows/icp/permissions.md).
+
 ## What's next
 
 - [Manage projects](manage-projects.md) — apply project-level role mappings to scope access per project
 - [Manage integrations](manage-integrations.md) — apply integration-level mappings to restrict access to individual integrations
 - [Manage environments](manage-environments.md) — create environments to use as scopes in role mappings
+- [Workflow permissions](../../workflows/icp/permissions.md) — the permissions behind each workflow view, and the roles that decide whose tasks are whose
