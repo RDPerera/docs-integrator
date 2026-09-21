@@ -18,7 +18,10 @@ The REST surface lives in its own module, `ballerina/workflow.management.rest`. 
 ### From the designer
 
 1. Open the integration overview.
-2. In the right panel, under **Workflow**, select **Enable Workflow Management REST API**.
+2. In the right panel, below **Integration Control Plane**, find the **Workflow** section.
+3. Select **Enable Workflow Management REST API**.
+
+![The Workflow section of the integration overview panel, with the Enable Workflow Management REST API checkbox below Integration Control Plane](/img/workflows/management-api/enable-management-api.png)
 
 Selecting it adds the `ballerina/workflow.management.rest` import to `main.bal`.
 
