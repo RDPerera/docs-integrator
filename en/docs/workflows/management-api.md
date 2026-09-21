@@ -7,23 +7,32 @@ sidebar_label: "Management API"
 
 # Management API
 
-:::warning Work in progress
-This reference is still being written, so parts of it may be incomplete or change before release.
-:::
-
 Every integration with durable workflows can expose a **Management API**: a REST surface, served by the integration runtime itself, over the runs that integration owns. Enable it to build custom portals, automations, or operational tooling.
 
 This is not the Integration Control Plane server's own API. ICP serves the console over GraphQL and spans every registered integration, while the API on this page is integration-local and reaches only one runtime. See [Integration Control Plane](../manage/icp/integration-control-plane.md) for that side.
 
 ## Enable the API
 
-The REST surface lives in its own module, `ballerina/workflow.management.rest`. Import it in the integration, and nothing else changes about how the workflows run:
+The REST surface lives in its own module, `ballerina/workflow.management.rest`. Bring it into the integration from the designer or by hand. Either way, nothing else about how the workflows run changes.
+
+### From the designer
+
+1. Open the integration overview.
+2. In the right panel, under **Workflow**, select **Enable Workflow Management REST API**.
+
+Selecting it adds the `ballerina/workflow.management.rest` import to `main.bal`.
+
+### By hand
+
+Import the module in the integration:
 
 ```ballerina
 import ballerina/workflow.management.rest as _;
 ```
 
-Importing the module alone opens no port. The API starts only when you switch it on in `Config.toml`, under the module's own table:
+### Switch it on
+
+Importing the module alone opens no port. The API starts only when `enableManagementApi` is `true`. Set it, along with the port, TLS, and CORS settings, from the configuration editor, or directly in `Config.toml` under the module's own table:
 
 ```toml
 [ballerina.workflow.management.rest]
