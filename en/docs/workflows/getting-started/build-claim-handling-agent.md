@@ -314,6 +314,8 @@ docker compose up
 
 Leave the containers running for the rest of this guide.
 
+`LOCAL` is one of four [deployment modes](../deployment-modes.md). A production integration usually points at a self-hosted or managed server instead, which is a matter of configuration rather than a change to the workflow.
+
 ## Step 7: Run it
 
 1. Select **Run** in the integration header to start the integration.

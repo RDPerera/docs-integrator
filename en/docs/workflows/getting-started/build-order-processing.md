@@ -410,7 +410,7 @@ Anyone holding the workflow ID can deliver the value, so in a real integration t
 
 ## Step 10: Run it
 
-A durable workflow keeps its record in a workflow engine, and by default the runtime expects a local Temporal server (`mode` defaults to `LOCAL`). To keep this walkthrough self-contained, switch to the in-memory engine, which runs inside the integration and needs nothing external.
+A durable workflow keeps its record in a workflow engine, and by default the runtime expects a local Temporal server (`mode` defaults to `LOCAL`). To keep this walkthrough self-contained, switch to the in-memory engine, which runs inside the integration and needs nothing external. See [Deployment modes](../deployment-modes.md) for the four modes and the settings each one needs.
 
 1. In the sidebar, click **Configurations**.
 2. On the **Configurable Variables** page, under **Imported libraries**, click **ballerina/workflow**.
