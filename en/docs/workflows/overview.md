@@ -73,3 +73,4 @@ Both run on the same durable runtime, so an AI agent gets crash safety, human ta
 ## Reference
 
 - **[Management API](reference/management-api.md):** The REST API behind the Control Plane — list instances, read execution graphs, and complete tasks programmatically.
+- **[Deployment modes](deployment-modes.md):** Choose the workflow engine a run records to, and configure its connection, authentication, worker, and default retry settings.

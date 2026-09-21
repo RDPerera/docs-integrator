@@ -2152,6 +2152,7 @@ const sidebars: SidebarsConfig = {
             'workflows/reference/management-api',
           ],
         },
+        'workflows/deployment-modes',
       ],
     },
 
