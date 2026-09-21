@@ -2,7 +2,7 @@
 title: "Connect a Workflow Runtime"
 description: Register an integration that runs durable workflows with the WSO2 Integration Control Plane so its executions, human tasks, and reviews appear in the console.
 keywords: [wso2 integrator, integration control plane, icp, workflow runtime, enable workflow management, config.toml, task queue]
-sidebar_label: "Getting Started"
+sidebar_label: "Connect a Workflow Runtime"
 ---
 
 import Tabs from '@theme/Tabs';
