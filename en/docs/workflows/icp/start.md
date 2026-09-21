@@ -11,7 +11,7 @@ Workflows usually start from your own integration logic, but during testing, onb
 
 :::info Prerequisites
 
-- A runtime registered with workflow management enabled ([Connect a workflow runtime](connect-runtime.md))
+- A runtime registered with workflow management enabled ([Getting started](getting-started.md))
 - The `workflow_mgt:manage_workflows` permission on the project or integration
 :::
 

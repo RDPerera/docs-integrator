@@ -2137,8 +2137,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Integration Control Plane',
           items: [
-            'workflows/icp/connect-runtime',
-            'workflows/icp/overview',
+            'workflows/icp/getting-started',
             'workflows/icp/start',
             'workflows/icp/executions',
             'workflows/icp/human-tasks',

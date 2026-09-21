@@ -65,7 +65,7 @@ Both run on the same durable runtime, so an AI agent gets crash safety, human ta
 ## Manage running workflows
 
 - **[Workflow permissions](icp/permissions.md):** The permissions behind each workflow view, and the roles that decide whose tasks are whose.
-- **[Connect a workflow runtime](icp/connect-runtime.md):** Register an integration so its workflows, tasks, and reviews appear in the console.
+- **[Getting started](icp/getting-started.md):** Register an integration so its workflows, tasks, and reviews appear in the console, and find your way around the workflow views.
 - **[Start a workflow](icp/start.md):** Launch an execution from a form generated out of the workflow's input type.
 - **[Workflow executions](icp/executions.md):** Follow a run through its timeline, execution graph, and history, and suspend, resume, or terminate it.
 - **[Complete human tasks](icp/human-tasks.md):** Complete the tasks a run is waiting on, and approve, correct, or reject a gated or failed activity.

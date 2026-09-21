@@ -457,7 +457,7 @@ A durable workflow keeps its record in a workflow engine, and by default the run
 
 ## Watch it run
 
-Once the integration is [connected to the Integration Control Plane](../icp/connect-runtime.md), every instance is visible there, running or completed. The [execution graph](../icp/executions.md) shows the reservation as a completed activity and the pending payment as a `DATA` node with status `WAITING`, so anyone can see exactly what an order is blocked on instead of guessing that it is stuck.
+Once the integration is [connected to the Integration Control Plane](../icp/getting-started.md), every instance is visible there, running or completed. The [execution graph](../icp/executions.md) shows the reservation as a completed activity and the pending payment as a `DATA` node with status `WAITING`, so anyone can see exactly what an order is blocked on instead of guessing that it is stuck.
 
 ## Next steps
 
