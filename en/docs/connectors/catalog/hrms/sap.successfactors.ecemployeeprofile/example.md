@@ -32,6 +32,8 @@ flowchart LR
 1. Select **Add Artifact**.
 2. Select **Connection** to open the connector search palette.
 
+![SAP SuccessFactors Employee Central Employee Profile connector palette open before selection](/img/connectors/catalog/hrms/sap.successfactors.ecemployeeprofile/ballerinax_sap_successfactors_ecemployeeprofile_screenshot_01_palette.png)
+
 ### Step 2: Select the SAP SuccessFactors Employee Central Employee Profile connector
 
 1. Enter `ecemployeeprofile` in the search field.
@@ -46,9 +48,13 @@ Bind every required connection field to a configurable variable.
 - **Config** : Expression containing the `auth` credentials for the SAP SuccessFactors OData server — bind `username` to a `sfUsername` configurable variable and `password` to a `sfPassword` configurable variable.
 - **Hostname** : The SAP SuccessFactors OData API server hostname — bind to a `sfHostname` configurable variable.
 
+![SAP SuccessFactors Employee Central Employee Profile connection form with all parameters bound before saving](/img/connectors/catalog/hrms/sap.successfactors.ecemployeeprofile/ballerinax_sap_successfactors_ecemployeeprofile_screenshot_02_connection_form.png)
+
 ### Step 4: Save the connection
 
 Select **Save Connection** and verify that **ecemployeeprofileClient** appears in the **Connections** section.
+
+![SAP SuccessFactors Employee Central Employee Profile connection visible after saving](/img/connectors/catalog/hrms/sap.successfactors.ecemployeeprofile/ballerinax_sap_successfactors_ecemployeeprofile_screenshot_03_connections_list.png)
 
 ### Step 5: Set actual values for your configurables
 
@@ -72,11 +78,17 @@ Select **Save Connection** and verify that **ecemployeeprofileClient** appears i
 1. Select the **+** icon between **Start** and **Error Handler**.
 2. Expand **ecemployeeprofileClient** to display its operations.
 
+![SAP SuccessFactors Employee Central Employee Profile connection expanded to display operations before selection](/img/connectors/catalog/hrms/sap.successfactors.ecemployeeprofile/ballerinax_sap_successfactors_ecemployeeprofile_screenshot_04_operations_panel.png)
+
 3. Select **List Background Communities**. The operation has no required parameters, so review the auto-generated result variable.
 
 - **Result** : Name of the variable that stores the returned Background_Community records — leave the default value, `ecemployeeprofileWrapper`.
 
+![SAP SuccessFactors Employee Central Employee Profile List Background Communities operation with all values entered before saving](/img/connectors/catalog/hrms/sap.successfactors.ecemployeeprofile/ballerinax_sap_successfactors_ecemployeeprofile_screenshot_05_operation_form.png)
+
 4. Select **Save**. The operation step appears in the automation flow between **Start** and **Error Handler**.
+
+![Completed SAP SuccessFactors Employee Central Employee Profile flow with the configured operation](/img/connectors/catalog/hrms/sap.successfactors.ecemployeeprofile/ballerinax_sap_successfactors_ecemployeeprofile_screenshot_06_completed_flow.png)
 
 ## Try it yourself
 
