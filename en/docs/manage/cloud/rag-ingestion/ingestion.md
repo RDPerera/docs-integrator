@@ -134,6 +134,10 @@ If the **Send** button is unavailable, use the [RAG retrieval](./retrieval.md) t
 
 ![Configure retrieval values and verify results in the Retrieval tab](/img/manage/cloud/rag-ingestion/rag-retrieval-verification.gif)
 
+:::note
+A component named **RAG Retrieval Service** is automatically created alongside the ingestion automation. This component is used internally by the ingestion automation and is not intended for external use.
+:::
+
 ## What's next
 
 - [RAG retrieval](./retrieval.md) — Query the vector store after ingestion completes.
