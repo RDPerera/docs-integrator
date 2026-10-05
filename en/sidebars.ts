@@ -1893,6 +1893,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/smpp/setup-guide',
             'connectors/catalog/messaging/smpp/action-reference',
             'connectors/catalog/messaging/smpp/trigger-reference',
+            'connectors/catalog/messaging/smpp/example',
           ],
         },
         {
