@@ -757,6 +757,15 @@ h1, h2, h3, h4, h5, h6 {
   border-top: 1px solid var(--wso2-border-subtle);
 }
 
+/* An h3 that directly follows an h2 (section with no lead-in text) would
+   otherwise stack the h2's bottom rule and the h3's top rule into a double
+   line. Drop the h3 rule in that case. */
+.markdown h2 + h3 {
+  margin-top: 1.5rem;
+  padding-top: 0;
+  border-top: none;
+}
+
 /* Jumping to a heading (card link, TOC, #anchor in the URL) must clear
    BOTH sticky rows: the navbar itself and the product/"Copy page" row
    stacked under it (theme/Navbar's .secondaryRow). Docusaurus only
