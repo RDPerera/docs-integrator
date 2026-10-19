@@ -255,10 +255,10 @@ In the left panel, select **Configurations** again, and set a value for each con
 
 #### Step 6: Add a blob handler
 
-Return to the integration service view (select the service under **Entry Points**) and select **+ Add Handler**. The **Select Handler to Add** panel offers **On Blob Created**, which fires for blobs created or replaced in a container the subscription covers; **On Blob Deleted**, which generates `onBlobDeleted`; and **On Error**, which generates `onError`. Select **On Blob Created**. Its **Format** setting then selects how the content is delivered: **JSON**, **XML**, **CSV**, **Text**, or **Raw Bytes**, generating the `onBlobJson`, `onBlobXml`, `onBlobCsv`, `onBlobText`, or `onBlob` callback respectively.
+Return to the integration service view (select the service under **Entry Points**) and select **+ Add Handler**. The **Select Handler to Add** panel offers **On Create**, which fires for blobs created or replaced in a container the subscription covers; **On Delete**, which generates `onBlobDeleted`; and **On Error**, which generates `onError`. Select **On Create**. Its **Format** setting then selects how the content is delivered: **JSON**, **XML**, **CSV**, **Text**, or **Raw Bytes**, generating the `onBlobJson`, `onBlobXml`, `onBlobCsv`, `onBlobText`, or `onBlob` callback respectively.
 
 <ThemedImage
-    alt="Handler picker with the On Blob Created handler"
+    alt="Handler picker with the On Create handler"
     sources={{
         light: useBaseUrl('/img/connectors/catalog/storage-file/azure.storage.blob/azure_blob_trigger_screenshots_03_add_handler_panel.png'),
         dark: useBaseUrl('/img/connectors/catalog/storage-file/azure.storage.blob/azure_blob_trigger_screenshots_03_add_handler_panel.png'),
@@ -267,14 +267,14 @@ Return to the integration service view (select the service under **Entry Points*
 
 #### Step 7: Configure the JSON handler
 
-In the **Configure On Blob Created Handler** panel, set:
+In the **Configure On Create Handler** panel, set:
 
 - **Format** : **JSON**, so the handler receives the parsed content as `json`. To receive a record instead, create the record type first (under **Types** in the sidebar) and pick it through **Define Content Schema**.
 - **Routing** : leave **Blob Name Pattern** and **Content Type Pattern** unticked, so the handler takes every `.json` blob. Ticking one writes a `@blob:FunctionConfig` annotation with that regular expression; see the [Trigger Reference](trigger-reference.md#functionconfiguration).
 - **Advanced Configurations** : tick **Blob Event (event)** to receive the event alongside the content. **Azure Blob Storage Connection (caller)** adds the `Caller` parameter; this example does not need it.
 
 <ThemedImage
-    alt="On Blob Created handler configuration with the JSON format and the event parameter"
+    alt="On Create handler configuration with the JSON format and the event parameter"
     sources={{
         light: useBaseUrl('/img/connectors/catalog/storage-file/azure.storage.blob/azure_blob_trigger_screenshots_04_handler_config.png'),
         dark: useBaseUrl('/img/connectors/catalog/storage-file/azure.storage.blob/azure_blob_trigger_screenshots_04_handler_config.png'),
