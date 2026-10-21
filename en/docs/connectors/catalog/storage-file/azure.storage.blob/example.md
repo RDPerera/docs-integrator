@@ -255,7 +255,7 @@ In the left panel, select **Configurations** again, and set a value for each con
 
 #### Step 6: Add a blob handler
 
-Return to the integration service view (select the service under **Entry Points**) and select **+ Add Handler**. The **Select Handler to Add** panel offers **On Create**, which fires for blobs created or replaced in a container the subscription covers; **On Delete**, which generates `onBlobDeleted`; and **On Error**, which generates `onError`. Select **On Create**. Its **Format** setting then selects how the content is delivered: **JSON**, **XML**, **CSV**, **Text**, or **Raw Bytes**, generating the `onBlobJson`, `onBlobXml`, `onBlobCsv`, `onBlobText`, or `onBlob` callback respectively.
+Return to the integration service view (select the service under **Entry Points**) and select **+ Add Handler**. The **Select Handler to Add** panel offers **On Create**, which fires for blobs created or replaced in a container the subscription covers; **On Delete**, which generates `onBlobDelete`; and **On Error**, which generates `onError`. Select **On Create**. Its **Format** setting then selects how the content is delivered: **JSON**, **XML**, **CSV**, **Text**, or **Raw Bytes**, generating the `onBlobJson`, `onBlobXml`, `onBlobCsv`, `onBlobText`, or `onBlob` callback respectively.
 
 <ThemedImage
     alt="Handler picker with the On Create handler"

@@ -110,9 +110,9 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 |-------|------|---------|-------------|
 | `retryPolicyType` | <code>RetryPolicyType</code> | <code>EXPONENTIAL</code> | How the delay between tries grows (`EXPONENTIAL` or `FIXED_INTERVAL`). |
 | `maxTries` | <code>int</code> | <code>4</code> | The maximum number of tries, counting the first attempt. |
-| `tryTimeoutSeconds` | <code>decimal</code> | <code>60</code> | The timeout applied to each individual try, in seconds. |
-| `retryDelaySeconds` | <code>decimal</code> | <code>4</code> | The base delay between tries, in seconds. |
-| `maxRetryDelaySeconds` | <code>decimal</code> | <code>120</code> | The upper bound on the delay between tries, in seconds. |
+| `tryTimeout` | <code>decimal</code> | <code>60</code> | The timeout applied to each individual try, in seconds. |
+| `retryDelay` | <code>decimal</code> | <code>4</code> | The base delay between tries, in seconds. |
+| `maxRetryDelay` | <code>decimal</code> | <code>120</code> | The upper bound on the delay between tries, in seconds. |
 | `secondaryHostUrl` | <code>string</code> | <code>()</code> | A secondary endpoint to retry reads against, for geo-redundant accounts. |
 
 **`TransportConfig`**, HTTP transport settings: proxying, connection pooling, and TLS:
@@ -139,9 +139,9 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `maxConnections` | <code>int</code> | <code>50</code> | The maximum number of concurrent connections. |
-| `idleTimeoutSeconds` | <code>decimal</code> | <code>60</code> | How long an idle connection is kept before being closed, in seconds. |
-| `connectTimeoutSeconds` | <code>decimal</code> | <code>10</code> | The timeout for establishing a connection, in seconds. |
-| `readTimeoutSeconds` | <code>decimal</code> | <code>60</code> | The timeout for reading a response, in seconds. |
+| `idleTimeout` | <code>decimal</code> | <code>60</code> | How long an idle connection is kept before being closed, in seconds. |
+| `connectTimeout` | <code>decimal</code> | <code>10</code> | The timeout for establishing a connection, in seconds. |
+| `readTimeout` | <code>decimal</code> | <code>60</code> | The timeout for reading a response, in seconds. |
 
 **`SecureSocket`**, TLS configuration for the connector's HTTPS traffic:
 
@@ -155,8 +155,8 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 | `sessionResumption` | <code>boolean</code> | <code>()</code> | Whether TLS sessions may be resumed. |
 | `validateRevocation` | <code>boolean</code> | <code>()</code> | Whether the server certificate's revocation status is checked. |
 | `sniHostName` | <code>string</code> | <code>()</code> | The Server Name Indication host name sent during the handshake. |
-| `handshakeTimeoutSeconds` | <code>decimal</code> | <code>()</code> | The TLS handshake timeout, in seconds. |
-| `sessionTimeoutSeconds` | <code>decimal</code> | <code>()</code> | The TLS session timeout, in seconds. |
+| `handshakeTimeout` | <code>decimal</code> | <code>()</code> | The TLS handshake timeout, in seconds. |
+| `sessionTimeout` | <code>decimal</code> | <code>()</code> | The TLS session timeout, in seconds. |
 
 **`CertStore`**, a PKCS12 or JKS certificate store and the password that opens it:
 

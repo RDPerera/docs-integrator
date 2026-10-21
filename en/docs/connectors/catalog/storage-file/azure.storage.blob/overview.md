@@ -39,7 +39,7 @@ Triggers let your integration react to blobs being created or deleted. Azure Eve
 | Created JSON blob (`.json`) | `onBlobJson` | Receives the parsed JSON content or a record |
 | Created XML blob (`.xml`) | `onBlobXml` | Receives the parsed XML content or a record |
 | Created CSV blob (`.csv`) | `onBlobCsv` | Receives the parsed rows |
-| Deleted blob | `onBlobDeleted` | Receives the event of a deleted blob |
+| Deleted blob | `onBlobDelete` | Receives the event of a deleted blob |
 | Listener error | `onError` | Receives poll failures, unparseable messages, content-fetch failures, and content-binding failures |
 
 See the **[Trigger Reference](trigger-reference.md)** for listener configuration, the service model, and callback signatures.

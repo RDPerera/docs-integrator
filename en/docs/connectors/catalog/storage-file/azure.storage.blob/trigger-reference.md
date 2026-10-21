@@ -59,11 +59,11 @@ A `blob:Service` is a Ballerina service attached to a `blob:Listener`. The servi
 
 The Event Grid subscription that fills the queue does all the filtering: it selects the event types, the container (through a subject prefix such as `/blobServices/default/containers/invoices/`), and any name prefix or suffix. The service consumes whatever its queue carries. The [Setup Guide](setup-guide.md#wire-the-event-queue-listener-only) describes the wiring.
 
-Created events are routed to handlers by the blob name's extension, compared ignoring case: `.txt` to `onBlobText`, `.json` to `onBlobJson`, `.xml` to `onBlobXml`, `.csv` to `onBlobCsv`, and anything else to `onBlob`. A name with no extension is routed by the event's content type: `application/json` to `onBlobJson`, `application/xml` or `text/xml` to `onBlobXml`, `text/csv` to `onBlobCsv`, any other `text/*` type to `onBlobText`, and the rest to `onBlob`. A per-handler `@blob:FunctionConfig` with a `namePattern` or a `contentTypePattern` overrides that routing. A blob whose routing names a handler the service does not declare falls back to `onBlob`. Deleted events go to `onBlobDeleted`. At most one handler runs per event.
+Created events are routed to handlers by the blob name's extension, compared ignoring case: `.txt` to `onBlobText`, `.json` to `onBlobJson`, `.xml` to `onBlobXml`, `.csv` to `onBlobCsv`, and anything else to `onBlob`. A name with no extension is routed by the event's content type: `application/json` to `onBlobJson`, `application/xml` or `text/xml` to `onBlobXml`, `text/csv` to `onBlobCsv`, any other `text/*` type to `onBlobText`, and the rest to `onBlob`. A per-handler `@blob:FunctionConfig` with a `namePattern` or a `contentTypePattern` overrides that routing. A blob whose routing names a handler the service does not declare falls back to `onBlob`. Deleted events go to `onBlobDelete`. At most one handler runs per event.
 
 Delivery is at least once, and a handler's return settles the message: returning `()` acknowledges it, returning an error or panicking makes it visible again for redelivery, up to `maxDeliveryCount` deliveries, after which it moves to the poison queue. A handler can also return a `blob:DeadLetterError` to move the message to the poison queue at once, or a `blob:RetryError` to ask for redelivery after a delay of its choosing. Duplicates are always possible, so handlers must be idempotent; the event's `sequencer` orders the events of one blob path, which lets a handler ignore a stale duplicate.
 
-Events the service does not handle are acknowledged, never poisoned: event types other than blob created and blob deleted, a created event that commits no content (an empty append or page blob, or a Data Lake or SFTP file creation), a created event whose routing finds no declared handler and no `onBlob`, and a deleted event on a service without `onBlobDeleted`. The first time each kind is seen on a queue, a warning names the subscription filter that would keep it out. An event from another storage account is acknowledged and logged as an error, since it signals a misrouted subscription.
+Events the service does not handle are acknowledged, never poisoned: event types other than blob created and blob deleted, a created event that commits no content (an empty append or page blob, or a Data Lake or SFTP file creation), a created event whose routing finds no declared handler and no `onBlob`, and a deleted event on a service without `onBlobDelete`. The first time each kind is seen on a queue, a warning names the subscription filter that would keep it out. An event from another storage account is acknowledged and logged as an error, since it signals a misrouted subscription.
 
 :::note
 The `byte[]` form of `onBlob` loads the whole blob into memory; prefer the stream form for large blobs. A stream reads the blob in ranged chunks and is locked to the version of the blob it first read. A handler that writes into a container its subscription covers fires further events that come back to the same service, so such a handler must recognize its own output, for example by path, or the subscription must exclude it with an advanced filter.
@@ -78,11 +78,11 @@ The `byte[]` form of `onBlob` loads the whole blob into memory; prefer the strea
 | `onBlobJson` | <code>remote function onBlobJson(json content, blob:BlobEvent event, blob:Caller caller) returns error?</code> | Invoked for a created `.json` blob, delivering the parsed content. Also binds to a user-defined record. |
 | `onBlobXml` | <code>remote function onBlobXml(xml content, blob:BlobEvent event, blob:Caller caller) returns error?</code> | Invoked for a created `.xml` blob, delivering the document. Also binds to a user-defined record. |
 | `onBlobCsv` | <code>remote function onBlobCsv(MyRow[] content, blob:BlobEvent event, blob:Caller caller) returns error?</code> | Invoked for a created `.csv` blob, delivering the rows bound to a string matrix or a record array. Also binds to a stream of either row form. |
-| `onBlobDeleted` | <code>remote function onBlobDeleted(blob:BlobEvent event, blob:Caller caller) returns error?</code> | Invoked for a deleted blob. No content exists to fetch. |
+| `onBlobDelete` | <code>remote function onBlobDelete(blob:BlobEvent event, blob:Caller caller) returns error?</code> | Invoked for a deleted blob. No content exists to fetch. |
 | `onError` | <code>remote function onError(blob:Error err, blob:BlobEvent? event, blob:Caller? caller) returns error?</code> | Invoked when a poll fails, when a message cannot be parsed as an event, when a created blob's content cannot be fetched, when the content cannot be bound to the handler's parameter type, when a message arrives past the delivery limit, or when a move to the poison queue fails. See [Error handling](#error-handling). |
 
 :::note
-The trailing parameters are optional. A content handler declares its content parameter first, then either, both, or neither of `BlobEvent` and `Caller`, so the accepted shapes are `(content)`, `(content, BlobEvent)`, `(content, Caller)`, and `(content, BlobEvent, Caller)`; when both are present, `BlobEvent` must precede `Caller`. `onBlobDeleted` accepts `(BlobEvent)` or `(BlobEvent, Caller)`. `onError` accepts `(error)`, `(error, BlobEvent?)`, `(error, Caller?)`, or `(error, BlobEvent?, Caller?)`; its event and caller parameters must be declared nilable, because a failed poll or an unparseable message carries neither. The error parameter may be declared as `error` or `blob:Error`. A service declares at least one of the six event handlers; `onError` alone is not enough.
+The trailing parameters are optional. A content handler declares its content parameter first, then either, both, or neither of `BlobEvent` and `Caller`, so the accepted shapes are `(content)`, `(content, BlobEvent)`, `(content, Caller)`, and `(content, BlobEvent, Caller)`; when both are present, `BlobEvent` must precede `Caller`. `onBlobDelete` accepts `(BlobEvent)` or `(BlobEvent, Caller)`. `onError` accepts `(error)`, `(error, BlobEvent?)`, `(error, Caller?)`, or `(error, BlobEvent?, Caller?)`; its event and caller parameters must be declared nilable, because a failed poll or an unparseable message carries neither. The error parameter may be declared as `error` or `blob:Error`. A service declares at least one of the six event handlers; `onError` alone is not enough.
 :::
 
 :::note
@@ -137,7 +137,7 @@ isolated service on invoiceListener {
                 contentType = event.contentType ?: "unknown");
     }
 
-    isolated remote function onBlobDeleted(blob:BlobEvent event) returns error? {
+    isolated remote function onBlobDelete(blob:BlobEvent event) returns error? {
         log:printInfo("blob deleted", path = event.path);
     }
 
@@ -165,9 +165,9 @@ A received message stays invisible to other consumers while its handler runs. Th
 | Handler returns | Outcome |
 |-----------------|---------|
 | `()` | The event is acknowledged and the message deleted. |
-| Any other error, or a panic | The message becomes visible again after `redeliveryDelaySeconds` and the event is redelivered. At `maxDeliveryCount` deliveries it moves to the poison queue with the reason "delivery limit reached". |
+| Any other error, or a panic | The message becomes visible again after `redeliveryDelay` and the event is redelivered. At `maxDeliveryCount` deliveries it moves to the poison queue with the reason "delivery limit reached". |
 | `blob:DeadLetterError` | The message moves to the poison queue at once, without the remaining deliveries, and its message is logged as "dead-lettered by the handler". Return it for a failure that retrying cannot fix. |
-| `blob:RetryError` | The message becomes visible again after the error's `delaySeconds` instead of `redeliveryDelaySeconds`. A retry still counts toward `maxDeliveryCount`; on the final delivery the message moves to the poison queue instead. |
+| `blob:RetryError` | The message becomes visible again after the error's `delay` instead of `redeliveryDelay`. A retry still counts toward `maxDeliveryCount`; on the final delivery the message moves to the poison queue instead. |
 
 `DeadLetterError` and `RetryError` are recognized only when returned as they are; an error that wraps one as its cause is an ordinary failure. A message received with a delivery count already past `maxDeliveryCount`, for example after a process died mid-handler, moves to the poison queue without being dispatched. A message whose redelivery delay would land within ten minutes of its expiry on the queue moves to the poison queue at once, since Azure cannot hide a message past its expiry.
 
@@ -224,8 +224,8 @@ The type of the required `@blob:ServiceConfig` annotation on the service.
 | `poisonQueueName` | <code>string</code> | <code>&#123;queueName&#125;-poison</code> | The queue failed messages move to, created by the listener when a message first moves there. Must differ from `queueName`. Required when `queueName` is longer than 56 characters, since the default would then be too long. |
 | `batchSize` | <code>int</code> | <code>16</code> | How many messages one receive fetches, 1 to 32. |
 | `newBatchThreshold` | <code>int</code> | Half of `batchSize`, rounded down | The number of events still being handled at which the next batch is fetched, 0 to `batchSize`. A service has at most `batchSize + newBatchThreshold` messages in flight. |
-| `maxPollingIntervalSeconds` | <code>decimal</code> | <code>60</code> | The longest wait between polls of an empty queue. An empty queue is polled on a randomized exponential backoff that starts well under a second and rises to this ceiling. |
-| `redeliveryDelaySeconds` | <code>decimal</code> | <code>0</code> | How long a message stays invisible after its handler fails, before it is redelivered, 0 to 604,800 seconds, rounded up to whole seconds. |
+| `maxPollingInterval` | <code>decimal</code> | <code>60</code> | The longest wait between polls of an empty queue. An empty queue is polled on a randomized exponential backoff that starts well under a second and rises to this ceiling. |
+| `redeliveryDelay` | <code>decimal</code> | <code>0</code> | How long a message stays invisible after its handler fails, before it is redelivered, 0 to 604,800 seconds, rounded up to whole seconds. |
 | `maxDeliveryCount` | <code>int</code> | <code>5</code> | How many deliveries a message gets before it is moved to the poison queue, at least 1. |
 
 The ranges are validated when the service is attached, and at compile time when the values are literals. The compiler plugin also rejects a service with an attach point, a missing annotation, a poison queue equal to the queue, and two services of one listener naming the same queue.
@@ -257,7 +257,7 @@ Two error types a handler returns to choose the message's settlement.
 | Type | Detail | Effect |
 |------|--------|--------|
 | <code>DeadLetterError</code> | None | The message moves to the poison queue at once. |
-| <code>RetryError</code> | <code>delaySeconds</code> (<code>decimal</code>): the least time before the message is redelivered, rounded up to whole seconds and capped at 604,800 | The message is redelivered after the delay instead of `redeliveryDelaySeconds`. |
+| <code>RetryError</code> | <code>delay</code> (<code>decimal</code>): the least time before the message is redelivered, rounded up to whole seconds and capped at 604,800 | The message is redelivered after the delay instead of `redeliveryDelay`. |
 
 ```ballerina
 isolated remote function onBlobJson(Invoice invoice, blob:BlobEvent event) returns error? {
@@ -266,7 +266,7 @@ isolated remote function onBlobJson(Invoice invoice, blob:BlobEvent event) retur
     }
     boolean ready = check downstreamIsReady();
     if !ready {
-        return error blob:RetryError("downstream not ready", delaySeconds = 300);
+        return error blob:RetryError("downstream not ready", delay = 300);
     }
 }
 ```
