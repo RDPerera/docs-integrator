@@ -30,7 +30,7 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `auth` | <code>AuthConfig</code> | Required | The authentication configuration: one credential-artifact record (an account key, a bare SAS token, a full SAS URL, a connection string, or a Microsoft Entra ID identity). |
-| `retryConfig` | <code>RetryConfig</code> | Optional | Retry behavior for service requests; omit for the service defaults. |
+| `retryConfig` | <code>RetryConfig</code> | <code>&#123;&#125;</code> | Retry behavior for service requests; the connector's defaults apply when omitted. |
 | `transportConfig` | <code>TransportConfig</code> | <code>&#123;&#125;</code> | HTTP transport settings (proxy, connection pool, TLS). |
 
 `AuthConfig` is a union of the credential records below. Each member has a unique required field or field combination, so the right member is selected by the fields you supply. The only exception is the credential-chain record `EntraIdChainConfig`, whose default-chain and managed-identity forms would otherwise share the same field shape; it carries a `kind` discriminator field. The other Entra ID records have no `kind` field.
@@ -691,7 +691,7 @@ Uploads in-memory or streamed content to the bound container. The serialization 
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `content` | <code>UploadContent</code> | Yes | The content to upload: <code>byte[]&#124;string&#124;json&#124;xml&#124;record {}&#124;record {}[]&#124;stream&lt;byte[], error?&gt;&#124;stream&lt;record {}, error?&gt;</code>. A record, a record array, or another `json` value is serialized per the resolved format; `byte[]` and `string` are written as-is. |
+| `content` | <code>UploadContent</code> | Yes | The content to upload: <code>byte[]&#124;string&#124;json&#124;xml&#124;record {}&#124;record {}[]&#124;stream&lt;byte[], error?&gt;&#124;stream&lt;record {}, error?&gt;</code>. `byte[]`, `string`, and a byte stream are written as-is; `json`, `xml`, a record, a record array, and a record stream are serialized per the resolved format. |
 | `destinationPath` | <code>string</code> | Yes | The container-relative path, including the blob name. Its extension selects the format unless `fileFormat` overrides it. |
 | `options` | <code>UploadContentOptions</code> | No | Every [UploadOptions](#uploadoptions) field plus `fileFormat` (`JSON`, `XML`, or `CSV`), the serialization format override. See [UploadContentOptions](#uploadcontentoptions). |
 
@@ -822,13 +822,13 @@ blob:CopyInfo copy = check blobClient->copyBlob("2026/q1/report.pdf", "archive/2
 
 <div>
 
-Copies into the bound container from any Azure Storage URL the service can read: a blob in another container or account, or a file in Azure Files. A source in the same storage account is authorized by this client's own credential; a source elsewhere that is not publicly readable must carry its own authorization in the URL, typically a SAS token. Copying an archived blob to a destination with an online `accessTier` rehydrates the content while keeping the archived original.
+Copies into the bound container from any Azure Storage URL the service can read: a blob in another container or account, or a file in Azure Files. A source in the same storage account is authorized by this client's own credential: a client authenticated with a SAS attaches that SAS to a same-account blob source that carries none, since the service authorizes the source separately from the request. A source elsewhere that is not publicly readable must carry its own authorization in the URL, typically a SAS token. Copying an archived blob to a destination with an online `accessTier` rehydrates the content while keeping the archived original.
 
 **Parameters:**
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `sourceUrl` | <code>string</code> | Yes | The URL of the source. A source outside this storage account carries its own authorization, typically a SAS token. |
+| `sourceUrl` | <code>string</code> | Yes | The URL of the source. A source in this storage account is authorized by the client's credential, a SAS being attached to the URL unless it already carries one; a source elsewhere carries its own authorization, typically a SAS token. |
 | `destinationPath` | <code>string</code> | Yes | The container-relative path of the destination blob. |
 | `options` | <code>CopyOptions</code> | No | Optional copy options (destination metadata, tags, tier, lease id). See [CopyOptions](#copyoptions). |
 
@@ -1963,7 +1963,7 @@ blob:AccountInfo info = check admin->getAccountInfo();
 
 <div>
 
-Obtains a key for signing user-delegation SAS tokens; the key is valid at most 7 days, and the tokens signed with it cannot outlive it. This operation requires a Microsoft Entra ID credential holding the `Storage Blob Delegator` role; any other credential, or an identity without the `generateUserDelegationKey` action, fails with an `AuthorizationError`.
+Obtains a key for signing user-delegation SAS tokens; the key is valid at most 7 days, and the tokens signed with it cannot outlive it. This operation requires a Microsoft Entra ID credential whose identity holds the `generateUserDelegationKey` action at storage account scope or wider, which `Storage Blob Delegator` or any blob data role assigned there grants; any other credential, or an identity without the action, fails with an `AuthorizationError`.
 
 **Parameters:**
 

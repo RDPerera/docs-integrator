@@ -62,8 +62,8 @@ To use a service principal:
 The role requirements apply regardless of which Entra ID credential kind you use:
 
 - For blob data operations, the identity must hold the **Storage Blob Data Contributor** role on the storage account, or **Storage Blob Data Reader** for read-only use.
-- Container-level and account-level management operations (creating, deleting, and restoring containers, access policies, and the service configuration) authorize against the storage account's management permissions instead: the identity needs a role carrying the `Microsoft.Storage/storageAccounts/blobServices/containers/` read, write, and delete actions, such as **Contributor** on the storage account. The data roles alone do not cover these operations.
-- Generating user delegation SAS tokens additionally requires the **Storage Blob Delegator** role.
+- Creating and deleting containers and setting container metadata need only **Storage Blob Data Contributor**, assigned at storage account scope or wider to create a container. Access policies, index tags, and tag queries need **Storage Blob Data Owner**. Only reading and setting the blob service properties need a management role: the storage account's `blobServices/read` and `blobServices/write` actions, whose least privileged built-in role is **Storage Account Contributor**.
+- Obtaining a user delegation key, for user delegation SAS tokens, needs the `generateUserDelegationKey` action at storage account scope or wider: **Storage Blob Delegator**, or any of the blob data roles assigned at that scope.
 - The listener additionally requires the **Storage Queue Data Contributor** role, because it receives, updates, and deletes queue messages and sends to the poison queue.
 
 Assign the roles in the storage account under **Access control (IAM)** > **Add** > **Add role assignment**.
