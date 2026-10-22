@@ -36,9 +36,9 @@ The `blob:Listener` holds the credential and the transport that every service, p
 |-------|------|---------|-------------|
 | `auth` | <code>AuthConfig</code> | Required | The authentication configuration. Accepts any credential from the auth union; see the [Action Reference](action-reference.md#configuration) for the credential records. One credential serves every queue, every poison queue, and every `Caller` of the listener. A SAS credential must be an account SAS covering both the queue and the blob services; a service SAS, or an account SAS lacking either service, is rejected at initialization. A Microsoft Entra ID identity needs the **Storage Queue Data Contributor** role in addition to its blob data role. |
 | `laxDataBinding` | <code>boolean</code> | <code>false</code> | Relaxed data binding for the typed content handlers: JSON, XML, and CSV record binding treat a null value as an optional field and an absent field as a nilable field. Applies to every service of the listener. |
-| `retryConfig` | <code>RetryConfig</code> | <code>()</code> | Retry behavior for service requests; omit for the connector's defaults. The secondary host, if given, serves the blob requests only. |
+| `retryConfig` | <code>RetryConfig</code> | Optional | Retry behavior for service requests; omit for the connector's defaults. The secondary host, if given, serves the blob requests only. |
 | `transportConfig` | <code>TransportConfig</code> | <code>&#123;&#125;</code> | HTTP transport settings (proxy, connection pool, TLS), shared by every service and `Caller` of the listener. |
-| `queueServiceUrl` | <code>string</code> | <code>()</code> | The queue service endpoint URL, including the scheme. Omit to derive it from the credential: the account name gives `https://{accountName}.queue.core.windows.net`, a blob endpoint gives the same host with its `.blob.` label replaced by `.queue.`, and a connection string gives its `QueueEndpoint`. Required when the credential names a host that carries no `.blob.` label, such as a custom domain or an emulator address. |
+| `queueServiceUrl` | <code>string</code> | Optional | The queue service endpoint URL, including the scheme. Omit to derive it from the credential: the account name gives `https://{accountName}.queue.core.windows.net`, a blob endpoint gives the same host with its `.blob.` label replaced by `.queue.`, and a connection string gives its `QueueEndpoint`. Required when the credential names a host that carries no `.blob.` label, such as a custom domain or an emulator address. |
 
 ### Initializing the listener
 
@@ -236,8 +236,8 @@ The type of the optional `@blob:FunctionConfig` annotation on individual content
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `namePattern` | <code>string</code> | <code>()</code> | A regular expression matched against the whole blob name (the last path segment). |
-| `contentTypePattern` | <code>string</code> | <code>()</code> | A regular expression matched against the whole content type, without its parameters. |
+| `namePattern` | <code>string</code> | Optional | A regular expression matched against the whole blob name (the last path segment). |
+| `contentTypePattern` | <code>string</code> | Optional | A regular expression matched against the whole content type, without its parameters. |
 
 A handler matches when either of its patterns matches. Handlers with patterns are checked first in the fixed order `onBlobText`, `onBlobJson`, `onBlobXml`, `onBlobCsv`, then `onBlob`, and the first match wins; when none matches, the extension or content-type routing applies to every declared handler.
 

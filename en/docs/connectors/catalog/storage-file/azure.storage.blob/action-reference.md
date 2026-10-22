@@ -30,7 +30,7 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `auth` | <code>AuthConfig</code> | Required | The authentication configuration: one credential-artifact record (an account key, a bare SAS token, a full SAS URL, a connection string, or a Microsoft Entra ID identity). |
-| `retryConfig` | <code>RetryConfig</code> | <code>()</code> | Retry behavior for service requests; omit for the service defaults. |
+| `retryConfig` | <code>RetryConfig</code> | Optional | Retry behavior for service requests; omit for the service defaults. |
 | `transportConfig` | <code>TransportConfig</code> | <code>&#123;&#125;</code> | HTTP transport settings (proxy, connection pool, TLS). |
 
 `AuthConfig` is a union of the credential records below. Each member has a unique required field or field combination, so the right member is selected by the fields you supply. The only exception is the credential-chain record `EntraIdChainConfig`, whose default-chain and managed-identity forms would otherwise share the same field shape; it carries a `kind` discriminator field. The other Entra ID records have no `kind` field.
@@ -41,7 +41,7 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 |-------|------|---------|-------------|
 | `accountName` | <code>string</code> | Required | The storage account name, used to sign requests and to derive the service URL. |
 | `accountKey` | <code>string</code> | Required | A base64-encoded access key of the storage account. |
-| `serviceUrl` | <code>string</code> | <code>()</code> | The blob service endpoint URL, including the scheme. Omit to use the default <code>https://&#123;accountName&#125;.blob.core.windows.net</code>. |
+| `serviceUrl` | <code>string</code> | Optional | The blob service endpoint URL, including the scheme. Omit to use the default <code>https://&#123;accountName&#125;.blob.core.windows.net</code>. |
 
 **`SasConfig`**, Shared Access Signature (SAS) authentication with a bare SAS token, as issued by `az storage container generate-sas` or the SAS-generation operations:
 
@@ -70,8 +70,8 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 |-------|------|---------|-------------|
 | `kind` | <code>EntraIdKind</code> | Required | The credential chain to use: `DEFAULT_AZURE_CREDENTIAL` (the value `"default"`) or `MANAGED_IDENTITY` (the value `"managed-identity"`). |
 | `accountName` | <code>string</code> | Required | The storage account name (determines the service URL unless `serviceUrl` overrides it). |
-| `clientId` | <code>string</code> | <code>()</code> | The client ID of a user-assigned managed identity. Omit to use the system-assigned one. |
-| `serviceUrl` | <code>string</code> | <code>()</code> | The blob service endpoint URL, including the scheme. Omit to use the default <code>https://&#123;accountName&#125;.blob.core.windows.net</code>. |
+| `clientId` | <code>string</code> | Optional | The client ID of a user-assigned managed identity. Omit to use the system-assigned one. |
+| `serviceUrl` | <code>string</code> | Optional | The blob service endpoint URL, including the scheme. Omit to use the default <code>https://&#123;accountName&#125;.blob.core.windows.net</code>. |
 
 **`ClientSecretConfig`**, authentication as a service principal with a client secret:
 
@@ -81,7 +81,7 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 | `tenantId` | <code>string</code> | Required | The Entra ID tenant the service principal belongs to. |
 | `clientId` | <code>string</code> | Required | The application (client) ID of the service principal. |
 | `clientSecret` | <code>string</code> | Required | The client secret issued for the service principal. |
-| `serviceUrl` | <code>string</code> | <code>()</code> | The blob service endpoint URL, including the scheme. Omit to use the default <code>https://&#123;accountName&#125;.blob.core.windows.net</code>. |
+| `serviceUrl` | <code>string</code> | Optional | The blob service endpoint URL, including the scheme. Omit to use the default <code>https://&#123;accountName&#125;.blob.core.windows.net</code>. |
 
 **`ClientCertificateConfig`**, authentication as a service principal with a client certificate:
 
@@ -91,8 +91,8 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 | `tenantId` | <code>string</code> | Required | The Entra ID tenant the service principal belongs to. |
 | `clientId` | <code>string</code> | Required | The application (client) ID of the service principal. |
 | `certificatePath` | <code>string</code> | Required | Path to the certificate file: a PEM file, or a PFX file when `certificatePassword` is set. |
-| `certificatePassword` | <code>string</code> | <code>()</code> | The password protecting a PFX certificate. Omit for an unencrypted PEM certificate. |
-| `serviceUrl` | <code>string</code> | <code>()</code> | The blob service endpoint URL, including the scheme. Omit to use the default <code>https://&#123;accountName&#125;.blob.core.windows.net</code>. |
+| `certificatePassword` | <code>string</code> | Optional | The password protecting a PFX certificate. Omit for an unencrypted PEM certificate. |
+| `serviceUrl` | <code>string</code> | Optional | The blob service endpoint URL, including the scheme. Omit to use the default <code>https://&#123;accountName&#125;.blob.core.windows.net</code>. |
 
 **`WorkloadIdentityConfig`**, workload-identity authentication, for Kubernetes workloads federated with Entra ID:
 
@@ -102,7 +102,7 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 | `tenantId` | <code>string</code> | Required | The Entra ID tenant the workload identity belongs to. |
 | `clientId` | <code>string</code> | Required | The application (client) ID of the federated identity. |
 | `tokenFilePath` | <code>string</code> | Required | Path to the projected service-account token file. |
-| `serviceUrl` | <code>string</code> | <code>()</code> | The blob service endpoint URL, including the scheme. Omit to use the default <code>https://&#123;accountName&#125;.blob.core.windows.net</code>. |
+| `serviceUrl` | <code>string</code> | Optional | The blob service endpoint URL, including the scheme. Omit to use the default <code>https://&#123;accountName&#125;.blob.core.windows.net</code>. |
 
 **`RetryConfig`**, retry behavior for service requests. Omit the record to keep the connector's defaults:
 
@@ -113,15 +113,15 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 | `tryTimeout` | <code>decimal</code> | <code>60</code> | The timeout applied to each individual try, in seconds. |
 | `retryDelay` | <code>decimal</code> | <code>4</code> | The base delay between tries, in seconds. |
 | `maxRetryDelay` | <code>decimal</code> | <code>120</code> | The upper bound on the delay between tries, in seconds. |
-| `secondaryHostUrl` | <code>string</code> | <code>()</code> | A secondary endpoint to retry reads against, for geo-redundant accounts. |
+| `secondaryHostUrl` | <code>string</code> | Optional | A secondary endpoint to retry reads against, for geo-redundant accounts. |
 
 **`TransportConfig`**, HTTP transport settings: proxying, connection pooling, and TLS:
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `proxy` | <code>ProxyConfig</code> | <code>()</code> | Route traffic through this proxy. |
+| `proxy` | <code>ProxyConfig</code> | Optional | Route traffic through this proxy. |
 | `connectionPool` | <code>ConnectionPoolConfig</code> | <code>&#123;&#125;</code> | Connection-pool tuning. |
-| `secureSocket` | <code>SecureSocket</code> | <code>()</code> | Custom TLS settings (trust and key material, verification). |
+| `secureSocket` | <code>SecureSocket</code> | Optional | Custom TLS settings (trust and key material, verification). |
 
 **`ProxyConfig`**, proxy settings for the connector's traffic:
 
@@ -130,9 +130,9 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 | `proxyType` | <code>ProxyType</code> | <code>HTTP</code> | The proxy protocol (`HTTP`, `SOCKS4`, or `SOCKS5`). |
 | `host` | <code>string</code> | Required | The proxy host name or address. |
 | `port` | <code>int</code> | Required | The proxy port. |
-| `username` | <code>string</code> | <code>()</code> | The user name, when the proxy requires authentication. |
-| `password` | <code>string</code> | <code>()</code> | The password, when the proxy requires authentication. |
-| `nonProxyHosts` | <code>string[]</code> | <code>()</code> | Host names that bypass the proxy. |
+| `username` | <code>string</code> | Optional | The user name, when the proxy requires authentication. |
+| `password` | <code>string</code> | Optional | The password, when the proxy requires authentication. |
+| `nonProxyHosts` | <code>string[]</code> | Optional | Host names that bypass the proxy. |
 
 **`ConnectionPoolConfig`**, connection-pool settings for the connector's HTTP transport:
 
@@ -147,16 +147,16 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `cert` | <code>CertStore&#124;string</code> | <code>()</code> | The trusted CA certificates: a PEM file path, or a truststore with its password. |
-| `'key` | <code>CertKey&#124;CertStore</code> | <code>()</code> | The client identity for mutual TLS: a certificate and key pair, or a keystore with its password. |
-| `protocolVersions` | <code>string[]</code> | <code>()</code> | The TLS protocol versions offered during the handshake (e.g. `["TLSv1.3", "TLSv1.2"]`). |
-| `ciphers` | <code>string[]</code> | <code>()</code> | The cipher suites offered during the handshake. |
+| `cert` | <code>CertStore&#124;string</code> | Optional | The trusted CA certificates: a PEM file path, or a truststore with its password. |
+| `'key` | <code>CertKey&#124;CertStore</code> | Optional | The client identity for mutual TLS: a certificate and key pair, or a keystore with its password. |
+| `protocolVersions` | <code>string[]</code> | Optional | The TLS protocol versions offered during the handshake (e.g. `["TLSv1.3", "TLSv1.2"]`). |
+| `ciphers` | <code>string[]</code> | Optional | The cipher suites offered during the handshake. |
 | `verifyHostName` | <code>boolean</code> | <code>true</code> | Whether the server's host name is verified against its certificate. |
-| `sessionResumption` | <code>boolean</code> | <code>()</code> | Whether TLS sessions may be resumed. |
-| `validateRevocation` | <code>boolean</code> | <code>()</code> | Whether the server certificate's revocation status is checked. |
-| `sniHostName` | <code>string</code> | <code>()</code> | The Server Name Indication host name sent during the handshake. |
-| `handshakeTimeout` | <code>decimal</code> | <code>()</code> | The TLS handshake timeout, in seconds. |
-| `sessionTimeout` | <code>decimal</code> | <code>()</code> | The TLS session timeout, in seconds. |
+| `sessionResumption` | <code>boolean</code> | Optional | Whether TLS sessions may be resumed. |
+| `validateRevocation` | <code>boolean</code> | Optional | Whether the server certificate's revocation status is checked. |
+| `sniHostName` | <code>string</code> | Optional | The Server Name Indication host name sent during the handshake. |
+| `handshakeTimeout` | <code>decimal</code> | Optional | The TLS handshake timeout, in seconds. |
+| `sessionTimeout` | <code>decimal</code> | Optional | The TLS session timeout, in seconds. |
 
 **`CertStore`**, a PKCS12 or JKS certificate store and the password that opens it:
 
@@ -171,7 +171,7 @@ Both clients take a `ClientConfiguration`. Credentials come from the [Setup Guid
 |-------|------|---------|-------------|
 | `certFile` | <code>string</code> | Required | Path to the client certificate file. |
 | `keyFile` | <code>string</code> | Required | Path to the client private key file. |
-| `keyPassword` | <code>string</code> | <code>()</code> | The password protecting the private key, when it is encrypted. |
+| `keyPassword` | <code>string</code> | Optional | The password protecting the private key, when it is encrypted. |
 
 ### Initializing the client
 
@@ -2047,12 +2047,12 @@ A blob's standard content headers. Written as a whole set: a field omitted from 
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `contentType` | <code>string</code> | <code>()</code> | The media type of the blob's content. |
-| `contentEncoding` | <code>string</code> | <code>()</code> | The content encoding applied to the blob. |
-| `contentLanguage` | <code>string</code> | <code>()</code> | The natural language of the blob's content. |
-| `contentDisposition` | <code>string</code> | <code>()</code> | How a user agent should present the content. |
-| `cacheControl` | <code>string</code> | <code>()</code> | The caching directives for the blob. |
-| `contentMd5` | <code>string</code> | <code>()</code> | The MD5 hash of the blob's content. |
+| `contentType` | <code>string</code> | Optional | The media type of the blob's content. |
+| `contentEncoding` | <code>string</code> | Optional | The content encoding applied to the blob. |
+| `contentLanguage` | <code>string</code> | Optional | The natural language of the blob's content. |
+| `contentDisposition` | <code>string</code> | Optional | How a user agent should present the content. |
+| `cacheControl` | <code>string</code> | Optional | The caching directives for the blob. |
+| `contentMd5` | <code>string</code> | Optional | The MD5 hash of the blob's content. |
 
 ### ByteRange
 
@@ -2069,7 +2069,7 @@ The lease a write must carry. Included by every option record of a lease-guarded
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the target is leased. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the target is leased. |
 
 ### ContainerListOptions
 
@@ -2077,11 +2077,11 @@ Options for `AdminClient.listContainers`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `prefix` | <code>string</code> | <code>()</code> | Return only containers whose name begins with this prefix. |
+| `prefix` | <code>string</code> | Optional | Return only containers whose name begins with this prefix. |
 | `includeMetadata` | <code>boolean</code> | <code>false</code> | Include each container's metadata. |
 | `includeDeleted` | <code>boolean</code> | <code>false</code> | Include soft-deleted containers. |
-| `'limit` | <code>int</code> | <code>()</code> | The maximum number of containers to return; omit for all. |
-| `marker` | <code>string</code> | <code>()</code> | Resume from a previous `ContainerList.nextMarker`. |
+| `'limit` | <code>int</code> | Optional | The maximum number of containers to return; omit for all. |
+| `marker` | <code>string</code> | Optional | Resume from a previous `ContainerList.nextMarker`. |
 
 ### ContainerCreateOptions
 
@@ -2089,8 +2089,8 @@ Options for `AdminClient.createContainer`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `metadata` | <code>map&lt;string&gt;</code> | <code>()</code> | The container's initial metadata. |
-| `publicAccess` | <code>PublicAccess</code> | <code>()</code> | The anonymous access level. Omit to create a private container. Anonymous access also requires the storage account to permit it. |
+| `metadata` | <code>map&lt;string&gt;</code> | Optional | The container's initial metadata. |
+| `publicAccess` | <code>PublicAccess</code> | Optional | The anonymous access level. Omit to create a private container. Anonymous access also requires the storage account to permit it. |
 
 ### DeleteContainerOptions
 
@@ -2098,7 +2098,7 @@ Options for `AdminClient.deleteContainer`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the container is leased. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the container is leased. |
 
 ### ContainerMetadataOptions
 
@@ -2106,7 +2106,7 @@ Options for `Client.setContainerMetadata`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, when the container is leased. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, when the container is leased. |
 
 ### AccessPolicyOptions
 
@@ -2114,7 +2114,7 @@ Options for `Client.setPublicAccess` and `Client.setContainerAccessPolicy`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, when the container is leased. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, when the container is leased. |
 
 ### BlobListOptions
 
@@ -2122,8 +2122,8 @@ Options for `Client.listBlobs`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `prefix` | <code>string</code> | <code>()</code> | Return only blobs whose name begins with this prefix. |
-| `delimiter` | <code>string</code> | <code>()</code> | Group names that extend past this delimiter into a single prefix entry. |
+| `prefix` | <code>string</code> | Optional | Return only blobs whose name begins with this prefix. |
+| `delimiter` | <code>string</code> | Optional | Group names that extend past this delimiter into a single prefix entry. |
 | `includeMetadata` | <code>boolean</code> | <code>false</code> | Include each blob's metadata. |
 | `includeTags` | <code>boolean</code> | <code>false</code> | Include each blob's index tags. |
 | `includeSnapshots` | <code>boolean</code> | <code>false</code> | Include blob snapshots. |
@@ -2135,8 +2135,8 @@ Options for `Client.listBlobsPage`: every [BlobListOptions](#bloblistoptions) fi
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `pageSize` | <code>int</code> | <code>()</code> | The maximum number of blobs in the page, up to the service maximum of 5,000. |
-| `marker` | <code>string</code> | <code>()</code> | Resume from a previous `BlobList.nextMarker`. |
+| `pageSize` | <code>int</code> | Optional | The maximum number of blobs in the page, up to the service maximum of 5,000. |
+| `marker` | <code>string</code> | Optional | Resume from a previous `BlobList.nextMarker`. |
 
 ### DeleteBlobOptions
 
@@ -2144,9 +2144,9 @@ Options for `Client.deleteBlob`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the blob is leased. |
-| `deleteSnapshots` | <code>DeleteSnapshotsOption</code> | <code>()</code> | What happens to the blob's snapshots (`INCLUDE` or `ONLY_SNAPSHOTS`). Required when the blob has snapshots. |
-| `snapshotId` | <code>string</code> | <code>()</code> | Deletes this snapshot instead of the blob. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the blob is leased. |
+| `deleteSnapshots` | <code>DeleteSnapshotsOption</code> | Optional | What happens to the blob's snapshots (`INCLUDE` or `ONLY_SNAPSHOTS`). Required when the blob has snapshots. |
+| `snapshotId` | <code>string</code> | Optional | Deletes this snapshot instead of the blob. |
 
 ### BlobMetadataOptions
 
@@ -2154,7 +2154,7 @@ Options for `Client.setBlobMetadata`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the blob is leased. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the blob is leased. |
 
 ### ContentHeaderOptions
 
@@ -2162,7 +2162,7 @@ Options for `Client.setContentHeaders`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the blob is leased. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the blob is leased. |
 
 ### UploadOptions
 
@@ -2170,11 +2170,11 @@ Options for `Client.uploadFromFile` and `Client.commitBlockList` (`upload` takes
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the destination blob is leased. |
-| `contentHeaders` | <code>ContentHeaders</code> | <code>()</code> | The content headers stored with the new blob. |
-| `metadata` | <code>map&lt;string&gt;</code> | <code>()</code> | The metadata stored with the new blob. |
-| `tags` | <code>map&lt;string&gt;</code> | <code>()</code> | The index tags stored with the new blob. |
-| `accessTier` | <code>AccessTier</code> | <code>()</code> | The access tier the new blob starts in. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the destination blob is leased. |
+| `contentHeaders` | <code>ContentHeaders</code> | Optional | The content headers stored with the new blob. |
+| `metadata` | <code>map&lt;string&gt;</code> | Optional | The metadata stored with the new blob. |
+| `tags` | <code>map&lt;string&gt;</code> | Optional | The index tags stored with the new blob. |
+| `accessTier` | <code>AccessTier</code> | Optional | The access tier the new blob starts in. |
 
 ### UploadContentOptions
 
@@ -2182,7 +2182,7 @@ Options for `Client.upload`: every [UploadOptions](#uploadoptions) field, plus t
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `fileFormat` | <code>FileFormat</code> | <code>()</code> | The serialization format for structured content: `JSON`, `XML`, or `CSV`. When absent, the format is inferred from the destination path's extension (`.json`, `.xml`, `.csv`). |
+| `fileFormat` | <code>FileFormat</code> | Optional | The serialization format for structured content: `JSON`, `XML`, or `CSV`. When absent, the format is inferred from the destination path's extension (`.json`, `.xml`, `.csv`). |
 
 ### DownloadOptions
 
@@ -2190,8 +2190,8 @@ Options for `Client.download`, included by `getBlob`'s `GetBlobOptions`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `range` | <code>ByteRange</code> | <code>()</code> | Reads only this byte range of the blob. |
-| `snapshotId` | <code>string</code> | <code>()</code> | Reads this snapshot instead of the live blob. |
+| `range` | <code>ByteRange</code> | Optional | Reads only this byte range of the blob. |
+| `snapshotId` | <code>string</code> | Optional | Reads this snapshot instead of the live blob. |
 
 ### GetBlobOptions
 
@@ -2199,7 +2199,7 @@ Options for `Client.getBlob`: every [DownloadOptions](#downloadoptions) field, p
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `fileFormat` | <code>FileFormat</code> | <code>()</code> | The binding format for record targets: `JSON`, `XML`, or `CSV`. When absent, the format is inferred from the path's extension (`.json`, `.xml`, `.csv`). |
+| `fileFormat` | <code>FileFormat</code> | Optional | The binding format for record targets: `JSON`, `XML`, or `CSV`. When absent, the format is inferred from the path's extension (`.json`, `.xml`, `.csv`). |
 
 ### CopyOptions
 
@@ -2207,10 +2207,10 @@ Options for `Client.copyBlob` and `Client.copyBlobFromUrl`. An asynchronous copy
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The destination's active lease id, required when the destination is leased. |
-| `metadata` | <code>map&lt;string&gt;</code> | <code>()</code> | The metadata stored with the destination blob; when omitted, the destination inherits the source's metadata. |
-| `tags` | <code>map&lt;string&gt;</code> | <code>()</code> | The index tags stored with the destination blob. |
-| `accessTier` | <code>AccessTier</code> | <code>()</code> | The access tier the destination blob starts in. |
+| `leaseId` | <code>string</code> | Optional | The destination's active lease id, required when the destination is leased. |
+| `metadata` | <code>map&lt;string&gt;</code> | Optional | The metadata stored with the destination blob; when omitted, the destination inherits the source's metadata. |
+| `tags` | <code>map&lt;string&gt;</code> | Optional | The index tags stored with the destination blob. |
+| `accessTier` | <code>AccessTier</code> | Optional | The access tier the destination blob starts in. |
 
 ### AbortCopyOptions
 
@@ -2218,7 +2218,7 @@ Options for `Client.abortCopy`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The destination's active lease id, required when the destination is leased. |
+| `leaseId` | <code>string</code> | Optional | The destination's active lease id, required when the destination is leased. |
 
 ### SetAccessTierOptions
 
@@ -2226,8 +2226,8 @@ Options for `Client.setAccessTier`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the blob is leased. |
-| `rehydratePriority` | <code>RehydratePriority</code> | <code>()</code> | How quickly an archived blob is rehydrated; meaningful when leaving the archive tier. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the blob is leased. |
+| `rehydratePriority` | <code>RehydratePriority</code> | Optional | How quickly an archived blob is rehydrated; meaningful when leaving the archive tier. |
 
 ### TagOptions
 
@@ -2235,7 +2235,7 @@ Options for `Client.setTags`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the blob is leased. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the blob is leased. |
 
 ### CreateSnapshotOptions
 
@@ -2243,8 +2243,8 @@ Options for `Client.createSnapshot`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id; not required on a leased blob, but checked when given. |
-| `metadata` | <code>map&lt;string&gt;</code> | <code>()</code> | The snapshot's own metadata; when omitted, the snapshot inherits the blob's metadata. |
+| `leaseId` | <code>string</code> | Optional | The active lease id; not required on a leased blob, but checked when given. |
+| `metadata` | <code>map&lt;string&gt;</code> | Optional | The snapshot's own metadata; when omitted, the snapshot inherits the blob's metadata. |
 
 ### CreateBlobOptions
 
@@ -2252,10 +2252,10 @@ Options for `Client.createAppendBlob` and `Client.createPageBlob`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the blob is leased. |
-| `contentHeaders` | <code>ContentHeaders</code> | <code>()</code> | The content headers stored with the new blob. |
-| `metadata` | <code>map&lt;string&gt;</code> | <code>()</code> | The metadata stored with the new blob. |
-| `tags` | <code>map&lt;string&gt;</code> | <code>()</code> | The index tags stored with the new blob. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the blob is leased. |
+| `contentHeaders` | <code>ContentHeaders</code> | Optional | The content headers stored with the new blob. |
+| `metadata` | <code>map&lt;string&gt;</code> | Optional | The metadata stored with the new blob. |
+| `tags` | <code>map&lt;string&gt;</code> | Optional | The index tags stored with the new blob. |
 
 ### AppendBlockOptions
 
@@ -2263,7 +2263,7 @@ Options for `Client.appendBlock` and `Client.appendBlockFromUrl`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the blob is leased. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the blob is leased. |
 
 ### PageOptions
 
@@ -2271,7 +2271,7 @@ Options for `Client.uploadPages` and `Client.clearPages`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the blob is leased. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the blob is leased. |
 
 ### PageRangeOptions
 
@@ -2279,8 +2279,8 @@ Options for `Client.listPageRanges`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `range` | <code>ByteRange</code> | <code>()</code> | Restricts the listing to this byte range. |
-| `snapshotId` | <code>string</code> | <code>()</code> | Lists the ranges of this snapshot instead of the live blob. |
+| `range` | <code>ByteRange</code> | Optional | Restricts the listing to this byte range. |
+| `snapshotId` | <code>string</code> | Optional | Lists the ranges of this snapshot instead of the live blob. |
 
 ### StageBlockOptions
 
@@ -2288,7 +2288,7 @@ Options for `Client.stageBlock`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the blob is leased. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the blob is leased. |
 
 ### StageBlockFromUrlOptions
 
@@ -2296,8 +2296,8 @@ Options for `Client.stageBlockFromUrl`.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `leaseId` | <code>string</code> | <code>()</code> | The active lease id, required when the blob is leased. |
-| `sourceRange` | <code>ByteRange</code> | <code>()</code> | Stages only this byte range of the source instead of its whole content. |
+| `leaseId` | <code>string</code> | Optional | The active lease id, required when the blob is leased. |
+| `sourceRange` | <code>ByteRange</code> | Optional | Stages only this byte range of the source instead of its whole content. |
 
 ### ContainerSasSignatureValues
 
@@ -2305,12 +2305,12 @@ The values signed into a container SAS token, for `Client.generateContainerSas` 
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `expiryTime` | <code>time:Utc</code> | <code>()</code> | When the token expires. May be omitted only when `identifier` supplies it. |
-| `identifier` | <code>string</code> | <code>()</code> | A stored access policy on the container whose window and permissions the token inherits. Not valid for the user delegation variants, which reject it. |
-| `startTime` | <code>time:Utc</code> | <code>()</code> | When the token becomes valid; omit for immediately valid. |
-| `protocol` | <code>SasProtocol</code> | <code>()</code> | The protocols a request presenting the token may use. |
-| `ipRange` | <code>string</code> | <code>()</code> | An IP address or range the requests must come from (e.g. `168.1.5.60-168.1.5.70`). |
-| `permissions` | <code>ContainerSasPermissions</code> | <code>()</code> | The permissions granted. May be omitted only when `identifier` supplies them. |
+| `expiryTime` | <code>time:Utc</code> | Optional | When the token expires. May be omitted only when `identifier` supplies it. |
+| `identifier` | <code>string</code> | Optional | A stored access policy on the container whose window and permissions the token inherits. Not valid for the user delegation variants, which reject it. |
+| `startTime` | <code>time:Utc</code> | Optional | When the token becomes valid; omit for immediately valid. |
+| `protocol` | <code>SasProtocol</code> | Optional | The protocols a request presenting the token may use. |
+| `ipRange` | <code>string</code> | Optional | An IP address or range the requests must come from (e.g. `168.1.5.60-168.1.5.70`). |
+| `permissions` | <code>ContainerSasPermissions</code> | Optional | The permissions granted. May be omitted only when `identifier` supplies them. |
 
 Generation fails with an `Error` when no `identifier` is supplied and the `expiryTime` or the `permissions` are missing.
 
@@ -2335,12 +2335,12 @@ The values signed into a blob SAS token, for `Client.generateSas` and `Client.ge
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `expiryTime` | <code>time:Utc</code> | <code>()</code> | When the token expires. May be omitted only when `identifier` supplies it. |
-| `identifier` | <code>string</code> | <code>()</code> | A stored access policy on the container whose window and permissions the token inherits. Not valid for the user delegation variants, which reject it. |
-| `startTime` | <code>time:Utc</code> | <code>()</code> | When the token becomes valid; omit for immediately valid. |
-| `protocol` | <code>SasProtocol</code> | <code>()</code> | The protocols a request presenting the token may use. |
-| `ipRange` | <code>string</code> | <code>()</code> | An IP address or range the requests must come from (e.g. `168.1.5.60-168.1.5.70`). |
-| `permissions` | <code>BlobSasPermissions</code> | <code>()</code> | The permissions granted. May be omitted only when `identifier` supplies them. |
+| `expiryTime` | <code>time:Utc</code> | Optional | When the token expires. May be omitted only when `identifier` supplies it. |
+| `identifier` | <code>string</code> | Optional | A stored access policy on the container whose window and permissions the token inherits. Not valid for the user delegation variants, which reject it. |
+| `startTime` | <code>time:Utc</code> | Optional | When the token becomes valid; omit for immediately valid. |
+| `protocol` | <code>SasProtocol</code> | Optional | The protocols a request presenting the token may use. |
+| `ipRange` | <code>string</code> | Optional | An IP address or range the requests must come from (e.g. `168.1.5.60-168.1.5.70`). |
+| `permissions` | <code>BlobSasPermissions</code> | Optional | The permissions granted. May be omitted only when `identifier` supplies them. |
 
 Generation fails with an `Error` when no `identifier` is supplied and the `expiryTime` or the `permissions` are missing.
 
@@ -2367,9 +2367,9 @@ The values signed into an account-level SAS token, for `AdminClient.generateAcco
 | `permissions` | <code>AccountSasPermissions</code> | Required | The permissions granted. |
 | `services` | <code>AccountSasServices</code> | Required | The services the token covers. |
 | `resourceTypes` | <code>AccountSasResourceTypes</code> | Required | The resource types the token covers. |
-| `startTime` | <code>time:Utc</code> | <code>()</code> | When the token becomes valid; omit for immediately valid. |
-| `protocol` | <code>SasProtocol</code> | <code>()</code> | The protocols a request presenting the token may use. |
-| `ipRange` | <code>string</code> | <code>()</code> | An IP address or range the requests must come from (e.g. `168.1.5.60-168.1.5.70`). |
+| `startTime` | <code>time:Utc</code> | Optional | When the token becomes valid; omit for immediately valid. |
+| `protocol` | <code>SasProtocol</code> | Optional | The protocols a request presenting the token may use. |
+| `ipRange` | <code>string</code> | Optional | An IP address or range the requests must come from (e.g. `168.1.5.60-168.1.5.70`). |
 
 ### AccountSasPermissions
 
@@ -2458,9 +2458,9 @@ One stored access policy: a validity window and a permission string under an ide
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `id` | <code>string</code> | Required | The identifier a SAS token references to inherit this policy. |
-| `startTime` | <code>time:Utc</code> | <code>()</code> | When the policy becomes valid. |
-| `expiryTime` | <code>time:Utc</code> | <code>()</code> | When the policy expires. |
-| `permissions` | <code>string</code> | <code>()</code> | The permissions the policy grants, as the wire's permission string. |
+| `startTime` | <code>time:Utc</code> | Optional | When the policy becomes valid. |
+| `expiryTime` | <code>time:Utc</code> | Optional | When the policy expires. |
+| `permissions` | <code>string</code> | Optional | The permissions the policy grants, as the wire's permission string. |
 
 ### ContainerAccessPolicy
 
