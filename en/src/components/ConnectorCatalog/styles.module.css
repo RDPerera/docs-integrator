@@ -206,6 +206,14 @@
   }
 }
 
+/* Mobile search + Filters show only inside the catalog itself (index.tsx
+   renders them above Per page, under "Browse the catalog"). The shared
+   mobile TOC slot (theme/DocItem/TOC/Mobile) still renders a second copy
+   above the page title; this hides that one. */
+.filtersMobile:not(.catalog .filtersMobile) {
+  display: none;
+}
+
 .filtersToggle {
   display: flex;
   align-items: center;

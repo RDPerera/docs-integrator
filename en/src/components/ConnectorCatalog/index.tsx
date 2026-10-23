@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
 import { useCatalogRegister, useCatalog, SORTS, PER_PAGE_OPTIONS, type Connector, type Sort } from './context';
+import { ConnectorCatalogFiltersMobile } from './Filters';
 import styles from './styles.module.css';
 
 interface Props {
@@ -204,6 +205,10 @@ export default function ConnectorCatalog({ connectors, categories, vendors }: Pr
 
   return (
     <div className={styles.catalog}>
+      {/* Mobile only (hidden from 997px up, where the filter rail sits in
+          the right-hand column instead): search + Filters, right under
+          the page's "Browse the catalog" heading and above Per page. */}
+      <ConnectorCatalogFiltersMobile />
       <div className={styles.toolbar}>
         <div className={styles.toolbarLeft}>
           <label className={styles.perPage}>
