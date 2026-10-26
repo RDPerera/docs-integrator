@@ -12,6 +12,7 @@ import {
   sharedContributeNavbarItem,
   sharedPrism,
   sharedImage,
+  sharedAlgoliaSearch,
   sharedHeadTags,
   CROSS_PRODUCT_BASE,
 } from './src/theme-shared/themeConfig';
@@ -68,23 +69,8 @@ const config: Config = {
     './src/plugins/expose-sidebars',
   ],
 
-  themes: [
-    '@docusaurus/theme-mermaid',
-    [
-      '@easyops-cn/docusaurus-search-local',
-      {
-        hashed: true,
-        language: ['en'],
-        // See saas's docusaurus.config.ts for why this is off.
-        highlightSearchTermsOnTargetPage: false,
-        explicitSearchResultPath: true,
-        docsRouteBasePath: '/',
-        indexBlog: false,
-        indexPages: true,
-        searchBarShortcutHint: false,
-      },
-    ],
-  ],
+  // Search is Algolia (themeConfig.algolia), shared across products.
+  themes: ['@docusaurus/theme-mermaid'],
 
   presets: [
     [
@@ -112,6 +98,7 @@ const config: Config = {
     image: sharedImage,
     colorMode: sharedColorMode,
     docs: sharedDocsSidebar,
+    algolia: sharedAlgoliaSearch,
     // "On this page" shows H2/H3 only -- same rule as wso2-integrator's
     // sidebar-depth redesign, see that branch's docusaurus.config.ts for
     // the full reasoning (part of the shared theme, just not synced via
