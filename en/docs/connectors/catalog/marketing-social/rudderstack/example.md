@@ -38,9 +38,8 @@ flowchart LR
 
 ### Step 1: Open the connector palette and search for the connector
 
-Select **Add Artifact**, then select **Connection** to open the connector palette. Search for `rudderstack` and select the **RudderStack** connector card.
+Select **Add Artifact**, then select **Connection** to open the connector palette. Search for `rudderstack` and select the **Rudderstack** connector card.
 
-{/* Screenshot pending the connector release.
 <ThemedImage
     alt="Add Connection palette open with the search field before any selection"
     sources={{
@@ -48,7 +47,6 @@ Select **Add Artifact**, then select **Connection** to open the connector palett
         dark: useBaseUrl('/img/connectors/catalog/marketing-social/rudderstack/rudderstack_screenshot_01_palette.png'),
     }}
 />
-*/}
 
 ## Configuring the RudderStack connection
 
@@ -57,10 +55,9 @@ Select **Add Artifact**, then select **Connection** to open the connector palett
 Enter the connection parameters, binding each field to a configurable variable:
 
 - **Config** : `ConnectionConfig` record with the source write key; switch to **Expression** and enter `{auth: {writeKey: rudderstackWriteKey}}`
-- **Service Url** : The data plane URL of your workspace; bind to the `rudderstackDataPlaneUrl` configurable variable
+- **Service Url** (under **Advanced Configurations**) : The data plane URL of your workspace; bind to the `rudderstackDataPlaneUrl` configurable variable
 - **Connection Name** : Keep the default `rudderstackClient`
 
-{/* Screenshot pending the connector release.
 <ThemedImage
     alt="RudderStack connection form filled with configurable variables before saving"
     sources={{
@@ -68,13 +65,11 @@ Enter the connection parameters, binding each field to a configurable variable:
         dark: useBaseUrl('/img/connectors/catalog/marketing-social/rudderstack/rudderstack_screenshot_02_connection_form.png'),
     }}
 />
-*/}
 
 ### Step 3: Save the connection
 
 Select **Save Connection**. The connection appears under **Connections** in the project tree and on the design canvas.
 
-{/* Screenshot pending the connector release.
 <ThemedImage
     alt="Design canvas showing the saved rudderstackClient connection"
     sources={{
@@ -82,7 +77,6 @@ Select **Save Connection**. The connection appears under **Connections** in the 
         dark: useBaseUrl('/img/connectors/catalog/marketing-social/rudderstack/rudderstack_screenshot_03_connection_saved.png'),
     }}
 />
-*/}
 
 ### Step 4: Set actual values for your configurables
 
@@ -103,7 +97,6 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
 1. On the automation canvas, select the **+** button to add a step.
 2. Expand the **rudderstackClient** connection under **Connections**.
 
-{/* Screenshot pending the connector release.
 <ThemedImage
     alt="rudderstackClient connection expanded in the node panel showing the available operations"
     sources={{
@@ -111,14 +104,12 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
         dark: useBaseUrl('/img/connectors/catalog/marketing-social/rudderstack/rudderstack_screenshot_04_operations.png'),
     }}
 />
-*/}
 
 3. Select **Track** (`track`) and configure it:
 
 - **Payload** : Switch to **Expression** and enter `{userId: "u-1001", event: "Order Completed", properties: {"orderId": "o-5001", "revenue": 89.99, "currency": "USD"}}`
 - **Result** : Set the result variable name to `result`
 
-{/* Screenshot pending the connector release.
 <ThemedImage
     alt="track operation form with the event payload"
     sources={{
@@ -126,11 +117,9 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
         dark: useBaseUrl('/img/connectors/catalog/marketing-social/rudderstack/rudderstack_screenshot_05_operation_form.png'),
     }}
 />
-*/}
 
-4. Select **Save** to add the operation to the flow, then add a **Log Info** step after it that logs `result` in **Expression** mode. RudderStack returns `ok` when it accepts the event.
+4. Select **Save** to add the operation to the flow, then add a **Log Info** step after it, switch **Msg** to **Expression** and enter `result`. RudderStack returns `ok` when it accepts the event.
 
-{/* Screenshot pending the connector release.
 <ThemedImage
     alt="Completed automation flow with the track operation and a log step"
     sources={{
@@ -138,7 +127,6 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
         dark: useBaseUrl('/img/connectors/catalog/marketing-social/rudderstack/rudderstack_screenshot_06_completed_flow.png'),
     }}
 />
-*/}
 
 ## Try it yourself
 
