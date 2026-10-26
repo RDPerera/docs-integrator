@@ -2,7 +2,7 @@
 connector: true
 connector_name: "salesforce.datacloud"
 title: "Setup Guide"
-description: "Turn on Salesforce Data Cloud, create an External Client App with the client credentials flow, and prepare an Ingestion API connector for the ballerinax/salesforce.datacloud connector."
+description: "Turn on Salesforce Data 360 (Data Cloud), create an External Client App with the client credentials flow, and prepare an Ingestion API connector for the ballerinax/salesforce.datacloud connector."
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -10,19 +10,19 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Setup Guide
 
-This guide walks you through turning on Data Cloud, creating an External Client App, and obtaining the org URL, consumer key and consumer secret the Salesforce Data Cloud connector needs.
+This guide walks you through turning on Data 360, creating an External Client App, and obtaining the org URL, consumer key and consumer secret the Salesforce Data 360 (Data Cloud) connector needs.
 
-The connector authenticates to your Salesforce org with OAuth 2.0. It then exchanges the org's access token for a Data Cloud token and discovers the Data Cloud tenant endpoint itself, so you only configure the org's credentials.
+The connector authenticates to your Salesforce org with OAuth 2.0. It then exchanges the org's access token for a Data 360 token and discovers the Data 360 tenant endpoint itself, so you only configure the org's credentials.
 
 ## Prerequisites
 
-- A Salesforce org with Data Cloud (Data 360).
+- A Salesforce org with Data 360 (Data Cloud).
 - A user with the **System Administrator** profile, or equivalent permissions, to create External Client Apps.
 
-## Step 1: Turn on Data Cloud
+## Step 1: Turn on Data 360
 
-1. In Salesforce **Setup**, search for **Data Cloud Setup** (shown as **Data 360 Setup** in newer orgs). If Data Cloud isn't set up yet, select **Get Started** and wait until provisioning finishes, which can take up to an hour.
-2. Make sure the user the connector acts as has a Data Cloud permission set, for example, **Data Cloud Admin** or **Data Cloud Architect**.
+1. In Salesforce **Setup**, search for **Data Cloud Setup** (shown as **Data 360 Setup** in newer orgs). If Data 360 isn't set up yet, select **Get Started** and wait until provisioning finishes, which can take up to an hour.
+2. Make sure the user the connector acts as has a Data 360 permission set, for example, **Data Cloud Admin** or **Data Cloud Architect**.
 
 ## Step 2: Create an External Client App
 
@@ -49,14 +49,14 @@ The connector authenticates to your Salesforce org with OAuth 2.0. It then excha
    | Perform requests at any time (`refresh_token`, `offline_access`) | Only if you use the refresh token grant |
 
 <ThemedImage
-    alt="OAuth settings with the callback URL and the selected Data Cloud scopes"
+    alt="OAuth settings with the callback URL and the selected Data 360 scopes"
     sources={{
         light: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/setup_02_oauth_settings.png'),
         dark: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/setup_02_oauth_settings.png'),
     }}
 />
 
-5. Under **Flow Enablement**, select **Enable Client Credentials Flow**. Under **Security**, keep **Issue JSON Web Token (JWT)-based access tokens for named users** cleared: the Data Cloud token exchange doesn't accept JWT-based access tokens.
+5. Under **Flow Enablement**, select **Enable Client Credentials Flow**. Under **Security**, keep **Issue JSON Web Token (JWT)-based access tokens for named users** cleared: the Data 360 token exchange doesn't accept JWT-based access tokens.
 
 <ThemedImage
     alt="Flow enablement with the client credentials flow selected and the security settings"
@@ -102,7 +102,7 @@ New External Client Apps always require PKCE and rotate refresh tokens, and thes
 
 ## Step 5: Note the org URL
 
-The connector connects to your org's My Domain URL, for example, `https://acme.my.salesforce.com`. Find it in **Setup** under **My Domain**. Use the My Domain URL, not the Data Cloud tenant endpoint: the connector discovers the tenant endpoint itself.
+The connector connects to your org's My Domain URL, for example, `https://acme.my.salesforce.com`. Find it in **Setup** under **My Domain**. Use the My Domain URL, not the Data 360 tenant endpoint: the connector discovers the tenant endpoint itself.
 
 You now have everything the connector needs:
 
@@ -114,7 +114,7 @@ You now have everything the connector needs:
 Store the client ID and client secret securely. Bind them to `configurable` variables and supply the values in `Config.toml` at runtime instead of hardcoding them.
 :::
 
-## Step 6: Prepare Data Cloud for ingestion (optional)
+## Step 6: Prepare Data 360 for ingestion (optional)
 
 The ingestion operations write to objects of an Ingestion API connector. Skip this step if you only read profiles, insights or query results.
 

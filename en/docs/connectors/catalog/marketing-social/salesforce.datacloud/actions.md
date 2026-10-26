@@ -2,7 +2,7 @@
 connector: true
 connector_name: "salesforce.datacloud"
 title: "Actions"
-description: "Reference for the Salesforce Data Cloud connector client: configuration, initialization, and every operation with parameters, return types and samples."
+description: "Reference for the Salesforce Data 360 (Data Cloud) connector client: configuration, initialization, and every operation with parameters, return types and samples."
 toc_max_heading_level: 4
 ---
 
@@ -12,19 +12,19 @@ The `ballerinax/salesforce.datacloud` package exposes the following clients:
 
 | Client | Purpose |
 |--------|---------|
-| [`Client`](#client) | Ingests records into Salesforce Data Cloud (Data 360), reads unified profiles and calculated insights, runs SQL queries, and starts identity resolution and calculated insight runs. |
+| [`Client`](#client) | Ingests records into Salesforce Data 360 (Data Cloud), reads unified profiles and calculated insights, runs SQL queries, and starts identity resolution and calculated insight runs. |
 
 ---
 
 ## Client
 
-Ingests records into Salesforce Data Cloud (Data 360), reads unified profiles and calculated insights, runs SQL queries, and starts identity resolution and calculated insight runs.
+Ingests records into Salesforce Data 360 (Data Cloud), reads unified profiles and calculated insights, runs SQL queries, and starts identity resolution and calculated insight runs.
 
-Data Cloud serves its APIs from two hosts. The identity resolution and calculated insight runs go to your Salesforce org with the org's access token. Every other operation goes to the Data Cloud tenant endpoint with a Data Cloud token. The client takes your org credentials only: it exchanges the org's access token for a Data Cloud token, discovers the tenant endpoint, and exchanges again before the token expires.
+Data 360 serves its APIs from two hosts. The identity resolution and calculated insight runs go to your Salesforce org with the org's access token. Every other operation goes to the Data 360 tenant endpoint with a Data 360 token. The client takes your org credentials only: it exchanges the org's access token for a Data 360 token, discovers the tenant endpoint, and exchanges again before the token expires.
 
 ### Configuration
 
-The client is initialized with a `ConnectionConfig` record and the URL of your Salesforce org (its My Domain, for example, `https://acme.my.salesforce.com`), not the Data Cloud tenant endpoint.
+The client is initialized with a `ConnectionConfig` record and the URL of your Salesforce org (its My Domain, for example, `https://acme.my.salesforce.com`), not the Data 360 tenant endpoint.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
@@ -54,7 +54,7 @@ The client also takes these initialization parameters:
 |------|------|---------|-------------|
 | `serviceUrl` | `string` | Required | URL of your Salesforce org (its My Domain), for example, `https://acme.my.salesforce.com`. |
 | `apiVersion` | `string` | `"v62.0"` | Salesforce REST API version for the identity resolution and calculated insight runs. Needs v57.0 or later. |
-| `dataspace` | `string?` | `()` | Data space to scope the Data Cloud token to. Omit it to use the default data space. |
+| `dataspace` | `string?` | `()` | Data space to scope the Data 360 token to. Omit it to use the default data space. |
 
 ### Initializing the client
 
@@ -80,7 +80,7 @@ datacloud:Client datacloudClient = check new (
 
 #### Streaming ingestion
 
-Streaming ingestion writes to an object of an Ingestion API connector in Data Cloud. `sourceName` is the name of the Ingestion API connector as shown in Data Cloud setup, and `objectName` is an object from the schema uploaded to it. Every field defined in the object's schema must be present in every record (send a blank value when there's no data), an update replaces the whole record, and date-times need fractional seconds, for example, `2026-10-24T10:15:30.000Z`. Data Cloud processes streamed records asynchronously, about every 3 minutes.
+Streaming ingestion writes to an object of an Ingestion API connector in Data 360. `sourceName` is the name of the Ingestion API connector as shown in Data 360 setup, and `objectName` is an object from the schema uploaded to it. Every field defined in the object's schema must be present in every record (send a blank value when there's no data), an update replaces the whole record, and date-times need fractional seconds, for example, `2026-10-24T10:15:30.000Z`. Data 360 processes streamed records asynchronously, about every 3 minutes.
 
 <details>
 <summary>upsertRecords</summary>
@@ -93,7 +93,7 @@ Parameters:
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `sourceName` | `string` | Yes | Name of the Ingestion API connector as shown in Data Cloud setup. |
+| `sourceName` | `string` | Yes | Name of the Ingestion API connector as shown in Data 360 setup. |
 | `objectName` | `string` | Yes | Object name from the connector's schema. |
 | `payload` | `IngestRecords` | Yes | The records to upsert, in `data`. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
@@ -137,7 +137,7 @@ Parameters:
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `sourceName` | `string` | Yes | Name of the Ingestion API connector as shown in Data Cloud setup. |
+| `sourceName` | `string` | Yes | Name of the Ingestion API connector as shown in Data 360 setup. |
 | `objectName` | `string` | Yes | Object name from the connector's schema. |
 | `payload` | `DeleteRecordsRequest` | Yes | The primary keys of the records to delete, in `ids` (up to 200). |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
@@ -173,7 +173,7 @@ Parameters:
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `sourceName` | `string` | Yes | Name of the Ingestion API connector as shown in Data Cloud setup. |
+| `sourceName` | `string` | Yes | Name of the Ingestion API connector as shown in Data 360 setup. |
 | `objectName` | `string` | Yes | Object name from the connector's schema. |
 | `payload` | `IngestRecords` | Yes | The records to validate, in `data`. |
 | `headers` | `map<string\|string[]>` | No | Additional HTTP request headers. |
@@ -210,7 +210,7 @@ Sample response:
 
 #### Bulk ingestion
 
-Bulk ingestion loads CSV files into an object of an Ingestion API connector. A job moves through the states `Open`, `UploadComplete`, `InProgress` and `JobComplete` (or `Failed`), or `Aborted`. Data Cloud allows one open job per object, 5 concurrent jobs and 20 jobs per hour.
+Bulk ingestion loads CSV files into an object of an Ingestion API connector. A job moves through the states `Open`, `UploadComplete`, `InProgress` and `JobComplete` (or `Failed`), or `Aborted`. Data 360 allows one open job per object, 5 concurrent jobs and 20 jobs per hour.
 
 <details>
 <summary>createBulkJob</summary>
@@ -386,7 +386,7 @@ Sample response:
 
 <div>
 
-Closes a job so that Data Cloud processes the uploaded data (`UploadComplete`), or aborts it and discards the data (`Aborted`). No more data can be added afterwards.
+Closes a job so that Data 360 processes the uploaded data (`UploadComplete`), or aborts it and discards the data (`Aborted`). No more data can be added afterwards.
 
 Parameters:
 
@@ -429,7 +429,7 @@ Sample response:
 
 <div>
 
-Deletes a bulk job and its data. The job must be in the `UploadComplete`, `JobComplete`, `Aborted` or `Failed` state. Records already ingested stay in Data Cloud.
+Deletes a bulk job and its data. The job must be in the `UploadComplete`, `JobComplete`, `Aborted` or `Failed` state. Records already ingested stay in Data 360.
 
 Parameters:
 

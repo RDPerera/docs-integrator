@@ -2,14 +2,14 @@
 connector: true
 connector_name: "salesforce.datacloud"
 title: "Example"
-description: "Build an automation that connects to Salesforce Data Cloud and lists the profile data model objects with the ballerinax/salesforce.datacloud connector."
+description: "Build an automation that connects to Salesforce Data 360 (Data Cloud) and lists the profile data model objects with the ballerinax/salesforce.datacloud connector."
 ---
 
 # Example
 
 ## What you'll build
 
-Build an integration workflow that connects to Salesforce Data Cloud and lists the profile data model objects of your org, with their fields and relationships. The workflow logs the result as JSON.
+Build an integration workflow that connects to Salesforce Data 360 (Data Cloud) and lists the profile data model objects of your org, with their fields and relationships. The workflow logs the result as JSON.
 
 **Operations used:**
 - **listProfileMetadata** : Reads the metadata of all profile data model objects, such as Individual and Contact Point Email
@@ -19,25 +19,25 @@ Build an integration workflow that connects to Salesforce Data Cloud and lists t
 ```mermaid
 flowchart LR
     A((User)) --> B[listProfileMetadata Operation]
-    B --> C[Salesforce Data Cloud Connector]
-    C --> D((Salesforce Data Cloud))
+    B --> C["Salesforce Data 360 (Data Cloud) Connector"]
+    C --> D(("Salesforce Data 360"))
 ```
 
 ## Prerequisites
 
-- A Salesforce org with Data Cloud and an External Client App with the client credentials flow (see the [Setup Guide](setup-guide.md))
+- A Salesforce org with Data 360 and an External Client App with the client credentials flow (see the [Setup Guide](setup-guide.md))
 
-## Setting up the Salesforce Data Cloud integration
+## Setting up the Salesforce Data 360 (Data Cloud) integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](product://integrator/develop-and-test/create-workspace) guide to set up your integration first, then return here to add the connector.
 
-## Adding the Salesforce Data Cloud connector
+## Adding the Salesforce Data 360 (Data Cloud) connector
 
 ### Step 1: Open the connector palette and search for the connector
 
-Select **Add Artifact**, then select **Connection** to open the connector palette. Search for `datacloud` and select the **Salesforce Data Cloud** connector card.
+Select **Add Artifact**, then select **Connection** to open the connector palette. Search for `datacloud` and select the **Salesforce Data 360 (Data Cloud)** connector card.
 
-## Configuring the Salesforce Data Cloud connection
+## Configuring the Salesforce Data 360 (Data Cloud) connection
 
 ### Step 2: Fill in the connection parameters
 
@@ -60,7 +60,7 @@ Select **Save Connection**. The connection appears under **Connections** in the 
 - **datacloudClientId** (string) : The consumer key of your External Client App
 - **datacloudClientSecret** (string) : The consumer secret of your External Client App
 
-## Configuring the Salesforce Data Cloud listProfileMetadata operation
+## Configuring the Salesforce Data 360 (Data Cloud) listProfileMetadata operation
 
 ### Step 5: Add an automation entry point
 
@@ -75,7 +75,7 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
 
 ## More code examples
 
-The Salesforce Data Cloud connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-salesforce.datacloud/tree/main/examples), covering use cases like bulk customer loads and customer profile lookups.
+The Salesforce Data 360 (Data Cloud) connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-salesforce.datacloud/tree/main/examples), covering use cases like bulk customer loads and customer profile lookups.
 
 1. [Bulk customer load](https://github.com/ballerina-platform/module-ballerinax-salesforce.datacloud/tree/main/examples/bulk-customer-load) - Create a bulk upsert job, upload a CSV file to it, close it, poll it until processing finishes, and delete the finished job.
 
