@@ -1835,6 +1835,16 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'Salesforce Data Cloud',
+          link: { type: 'doc', id: 'catalog/marketing-social/salesforce.datacloud/salesforce-datacloud-connector-overview' },
+          items: [
+            'catalog/marketing-social/salesforce.datacloud/setup-guide',
+            'catalog/marketing-social/salesforce.datacloud/actions',
+            'catalog/marketing-social/salesforce.datacloud/example',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Salesforce Marketing Cloud',
           link: { type: 'doc', id: 'catalog/marketing-social/salesforce.marketingcloud/salesforce-marketing-cloud-connector-overview' },
           items: [
