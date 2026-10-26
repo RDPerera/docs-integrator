@@ -2,12 +2,12 @@
 connector: true
 connector_name: "salesforce.datacloud"
 title: "Overview"
-description: "Stream and bulk-load records into Salesforce Data 360 (Data Cloud), read unified profiles and calculated insights, run SQL queries, and start identity resolution runs with the Salesforce Data 360 (Data Cloud) connector."
+description: "Stream and bulk-load records into Salesforce Data 360 (Data Cloud), read unified profiles and calculated insights, run SQL queries, and start identity resolution runs with the WSO2 Salesforce Data 360 (Data Cloud) Connector."
 ---
 
 # Overview
 
-Salesforce Data 360 (Data Cloud) is Salesforce's customer data platform. It ingests data from any source, unifies it into customer profiles through identity resolution, and computes calculated insights on those profiles. The Ballerina `ballerinax/salesforce.datacloud` connector (v1.0.0) gives your integrations access to the Data 360 Ingestion, Profile, Calculated Insights and Query APIs, and to the identity resolution and calculated insight runs of the Connect REST API.
+Salesforce Data 360 (Data Cloud) is Salesforce's customer data platform. It ingests data from any source, unifies it into customer profiles through identity resolution, and computes calculated insights on those profiles. The WSO2 Salesforce Data 360 (Data Cloud) Connector (v1.0.0) gives your integrations access to the Data 360 Ingestion, Profile, Calculated Insights and Query APIs, and to the identity resolution and calculated insight runs of the Connect REST API.
 
 ## Key features
 
@@ -35,7 +35,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
-* **[Example](example.md)**: Learn how to build and configure an integration using the **Salesforce Data 360 (Data Cloud)** connector, including connection setup, operation configuration, and execution flow.
+* **[Example](example.md)**: Learn how to build and configure an integration using the **WSO2 Salesforce Data 360 (Data Cloud) Connector**, including connection setup, operation configuration, and execution flow.
 
 ## How to contribute
 
@@ -43,6 +43,6 @@ As an open source project, WSO2 welcomes contributions from the community.
 
 To contribute to the code for this connector, please create a pull request in the following repository.
 
-* [Salesforce Data 360 (Data Cloud) Connector GitHub repository](https://github.com/ballerina-platform/module-ballerinax-salesforce.datacloud)
+* [WSO2 Salesforce Data 360 (Data Cloud) Connector GitHub repository](https://github.com/ballerina-platform/module-ballerinax-salesforce.datacloud)
 
 Check the issue tracker for open issues that interest you. We look forward to receiving your contributions.

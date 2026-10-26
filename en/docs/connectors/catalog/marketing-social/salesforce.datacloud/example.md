@@ -2,7 +2,7 @@
 connector: true
 connector_name: "salesforce.datacloud"
 title: "Example"
-description: "Build an automation that connects to Salesforce Data 360 (Data Cloud) and lists the profile data model objects with the ballerinax/salesforce.datacloud connector."
+description: "Build an automation that connects to Salesforce Data 360 (Data Cloud) and lists the profile data model objects with the WSO2 Salesforce Data 360 (Data Cloud) Connector."
 ---
 
 # Example
@@ -19,7 +19,7 @@ Build an integration workflow that connects to Salesforce Data 360 (Data Cloud) 
 ```mermaid
 flowchart LR
     A((User)) --> B[listProfileMetadata Operation]
-    B --> C["Salesforce Data 360 (Data Cloud) Connector"]
+    B --> C["WSO2 Salesforce Data 360 (Data Cloud) Connector"]
     C --> D(("Salesforce Data 360"))
 ```
 
@@ -31,7 +31,7 @@ flowchart LR
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](product://integrator/develop-and-test/create-workspace) guide to set up your integration first, then return here to add the connector.
 
-## Adding the Salesforce Data 360 (Data Cloud) connector
+## Adding the WSO2 Salesforce Data 360 (Data Cloud) Connector
 
 ### Step 1: Open the connector palette and search for the connector
 
@@ -75,7 +75,7 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
 
 ## More code examples
 
-The Salesforce Data 360 (Data Cloud) connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-salesforce.datacloud/tree/main/examples), covering use cases like bulk customer loads and customer profile lookups.
+The WSO2 Salesforce Data 360 (Data Cloud) Connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-salesforce.datacloud/tree/main/examples), covering use cases like bulk customer loads and customer profile lookups.
 
 1. [Bulk customer load](https://github.com/ballerina-platform/module-ballerinax-salesforce.datacloud/tree/main/examples/bulk-customer-load) - Create a bulk upsert job, upload a CSV file to it, close it, poll it until processing finishes, and delete the finished job.
 

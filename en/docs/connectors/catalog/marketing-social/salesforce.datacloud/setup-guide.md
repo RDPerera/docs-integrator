@@ -2,7 +2,7 @@
 connector: true
 connector_name: "salesforce.datacloud"
 title: "Setup Guide"
-description: "Turn on Salesforce Data 360 (Data Cloud), create an External Client App with the client credentials flow, and prepare an Ingestion API connector for the ballerinax/salesforce.datacloud connector."
+description: "Turn on Salesforce Data 360 (Data Cloud), create an External Client App with the client credentials flow, and prepare an Ingestion API connector for the WSO2 Salesforce Data 360 (Data Cloud) Connector."
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Setup Guide
 
-This guide walks you through turning on Data 360, creating an External Client App, and obtaining the org URL, consumer key and consumer secret the Salesforce Data 360 (Data Cloud) connector needs.
+This guide walks you through turning on Data 360, creating an External Client App, and obtaining the org URL, consumer key and consumer secret the WSO2 Salesforce Data 360 (Data Cloud) Connector needs.
 
 The connector authenticates to your Salesforce org with OAuth 2.0. It then exchanges the org's access token for a Data 360 token and discovers the Data 360 tenant endpoint itself, so you only configure the org's credentials.
 

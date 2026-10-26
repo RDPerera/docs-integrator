@@ -2,7 +2,7 @@
 connector: true
 connector_name: "salesforce.datacloud"
 title: "Actions"
-description: "Reference for the Salesforce Data 360 (Data Cloud) connector client: configuration, initialization, and every operation with parameters, return types and samples."
+description: "Reference for the WSO2 Salesforce Data 360 (Data Cloud) Connector client: configuration, initialization, and every operation with parameters, return types and samples."
 toc_max_heading_level: 4
 ---
 
