@@ -7,7 +7,7 @@ description: "Send customer events to RudderStack, read and delete the profiles 
 
 # Overview
 
-RudderStack is a customer data platform that collects customer events from websites, apps and servers, routes them to warehouses and business tools, and builds unified customer profiles from them. The Ballerina `ballerinax/rudderstack` connector enables you to send customer events through the RudderStack Event Stream (HTTP) API, read and delete the profiles that RudderStack Profiles materializes in a Redis destination through the Activation API, and start and monitor Profiles runs through the Profiles API, directly from your Ballerina integration flows.
+RudderStack is a customer data platform that collects customer events from websites, apps and servers, routes them to warehouses and business tools, and builds unified customer profiles from them. The WSO2 RudderStack Connector enables you to send customer events through the RudderStack Event Stream (HTTP) API, read and delete the profiles that RudderStack Profiles materializes in a Redis destination through the Activation API, and start and monitor Profiles runs through the Profiles API, directly from your integration flows.
 
 ## Key features
 

@@ -24,8 +24,7 @@ You only need the credentials of the APIs you call. For example, an integration 
 
 ## Prerequisites
 
-- A RudderStack account. The Event Stream API is available on every plan, including the free plan.
-- For the Activation and Profiles APIs: RudderStack Profiles, and for the Activation API, a Redis destination that the Profiles project syncs to.
+- A RudderStack account
 
 ## Step 1: Create an HTTP source
 
