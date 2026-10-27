@@ -1173,6 +1173,16 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'RudderStack',
+          link: { type: 'doc', id: 'catalog/marketing-social/rudderstack/rudderstack-connector-overview' },
+          items: [
+            'catalog/marketing-social/rudderstack/setup-guide',
+            'catalog/marketing-social/rudderstack/actions',
+            'catalog/marketing-social/rudderstack/example',
+          ],
+        },
+        {
+          type: 'category',
           label: 'SAP',
           link: { type: 'doc', id: 'catalog/erp-business/sap/connector-overview' },
           items: [
