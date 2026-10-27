@@ -5,6 +5,9 @@ title: "Example"
 description: "Build an automation that connects to Salesforce Data 360 (Data Cloud) and lists the profile data model objects with the WSO2 Salesforce Data 360 (Data Cloud) Connector."
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Example
 
 ## What you'll build
@@ -35,7 +38,15 @@ flowchart LR
 
 ### Step 1: Open the connector palette and search for the connector
 
-Select **Add Artifact**, then select **Connection** to open the connector palette. Search for `datacloud` and select the **Salesforce Data 360 (Data Cloud)** connector card.
+Select **Add Artifact**, then select **Connection** to open the connector palette. Search for `salesforce.datacloud` and select the **Datacloud** connector card (`ballerinax / salesforce.datacloud`).
+
+<ThemedImage
+    alt="Add Connection palette open with the search field before any selection"
+    sources={{
+        light: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_01_palette.png'),
+        dark: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_01_palette.png'),
+    }}
+/>
 
 ## Configuring the Salesforce Data 360 (Data Cloud) connection
 
@@ -47,9 +58,25 @@ Enter the connection parameters, binding each field to a configurable variable:
 - **Service Url** : URL of your Salesforce org (its My Domain); bind to the `datacloudOrgUrl` configurable variable
 - **Connection Name** : Keep the default `datacloudClient`
 
+<ThemedImage
+    alt="Datacloud connection form filled with configurable variables before saving"
+    sources={{
+        light: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_02_connection_form.png'),
+        dark: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_02_connection_form.png'),
+    }}
+/>
+
 ### Step 3: Save the connection
 
 Select **Save Connection**. The connection appears under **Connections** in the project tree and on the design canvas.
+
+<ThemedImage
+    alt="Design canvas showing the saved datacloudClient connection"
+    sources={{
+        light: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_03_connection_saved.png'),
+        dark: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_03_connection_saved.png'),
+    }}
+/>
 
 ### Step 4: Set actual values for your configurables
 
@@ -70,8 +97,44 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
 
 1. On the automation canvas, select the **+** button to add a step.
 2. Expand the **datacloudClient** connection under **Connections**.
-3. Select **List Profile Metadata** (`listProfileMetadata`) and set the result variable name to `result`. The operation takes no parameters.
-4. Select **Save** to add the operation to the flow, then add a **Log Info** step after it that logs `result.toJsonString()` in **Expression** mode.
+
+<ThemedImage
+    alt="datacloudClient connection expanded in the node panel showing the available operations"
+    sources={{
+        light: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_04_operations.png'),
+        dark: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_04_operations.png'),
+    }}
+/>
+
+3. Select **List Profile Metadata** (`listProfileMetadata`) and configure it. The operation has no required parameters:
+
+- **Result** : Set the result variable name to `result`
+
+<ThemedImage
+    alt="listProfileMetadata operation form with the result variable"
+    sources={{
+        light: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_05_operation_form.png'),
+        dark: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_05_operation_form.png'),
+    }}
+/>
+
+4. Select **Save** to add the operation to the flow, then add a **Log Info** step after it, switch **Msg** to **Expression** and enter `result.toJsonString()`.
+
+<ThemedImage
+    alt="Completed automation flow with the listProfileMetadata operation and a log step"
+    sources={{
+        light: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_06_completed_flow.png'),
+        dark: useBaseUrl('/img/connectors/catalog/marketing-social/salesforce.datacloud/salesforce_datacloud_screenshot_06_completed_flow.png'),
+    }}
+/>
+
+## Try it yourself
+
+Try this sample in WSO2 Integration Platform.
+
+[![Deploy to Devant](https://openindevant.choreoapps.dev/images/DeployDevant-White.svg)](https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/integrator-default-profile/connectors/salesforce.datacloud_connector_sample)
+
+[View source on GitHub](https://github.com/wso2/integration-samples/tree/main/integrator-default-profile/connectors/salesforce.datacloud_connector_sample)
 
 ## More code examples
 
