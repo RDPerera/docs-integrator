@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 56px;
+  min-height: 56px;
   padding: 0 12px 0 8px;
   border: 1px solid #E3DCD5;
   border-radius: 12px;
@@ -64,6 +64,19 @@
      bold, just the size matches for a calmer, more consistent sidebar. */
   font-size: 14px;
   font-weight: 800;
+  /* Caps a long connector name at 2 lines instead of letting it wrap
+     unbounded inside .trigger's fixed-height box, which was overflowing
+     and visually breaking the row (see the min-height change above --
+     both parts of the same fix). */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* -webkit-box-orient: vertical stacks wrapped lines as box children,
+     which without an explicit box-pack can read as centered rather than
+     left-aligned text -- pin it explicitly rather than rely on
+     .triggerText's flex-start alone. */
+  text-align: left;
 }
 
 .triggerMeta {

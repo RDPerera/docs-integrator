@@ -42,23 +42,34 @@ function SearchIcon(): ReactNode {
 }
 
 /** One collapsible checkbox facet -- "Area" (category) and "Vendor" are
- * both built from this, only the data and the label differ. Long lists
- * scroll internally (max-height + overflow) instead of pushing "Vendor"
- * far down the sidebar, matching the reference layout. No per-item
- * count shown, matching the reference -- just the checkbox and label. */
+ * both built from this, only the data and the label differ. No per-item
+ * count shown -- just the checkbox and label.
+ *
+ * `limit`: when set and the list is longer than it, only the first
+ * `limit` items show initially, with a "Show more"/"Show less" toggle
+ * below the list (reuses `.showMore`, the same pattern the catalog
+ * card's description truncation already uses) -- Vendor's list grows
+ * with the catalog and was pushing "Missing a connector?" far down the
+ * sidebar; Area's (a small, fixed set of categories) is left unlimited. */
 function FacetGroup({
   title,
   items,
   selected,
   onToggle,
+  limit,
 }: {
   title: string;
   items: string[];
   selected: string[];
   onToggle: (item: string) => void;
+  limit?: number;
 }): ReactNode {
   const [open, setOpen] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   if (items.length === 0) return null;
+
+  const isTruncatable = limit !== undefined && items.length > limit;
+  const visibleItems = isTruncatable && !expanded ? items.slice(0, limit) : items;
 
   return (
     <div className={styles.facetGroup}>
@@ -67,22 +78,29 @@ function FacetGroup({
         <ChevronIcon open={open} />
       </button>
       {open && (
-        <div className={styles.facetList}>
-          {items.map((item) => (
-            <button
-              key={item}
-              type="button"
-              className={styles.facet}
-              aria-pressed={selected.includes(item)}
-              onClick={() => onToggle(item)}
-            >
-              <span className={styles.box}>
-                <CheckIcon />
-              </span>
-              <span className={styles.facetLabel}>{item}</span>
+        <>
+          <div className={styles.facetList}>
+            {visibleItems.map((item) => (
+              <button
+                key={item}
+                type="button"
+                className={styles.facet}
+                aria-pressed={selected.includes(item)}
+                onClick={() => onToggle(item)}
+              >
+                <span className={styles.box}>
+                  <CheckIcon />
+                </span>
+                <span className={styles.facetLabel}>{item}</span>
+              </button>
+            ))}
+          </div>
+          {isTruncatable && (
+            <button type="button" className={styles.showMore} onClick={() => setExpanded((e) => !e)}>
+              {expanded ? 'Show less' : `Show more (${items.length - limit!})`}
             </button>
-          ))}
-        </div>
+          )}
+        </>
       )}
     </div>
   );
@@ -141,7 +159,7 @@ export default function ConnectorCatalogFilters(): ReactNode {
       )}
 
       <FacetGroup title="Area" items={catalog.sortedCategories} selected={catalog.selectedCats} onToggle={catalog.toggleCategory} />
-      <FacetGroup title="Vendor" items={catalog.sortedVendors} selected={catalog.selectedVendors} onToggle={catalog.toggleVendor} />
+      <FacetGroup title="Vendor" items={catalog.sortedVendors} selected={catalog.selectedVendors} onToggle={catalog.toggleVendor} limit={5} />
 
       <PromoBox />
     </div>
@@ -188,7 +206,7 @@ export function ConnectorCatalogFiltersMobile(): ReactNode {
             </button>
           )}
           <FacetGroup title="Area" items={catalog.sortedCategories} selected={catalog.selectedCats} onToggle={catalog.toggleCategory} />
-          <FacetGroup title="Vendor" items={catalog.sortedVendors} selected={catalog.selectedVendors} onToggle={catalog.toggleVendor} />
+          <FacetGroup title="Vendor" items={catalog.sortedVendors} selected={catalog.selectedVendors} onToggle={catalog.toggleVendor} limit={5} />
           <PromoBox />
         </div>
       )}
