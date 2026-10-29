@@ -38,9 +38,8 @@ flowchart LR
 
 ### Step 1: Open the connector palette and search for the connector
 
-Select **Add Artifact**, then select **Connection** to open the connector palette. Search for `authzen` and select the **AuthZEN** connector card.
+Select **Add Artifact**, then select **Connection** to open the connector palette. Search for `authzen` and select the **Authzen** connector card.
 
-{/* Screenshot pending the ballerina/authzen release on Ballerina Central.
 <ThemedImage
     alt="Add Connection palette open with the search field before any selection"
     sources={{
@@ -48,7 +47,6 @@ Select **Add Artifact**, then select **Connection** to open the connector palett
         dark: useBaseUrl('/img/connectors/catalog/security-identity/authzen/authzen_screenshot_01_palette.png'),
     }}
 />
-*/}
 
 ## Configuring the AuthZEN connection
 
@@ -61,7 +59,6 @@ Enter the connection parameters, binding each field to a configurable variable:
 
 The public PDP of this example needs no credentials. For a PDP that authenticates its callers, set **Auth** under **Advanced Configurations**, for example `{token: authzenAccessToken}` for a Bearer token.
 
-{/* Screenshot pending the ballerina/authzen release on Ballerina Central.
 <ThemedImage
     alt="AuthZEN connection form filled with configurable variables before saving"
     sources={{
@@ -69,13 +66,11 @@ The public PDP of this example needs no credentials. For a PDP that authenticate
         dark: useBaseUrl('/img/connectors/catalog/security-identity/authzen/authzen_screenshot_02_connection_form.png'),
     }}
 />
-*/}
 
 ### Step 3: Save the connection
 
 Select **Save Connection**. The connection appears under **Connections** in the project tree and on the design canvas.
 
-{/* Screenshot pending the ballerina/authzen release on Ballerina Central.
 <ThemedImage
     alt="Design canvas showing the saved authzenClient connection"
     sources={{
@@ -83,7 +78,6 @@ Select **Save Connection**. The connection appears under **Connections** in the 
         dark: useBaseUrl('/img/connectors/catalog/security-identity/authzen/authzen_screenshot_03_connection_saved.png'),
     }}
 />
-*/}
 
 ### Step 4: Set actual values for your configurables
 
@@ -103,7 +97,6 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
 1. On the automation canvas, select the **+** button to add a step.
 2. Expand the **authzenClient** connection under **Connections**.
 
-{/* Screenshot pending the ballerina/authzen release on Ballerina Central.
 <ThemedImage
     alt="authzenClient connection expanded in the node panel showing the available operations"
     sources={{
@@ -111,14 +104,12 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
         dark: useBaseUrl('/img/connectors/catalog/security-identity/authzen/authzen_screenshot_04_operations.png'),
     }}
 />
-*/}
 
 3. Select **Evaluate** (`evaluate`) and configure it:
 
 - **Request** : Switch to **Expression** and enter `{subject: {'type: "user", id: "CiRmZDA2MTRkMy1jMzlhLTQ3ODEtYjdiZC04Yjk2ZjVhNTEwMGQSBWxvY2Fs"}, action: {name: "can_create_todo"}, 'resource: {'type: "todo", id: "todo-1"}}`. The subject ID is the user Rick of the AuthZEN interop "todo" scenario, who is an admin.
-- **Result** : Set the result variable name to `result`
+- **Result** : Keep the default result variable name `authzenDecision`
 
-{/* Screenshot pending the ballerina/authzen release on Ballerina Central.
 <ThemedImage
     alt="evaluate operation form with the access request"
     sources={{
@@ -126,11 +117,9 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
         dark: useBaseUrl('/img/connectors/catalog/security-identity/authzen/authzen_screenshot_05_operation_form.png'),
     }}
 />
-*/}
 
-4. Select **Save** to add the operation to the flow, then add a **Log Info** step after it, switch **Msg** to **Expression** and enter `result.toJsonString()`. The PDP returns `{"decision":true}` with the reasons for the decision in `context`.
+4. Select **Save** to add the operation to the flow, then add a **Log Info** step after it, switch **Msg** to **Expression** and enter `authzenDecision.toJsonString()`. The PDP returns `{"decision":true}` with the reasons for the decision in `context`.
 
-{/* Screenshot pending the ballerina/authzen release on Ballerina Central.
 <ThemedImage
     alt="Completed automation flow with the evaluate operation and a log step"
     sources={{
@@ -138,7 +127,6 @@ Select **Add Artifact**, then select **Automation** and select **Create** to add
         dark: useBaseUrl('/img/connectors/catalog/security-identity/authzen/authzen_screenshot_06_completed_flow.png'),
     }}
 />
-*/}
 
 ## Try it yourself
 
